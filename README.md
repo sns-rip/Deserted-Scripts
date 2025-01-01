@@ -1,4 +1,4 @@
-# Deserted Scripts
+# SNS Scripts
 
 ## 🔗 | Links
 
