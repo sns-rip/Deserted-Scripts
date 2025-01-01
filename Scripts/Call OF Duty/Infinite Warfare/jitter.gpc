@@ -1,0 +1,164 @@
+// GPC Online Library
+// M.2187 AKIMBO JITTER __WORKING 2024__ 1.0.0.gpc
+// Author: Dxsertion
+// Link: https://forums.cronusmax.com/gpclib/13619
+
+// ########################################################### //
+//
+// About: CoD IW M.2187 Jump Jitter  
+//
+// Requirement(s):                                                        
+// Default Button Layout                                                            
+// Sprint Cancels Reload On                                                             
+//                                                             
+// Credits:                                                           
+// Made By: sns.rip ( Sns )                                                            
+// Made At: https://discord.gg/bGGrAc6n4V                                                            
+//
+// Notes:
+// Jitter Is Automatically Enabled By Default
+// Press Shoot For Low Jump
+// Press Aim For High Jump
+//
+// ########################################################### //
+
+ 
+int M_2187_ONoff    = TRUE;
+ 
+main {
+ 
+if(get_val(7) && event_release(14)){M_2187_ONoff = !M_2187_ONoff;
+if(M_2187_ONoff) {combo_run(RumbleNotifier);}}
+if(M_2187_ONoff && get_val(4)){combo_run(M_2187);combo_stop(ThrustJump);combo_stop(Reload);combo_stop(AutoSprint1);combo_stop(AutoSprint2);}
+if(M_2187_ONoff && get_val(7)){combo_run(ThrustJump);combo_stop(M_2187);combo_stop(Reload);combo_stop(AutoSprint1);combo_stop(AutoSprint2);}
+if(M_2187_ONoff && get_val(7) && get_val(4)){combo_stop(M_2187);combo_stop(ThrustJump);}
+if(M_2187_ONoff && event_release(4) || M_2187_ONoff && event_release(7)){combo_run(Reload);combo_stop(M_2187);combo_stop(ThrustJump);}
+ 
+if(get_val(PS4_LY)<-88){combo_run(AutoSprint2); combo_stop(AutoSprint1);}  else combo_stop(AutoSprint2);
+if(get_val(PS4_LY)>-55 && get_val(PS4_LY)<=-25){combo_run(AutoSprint2);}
+if(get_val(PS4_LY)>=-88 && get_val(PS4_LY)<=-55){combo_stop(AutoSprint2);combo_run(AutoSprint1);}
+                                            else{combo_stop(AutoSprint1);}
+if(get_val(PS4_LY)<=-25 && event_release(4) || get_val(PS4_LY)<=-25 && event_release(18) || get_val(PS4_LY)<=-25 && event_release(7)) {combo_run(Sprint);}
+ 
+if(get_ptime(5)<=70 && get_val(5)){set_val(5,0);}
+if(get_ptime(5)>=71 && get_val(5)){set_val(5,100);}
+if(get_val(PS4_LY)<-33 && (event_press(18))) {combo_run(prone);}
+if(combo_running(M_2187) || combo_running(ThrustJump)){set_val(5,0);}
+ 
+if(get_val(PS4_LY)<-10&&(get_val(4))||get_val(PS4_LY)<-10&&(get_val(7))||get_val(7)&&get_val(4))
+{combo_stop(AutoSprint1);combo_stop(AutoSprint2);combo_stop(prone);combo_stop(Reload);}
+if(get_ptime(8)>=145 && get_val(8)){combo_run(payload);}}    
+ 
+combo M_2187 {
+    set_val(4,100);
+    set_val(7,100);
+    set_val(19,100);
+    set_val(20,100);
+    set_val(8,100);
+    wait(11);
+    set_val(4,100);
+    set_val(7,100);
+    set_val(20,0);
+    set_val(8,0);
+    wait(15);
+    set_val(4,0);
+    set_val(7,0);
+    set_val(8,100);
+    wait(15);
+    set_val(4,100);
+    set_val(7,100);
+    set_val(20,100);
+    set_val(8,100);
+    wait(11);
+    set_val(4,100);
+    set_val(7,100);
+    set_val(20,0);
+    set_val(8,0);
+    wait(15);
+    set_val(4,0);
+    set_val(7,0);
+    set_val(8,100);
+    wait(15);}
+ 
+combo ThrustJump {
+    set_val(4,100);
+    set_val(7,100);
+    set_val(19,100);
+    set_val(20,100);
+    set_val(8,100);
+    wait(13);
+    set_val(4,100);
+    set_val(7,100);
+    set_val(19,100);
+    set_val(20,0);
+    set_val(8,0);
+    wait(13);
+    set_val(4,0);
+    set_val(7,0);
+    set_val(19,100);
+    set_val(8,100);
+    wait(16);
+     set_val(4,100);
+    set_val(7,100);
+    set_val(19,0);
+    set_val(20,100);
+    set_val(8,100);
+    wait(13);
+    set_val(4,100);
+    set_val(7,100);
+    set_val(19,0);
+    set_val(20,0);
+    set_val(8,0);
+    wait(13);
+    set_val(4,0);
+    set_val(7,0);
+    set_val(19,0);
+    set_val(8,100);
+    wait(16);}
+ 
+combo Reload {
+    wait(100);
+    set_val(20,100);
+    wait(71);
+    wait(130);
+    set_val(20,100);
+    wait(81);
+    wait(160);
+    set_val(20,100);
+    wait(101);
+    wait(133);
+    set_val(20,100);
+    wait(71);
+    wait(100);
+    set_val(20,100);
+    wait(111);
+    wait(70);
+    set_val(20,100);
+    wait(100);}
+ 
+combo AutoSprint1 {
+    wait(300);
+    set_val(8,100);
+    wait(3000);}
+ 
+combo AutoSprint2 {
+    set_val(8, 100);}
+ 
+combo Sprint {
+    set_val(8,0):
+    wait(130);
+    set_val(8,100);
+    wait(21);
+    combo_run(AutoSprint2);}
+ 
+combo prone {
+set_val(18,100);    wait(167);}
+ 
+combo payload {
+    set_val(3,100);
+    set_val(6,100);
+    }
+ 
+combo RumbleNotifier {
+    set_rumble(RUMBLE_A, 100);
+    wait(300);reset_rumble();}

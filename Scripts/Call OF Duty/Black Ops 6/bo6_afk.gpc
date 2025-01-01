@@ -1,0 +1,301 @@
+// GPC Online Library
+// Completely AFK jetgun and Autosave & Exit PS5 Version 3.5 3.5.gpc
+// Author: TOPSHOT614
+// Link: https://forums.cronusmax.com/gpclib/13584
+
+// All Credits to: JimmyCrakCrn - for implimenting the autosave and exit and full Credit for the countdown timer
+// Original Author: DoXHoster
+// Preview test file: https://youtu.be/FZEXpU-MRnU?si=3Mz1fOP5wIuwpvoA
+// Updates: Completly AFK Jetgun with Autosave & Exit after 4hrs ans 20 mins.
+
+
+███████╗███████╗███████╗███████╗███████╗███████╗███████╗███████╗███████╗███████╗███████╗
+╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝
+
+ ██████╗  ██████╗  ██████╗    ███████╗ ██████╗ ███╗   ███╗██████╗ ██╗███████╗ ██████╗
+ ██╔══██╗██╔═══██╗██╔════╝    ╚══███╔╝██╔═══██╗████╗ ████║██╔══██╗██║██╔════╝██╔════╝
+ ██████╔╝██║   ██║███████╗      ███╔╝ ██║   ██║██╔████╔██║██████╔╝██║█████╗   ██████╗ 
+ ██╔══██╗██║   ██║██╔═══██╗    ███╔╝  ██║   ██║██║╚██╔╝██║██╔══██╗██║██╔══╝        ██╗
+ ██████╔╝╚██████╔╝╚██████╔╝   ███████╗╚██████╔╝██║ ╚═╝ ██║██████╔╝██║███████╗ ██████╔╝ 
+ ╚═════╝  ╚═════╝  ╚═════╝    ╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚═╝╚══════╝ ╚═════╝   
+
+███████╗███████╗███████╗███████╗███████╗███████╗███████╗███████╗███████╗███████╗███████╗
+╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝╚══════╝
+
+
+
+int start;                    // Combo to activate jetgun
+int start1;                   // Combo to consistently replenish armour
+int start2;                   // Combo to constantly hold back in corner
+int start3;                   // Combo to activate Aether Shroud
+int save_exit_timer;          // Combo to save and exit
+int pause_triggered = 0;      // Flag to track if pause menu has been triggered
+int timer_started = 0;        // Persistent timer flag
+int countdown_timer = 0;      // Timer for updating OLED display
+int remaining_time = 0;       // Remaining time in milliseconds
+int elapsed_time = 0;         // Timer for auto-save
+int hours = 0;                // Hours remaining
+int minutes = 0;              // Minutes remaining
+int seconds = 0;              // Seconds remaining
+
+
+
+// Function to control LED colors
+function f_ColorLed(a, b, c, d) {
+    set_led(LED_1, a);
+    set_led(LED_2, b);
+    set_led(LED_3, c);
+    set_led(LED_4, d);
+}
+
+main {
+    // Toggle main script with Left D-Pad
+    if (event_press(PS5_LEFT)) {
+        start = !start;
+        if (start) {
+            save_exit_timer = 0; // Reset save and exit timer
+        timer_started = 1; 
+        elapsed_time = 0;    
+            
+        }
+    }
+
+    // Toggle additional features with Up and Down D-Pad
+    if (event_press(PS5_UP)) {
+        start1 = !start1;
+        
+    }
+    
+    // Increment elapsed time if timer is running and pause is not triggered
+    if (timer_started && !pause_triggered) {
+        elapsed_time += get_rtime();
+        
+    }
+    
+    
+    if (event_press(PS5_DOWN)) {
+        start2 = !start2;
+        
+    }
+    
+    
+    if (event_press(PS5_RIGHT)) {
+        start3 = !start3;
+    
+    }
+        // Calculate remaining time
+    remaining_time = 15600000 - elapsed_time; // 4 hours and 20 minutes in milliseconds
+    if (remaining_time < 0) remaining_time = 0;
+    hours = remaining_time / 3600000;
+    minutes = (remaining_time % 3600000) / 60000;
+    seconds = (remaining_time % 60000) / 1000;
+
+    // Update OLED every second
+    countdown_timer += get_rtime();
+    if (countdown_timer >= 1000) {
+        cls_oled(0); // Clear OLED display
+
+        // Line 1: "Exiting In"
+        putc_oled(1, 69);  // E
+        putc_oled(2, 120); // x
+        putc_oled(3, 105); // i
+        putc_oled(4, 116); // t
+        putc_oled(5, 105); // i
+        putc_oled(6, 110); // n
+        putc_oled(7, 103); // g
+        putc_oled(8, 32);  // Space
+        putc_oled(9, 73);  // I
+        putc_oled(10, 110); // n
+        puts_oled(1, 0, 1, 10, 1); // Print "Exiting In" on row 0
+
+        // Line 2: Countdown Timer (HH:MM:SS)
+        putc_oled(1, 48 + (hours / 10));    // Tens digit of hours
+        putc_oled(2, 48 + (hours % 10));    // Units digit of hours
+        putc_oled(3, 58);                   // Colon
+        putc_oled(4, 48 + (minutes / 10));  // Tens digit of minutes
+        putc_oled(5, 48 + (minutes % 10));  // Units digit of minutes
+        putc_oled(6, 58);                   // Colon
+        putc_oled(7, 48 + (seconds / 10));  // Tens digit of seconds
+        putc_oled(8, 48 + (seconds % 10));  // Units digit of seconds
+        puts_oled(1, 16, 1, 8, 1);          // Print "HH:MM:SS" on row 1
+
+        countdown_timer = 0; // Reset countdown timer
+    
+    }
+    
+    
+
+    // LED Control Logic
+    if (start) {
+        f_ColorLed(0, 2, 0, 0); // Red for all combos active
+    } else if (start1) {
+        f_ColorLed(2, 0, 0, 0); // Blue for combo 2 active only
+    } else if (start2) {
+        f_ColorLed(0, 2, 2, 0); // Yellow for combo 3 active only
+    } else if (start3) {
+        f_ColorLed(2, 2, 2, 2); // White for combo 4 active only    
+    } else {
+        f_ColorLed(2, 0, 2, 0); // Skyblue for idle
+    }
+
+    // Main script logic
+    if (start) {
+        combo_run(maxcmb);
+
+        // Increment save and exit timer
+        save_exit_timer += get_rtime();
+
+        // Trigger save and exit after 4 hours and 20 minutes (15,600,000 ms)
+        if (save_exit_timer >= 15600000) {
+            combo_run(save_and_exit);
+            save_exit_timer = 0; // Reset timer to prevent looping
+        }
+    } else {
+        combo_stop(maxcmb);
+    }
+
+    // Additional combos logic
+    if (start1) {
+        combo_run(maxcmb1);
+    } else {
+        combo_stop(maxcmb1);
+    }
+
+    if (start2) {
+        combo_run(maxcmb2);
+    } else {
+        combo_stop(maxcmb2);
+    }
+}
+
+// Main jetgun combo
+combo maxcmb {
+    set_val(PS5_R2, 68);
+	wait(20);
+	set_val(PS5_R2, 100);
+	wait(90);
+	set_val(PS5_R2, 63);
+	wait(20);
+	set_val(PS5_R2, 0);
+	wait(570);
+	set_val(PS5_R2, 25);
+	wait(25);
+	set_val(PS5_R2, 53);
+	wait(15);
+	set_val(PS5_R2, 82);
+	wait(25);
+	set_val(PS5_R2, 99);
+	wait(50);
+	set_val(PS5_R2, 89);
+	wait(25);
+	set_val(PS5_R2, 54);
+	wait(20);
+	set_val(PS5_R2, 0);
+	wait(620);
+	set_val(PS5_R2, 36);
+	wait(20);
+	set_val(PS5_R2, 77);
+	wait(25);
+	set_val(PS5_R2, 100);
+	wait(80);
+	set_val(PS5_R2, 76);
+	wait(25);
+	set_val(PS5_R2, 0);
+	wait(590);
+	set_val(PS5_R2, 42);
+	wait(20);
+	set_val(PS5_R2, 69);
+	wait(40);
+	set_val(PS5_R2, 100);
+	wait(50);
+	set_val(PS5_R2, 94);
+	wait(20);
+	set_val(PS5_R2, 72);
+	wait(25);
+	set_val(PS5_R2, 47);
+	wait(20);
+	set_val(PS5_R2, 21);
+	wait(25);
+	set_val(PS5_R2, 0);
+	wait(570);
+	set_val(PS5_R2, 28);
+	wait(30);
+	set_val(PS5_R2, 74);
+	wait(25);
+	set_val(PS5_R2, 87);
+	wait(25);
+	set_val(PS5_R2, 89);
+	wait(40);
+	set_val(PS5_R2, 57);
+	wait(25);
+	set_val(PS5_R2, 0);
+}
+
+// Additional combo 1
+combo maxcmb1 {
+    set_val(PS5_TRIANGLE, 100);
+    wait(4000);
+    set_val(PS5_TRIANGLE, 100);
+    wait(4000);
+    set_val(PS5_TRIANGLE, 100);
+    wait(4000);
+    set_val(PS5_TRIANGLE, 0);
+}
+
+// Additional combo 2
+combo maxcmb2 {
+    set_val(PS5_LY, 21);
+    wait(20);
+    set_val(PS5_LY, 25);
+    wait(10);
+    set_val(PS5_LY, 29);
+    wait(20);
+    set_val(PS5_LY, 0);
+    wait(170);
+    set_val(PS5_LY, 40);
+    wait(30);
+    set_val(PS5_LY, 43);
+    wait(20);
+    set_val(PS5_LY, 0);
+    wait(20);
+}
+
+combo maxcmb3 {
+    wait(15593000)
+    set_val(PS5_R1, 100);
+	set_val(PS5_L1, 100);
+	wait(160);
+	set_val(PS5_R1, 0);
+	set_val(PS5_L1, 0);
+
+
+
+}
+
+// Auto Save and Exit combo
+combo save_and_exit {
+    set_val(PS5_OPTIONS, 100); // Press the Menu button
+    wait(100);
+    set_val(PS5_OPTIONS, 0);
+    wait(200);
+
+    set_val(PS5_UP, 100); // Press D-Pad Up once
+    wait(100);
+    set_val(PS5_UP, 0);
+    wait(200);
+
+    set_val(PS5_CROSS, 100); // Press A
+    wait(100);
+    set_val(PS5_CROSS, 0);
+    wait(200);
+
+    set_val(PS5_CROSS, 100); // Press D-Pad Up again
+    wait(100);
+    set_val(PS5_CROSS, 0);
+    wait(200);
+
+    set_val(PS5_CROSS, 100); // Press A to confirm save and exit
+    wait(100);
+    set_val(PS5_CROSS, 0);
+}
+ ����������������

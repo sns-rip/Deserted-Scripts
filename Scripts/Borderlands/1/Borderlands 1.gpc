@@ -1,0 +1,48 @@
+main {
+    if(get_val(PS5_R2)) {
+        combo_run(RapidFire);
+    }
+    
+    if(get_val(PS5_SQUARE) && get_val(PS5_UP)) {
+        combo_run(RapidLooter);
+    }
+    
+    if(get_val(PS5_L2)) {
+        combo_run(AimAssistAbuse);
+    }
+    
+    if(get_val(PS5_UP)) {
+        combo_run(BypassFR);
+    }
+}
+
+
+combo RapidLooter{
+    set_val(PS5_SQUARE, 100);
+    wait(15);
+    set_val(PS5_SQUARE, 0);
+    wait(15);
+}
+
+combo RapidFire {
+    set_val(PS5_R2, 100);   
+    wait(15);              
+    set_val(PS5_R2, 0);      
+    wait(15);              
+}
+
+combo AimAssistAbuse{
+    set_val(PS5_L2, 100);
+    wait(15);
+    set_val(PS5_L2, 0);
+    wait(15);
+}
+
+combo BypassFR{
+    set_val(PS5_R2, 100);
+    wait(20);
+    set_val(PS5_CROSS, 100);
+    wait(20);
+    set_val(PS5_R2, 0);
+    set_val(PS5_CROSS, 0);
+}
