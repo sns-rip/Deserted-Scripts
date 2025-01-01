@@ -1,4 +1,4 @@
-# [ ===== Deserted Scripts ===== ]
+# Deserted Scripts
 
 ## 🔗 | Links
 
