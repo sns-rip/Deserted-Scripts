@@ -38,8 +38,6 @@ int hours = 0;                // Hours remaining
 int minutes = 0;              // Minutes remaining
 int seconds = 0;              // Seconds remaining
 
-
-
 // Function to control LED colors
 function f_ColorLed(a, b, c, d) {
     set_led(LED_1, a);
@@ -298,4 +296,4 @@ combo save_and_exit {
     wait(100);
     set_val(PS5_CROSS, 0);
 }
- ú¿‹¾‰±ˆ»‹º‰º¼¸
+ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
