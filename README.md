@@ -1,2 +1,15 @@
-# Deserted-Scripts
-The 1 Stop For Everything Cronus Zen Related, Including Guides, Scripts, And Paid Scripts For Absolutely Free, Updated Weekly!
+# [ ===== Deserted Scripts ===== ]
+
+## 🔗 | Links
+
+-  🆘 | [Discord Server](https://discord.gg/vwtUDe9BMd)
+
+## 📚 | Resources
+
+- 📖 | Cronus Zen Scripts
+- 🔓 | Paid Scripts For Free
+- 🆘 | Setup Guides
+- ❓ | Discord Support Server
+
+## 📝 | Notes
+> Note: for any issues, game / script suggestions, open up an issue, or join the server and ask me.
