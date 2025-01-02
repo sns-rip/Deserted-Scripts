@@ -14,4 +14,4 @@
 > 4. Once You Have Completed The Bypass, You Can Now Use Your Cronus Zen With Your PS5
 
 ---
--# *Last Updated On: 6:35 | 02/01/2025*
+*Last Updated On: 6:35 | 02/01/2025*
