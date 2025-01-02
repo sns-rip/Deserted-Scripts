@@ -13,4 +13,5 @@
 > 3. Perform The PS5 Bypass Needed In Order To Use The Zen Properly With Your PS5 ( This Is Located In The Folder This Setup Guide Is In )
 > 4. Once You Have Completed The Bypass, You Can Now Use Your Cronus Zen With Your PS5
 
+---
 -# *Last Updated On: 6:35 | 02/01/2025*
