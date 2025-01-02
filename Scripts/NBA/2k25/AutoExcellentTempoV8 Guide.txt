@@ -1,0 +1,22 @@
+Basic Controls
+LB Press:
+
+Action: Performs a regular jump shot.
+How it works: When LB is pressed, the right stick (RS) moves to the bottom. When LB is released, RS goes back to the top after a set delay.
+LB + Turbo:
+Action: Executes a hop jumper.
+How it works: The RS follows a similar motion to the regular LB press but tailored for hop jumpers.
+LS + Turbo:
+Action: Activates a turbo fadeaway.
+Adjustable Delays
+The script includes two adjustable delays:
+LB Delay: Adjusts the timing for regular jump shots and hop jumpers.
+Turbo Fade Delay: Adjusts the timing for fadeaway shots.
+Range: Both delays can be adjusted from 0ms to 300ms in increments of 10ms.
+Adjusting Delays
+Enter Adjustable Delay Menu:
+Hold LT + Menu to access the delay adjustment menu.
+Use the D-Pad to toggle between LB Delay and Turbo Fade Delay.
+D-Pad Left/Right: Adjusts the delay in increments of 10ms.
+D-Pad Up/Down: Switches between the two delays.
+B Button: Exits the menu
