@@ -1,0 +1,189 @@
+/*
+                                                                                                                                                                                                   
+                                                                                                                                                                                                        
+                                                                                                      .:^:.                                .!J7:                                                        
+                                                                                                    :?PB##BY~.                          .~JB&GG5~                                                       
+                                                                                                   ^PPB@@@@@#PJ7!:                    :!P&@@#GP?:                                                       
+                                                                                                   ~&&@#G5Y??J5P##GY!^:.           .~5B@@&#BP?:                                                         
+                                                                                                  .J@B?^.      .^J&@@#BP55YJJYYJ77Y5B&@@@#57:                                                           
+                                                                                                 :5B7..:^:.       ~YB@@&BGG5Y5PBB#&#BB&@G7.                                                             
+                                                                          ...::.                :Y#~ !PBGG5?^.     :!J555YJ777?#&#GG&@@@Y.                                                              
+                                                                     :~7J5GB##&Y:             :JB#5.:YJ!::^~!^.      :~!!~::!7J#@@&G5&@@J.                                                              
+                                                                    .?#@@@@@@@@B!            !G#5J?..^. .:.      ..        .!J#@@@@&B#@5^                                                               
+                                                                     !B@@@@@@@@#J.         .7&BJ!:    :?P##G?^   :7?!^....^?G&@@@@@@@#&B7.                                                              
+                                                                     :P@&&@@@@@@B^         ~##J^.    ~G@&BGPBBJ^ .~J5PPGGG#@@@@&&&BB#B5G#?.                                                             
+                                                                      Y@&&@@@@@@&Y.       :B@Y:     :P&&#GJ77JGB57!???5GB##GP5Y5PGPPG@#Y55!                                                             
+                                                                      ~G@#@@@@@@@#~      .7@G~  ::::.JPPB#B5YY5B@@&PJJB&&@#GPP5PGB#@@@@BJ5G!.                                                           
+                                                                      ?#@##@@@@@@&5.     .J@?..~?P##GY!~!J555P&@#P!^::!!?P#@@GY?7JG@@@@@5G@B^                                                           
+                                                        ..          :Y##B@B&@@@@@@&7.    .Y@?..!P#P7!!^. .:~?55?^       :JG#@&BGG#&#B&@@B#@P:                                                           
+                                                      .7GP?7JYY7:. ^G@5~?&&B@@@@@@@G~    .J@Y: .!?:   .!5G5!^:.  ^?J!^:^!P@@@@BPPP5YP@@@@@P~                                                            
+                                                     :Y@@@@@P?5#BPYB&P~:?@@B#@&##&@@#P~   !@&7.       :JGB#?.   .!PP###B#&@@@@&&###&@@@&@P:                                                             
+                                                    ^P@@@@@@B?7YPG#J5P7!P&&##&@@&&#B&@5^:7P@@#7.      .:^!YPJ~.  :7?JB@@@@@@@&@@@@@@@@GP&Y                                                              
+                                                   ~G&&@@@@@@#5JB&5!Y#BB&5##&@#GPPG#@@&BB@@@@@B?^.       .:!?7^:. .!7?YPGB##BB@@@@@@@&Y5G7                                                              
+                                                   P&###&@@@@@BJ5#P&P?5#BJ5&@@GYP@@@@@@@@@@&#&@&P7^::..    .::...:^^~~~~?5G#&@@@@@@@@#YPP!                                                              
+                                                   :5B###&&@@@G?JBG&7.:?BB5#@@#PP&@@@@@@@@&@#PB@@&GYJYYJ!^.  .::::^~!??JYP#@@@@@@@@@@BJ#5^                                                              
+                                                  ^P5JG@&&&&@@@#PY7&G??Y5P#&@&BPG&@@@@@@@&YG@B5B@@@&&BPPGPY!^.:~~^~~!77?JGBG#@@@@@@@&YP&J.                                                              
+                                                .7#J!7?!~!J#@@@@#GG@&BJ^.~#@#B#&@@@@@@@#PYYG@&B&@&B?JB&#GGBBY^ .~77!7?J??JYB@@@@@@@#PG&Y:                                                               
+                                               .7#?:.    ~5G########5J7::5@@@@@@@@@@@#PY5B&@@@@@@@#7 ^?P#@&G^   :7J??7!!7P&@@@@@@@###@&PJ!:.                                                            
+                                               :?5.~~:. .!P?~:.....::~:^Y@@@@@@@@@&B5YG&@@@@@@@@@@&5:^!7Y#@#7.^^.:!JYJ775&@@@@@@@@@@@@@&&#BPJ!^:                                                        
+                                               .7@7^!7!^:..          .~5@@@@@@@@&G5PB&@@@@@&&@@@@@@G^^!7!?G@#5#Y:  !#!PB#@@@&@@@&GG&@@@@&BGGGBBBGY!:                                                    
+                                             ~JGBBG?~~!77!~^::.. .^!YG&@@@@@@@#P5P#@@@@@@@@BB&@@@@@B~:~7?77JG&@G! :Y@JPB&&@##&@@PYB@@@@@@@@&BPYYG&&G7                                                   
+                                            ~G#5PPGPJ7~~!!!!!!!?5G&@@@@@@@@&BPPB&@@@@@@@@&##&@@@@@@G~!G&@#57?#@@B5B@@##&@#YJJYBGYG@@@@@@@@@@@@&BJJG@&~                                                  
+                                           :G#Y~:^?P##BB#BGGGB#@@@@@@@@@@&BPG#&&&@@@@@@&##&@@@@@@@@#G#GPB@&5JY&@@@@@@@@@&BPGB5?7YB@@@@@@@@@@@@@@#J?P@P:                                                 
+                                           ^B&P55YYP#@@@@@@@@@@@@@@@@@@@&BB&&&&&@@@@@&#&&&@@@&#@@@@@@P?775&&5?P&@@@@@@@@@&BPG@#5P#@@@@@@@@@@@@@@@G??B&?.                                                
+                                    ..:^!?J5#@@@@@@@@@@@@@@@@@@@@@@@@@@@@&BB&@@@@@@###&B?~P@@PJYB&@@@&B5JYB@&#BGP5PPB#@@&BY?Y&@&&@@@@&#&@@@@@@@@@#57Y@P^.                                               
+                              .^!?J5G##&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#Y7Y5G&@&##&&&Y:  :Y#BJ77JYPGB&&#BB&@P?777777J#@#GG##&@@@@@#5JP&@@@@@@@@@@BJ?#@?:                                               
+                              ~G@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&@@@@@@&#P5J?JP#&&#P7..!7^:^!~^~~!!!!7?JJ5B@G??77777?G&&B5?5&@@@@&57G@@#&@@@@@@@@&P7Y@B~                                               
+                              !B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#GPG#&@&&&&@@@@@#B#&GY??^. ~P@#PY7!~:.....:^:^!Y@P55Y7775JJP5~!#@@@@@@#B&#YY#@@@@@@@@@#J?#@Y:                                              
+                              !B##@@@@@@@@@@@@@@@@@@@@@@@&#G5PG#@@#Y7!~~!J5G&&B5YY?777^. :J#@@@@&#GGP5Y7^.  .?#GP5JYG5~?#G~!#@@@@@@@@@G7Y#@@@@@@@@@@B7Y&&7                                              
+                              ~GGP&@@@@@@@@@@@@@@@@@@@@#P55G#@@#GGBBG5J!:  .^??7JPY7777~: .!JPBBBBBPYJ7^.     J#&#&@@&??BB~^5@@@@@@@@@G?Y#@@@@@@@@@@&J?G@P^                                             
+                              :J&YP&@@@@@@@@@@@@@@@&BP55G#@@@@&G?!!!!!7!^.    :!5#5~!7777~:.:~!777!~^:.       ^B&B&@@@&#&#J^7P&@@@@@@@BJ?G@@@@#5G&@@@G?Y#&J.                                            
+                               ~&GJB@@@@@@@@@@@@&BPYYP#@&#@@@G7^:..            :Y@G^~?????7!^..::::^:         7##55@@&@@@@&PJ?5B&@@@@@&57P@@&Y7?G&@@@&Y?G@B!                                            
+                               .?&PJP&@@@@@@@&B5YYP#&@B?^^P@@5^       :~~^.  .^JB@G^?5PPPPPPPYJJYY5B!.       ~B@@G75&##@@@@@@&BB&@@@@@@G75@&GYG&@@@@@@G?JB@G^                                           
+                                .J&P?5#@@@&G5JJ5B&@#PJ^   ~&@P7^       ^77~:^7G@@&5:??^.:::::^^~!?5G^      :?#@@@B7?P&PB&@@@@@@@@@@@@@@&5?G@&@@@@@@@@@@575&@5.                                          
+                                 .?&BJJPG5JJ5B&@@@B?7^     B@P?!:      :7777Y#@@@#! ~GP?7!!~!!7JYP#?.  :~?5#@@@@@B77?&G5B#PG&@@@@@&&@@@@GJY&@BGGGGPP#@@&Y?5@#~                                          
+                                   ?#&P??5G&@@@@@@&J~.     ?&P?!.     .~7775&@##@B: .5Y~^!7777?77YG:  .!J5GGB@@@@G77?#GJPB577YYYYJJG@@@@G??B@P?77775&@@@BJJB&Y.                                         
+                                    ~5#&&@@GG&@@@@@5~.     ?GY!:      ^777P@&?J#&?   JJ^  :!777~~Y5.  ^!7?5B&BG&GJ77?Y?YB@@#PJ777Y#@@@@&Y?P&@&BPYPB&@@@@BJY#&7.                                         
+                                     .!PB@&J?B@@@@@G~      G5~.      :!7?P@&? Y@#?   !PY^. :~~~!YBJ  .75G#&BYJG5?777775###@@@@@@@@@@@@&5JG@@@@@@@@@@@@@@PYB@#:                                          
+                                        ^5@Y75&@@@@&?:     7^   .:..^!7JG@@?. 7#@#7. .!5GBP55PBBGJ: ~5&&B5?77J?7777775#G!~P@@@@@@@@@@#PP#@@@@@@@@@@@@@@GYB@@&J.                                         
+                                         !#P??G@@@@@#?.        :7J^!77Y#@@Y.   ^Y#&5~.  :~?PPJ!^. .J&#PJ77777777777J5#5?!::?G#@@@@@@&#&@@@@@@@@@@@@@@&PYB&&&@&!.                                        
+                                         .Y&P7JB@@@@@@P~     .~5#YJ5P#@@B?       :Y@&P~.         ^P&5?77777777777JYPB&J777^..7&@@@@@&##@@@@@@@@@@@@@&P5#@#5YB@G~                                        
+                                          7&@BYYB@@@@@@#5?~:~JB@@&@@&&G?:        .Y@&@&P!.     .7G#J7777777777?J5B#PG@PJ77J5P#@@@@@@&JJ#@@@@@@@@@@@@&&@@@@G?Y@@J:                                       
+                                          :#&###B&@@@@@@@BJ?P&@@#PJ!~^.          ^B@BP&@@P~   :Y#P777777777?YPG55#&PY#@GJ?5@@@@@@@@@@Y7P&@@@@@@@@@@@@@@@@@&P?B@B~                                       
+                                           Y&B5P#@@@@@&GY?5#@@P!.                ^#@PJB@@@&Y^!G&GY555PGGBBB#@@&5?5@BJY&P?7?5&@@@@@@@@B?Y#@@@@@@@@@@@@@@@@@@#JY@@7.                                      
+                                           .Y&#5JYPP5Y??YB@@G7.                 .7&@P7G@@@@@#BGPGB&@@@@@@@@@@@#5!!P@P?J?77775@@@@@@@@@BB&@@@@@@@@@@@@@@@@@@#Y?&@Y:                                      
+                                            .7#@B5JJJJP#@@G7:                   :Y@@57Y#@@@@@&Y777?JJPGGBBBGG5J?^^5@@Y7777777P@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@B?P@#!                                      
+                                              ^Y&@@@@@@&5!.                     ^5@#Y7?B@@@@@@P?7777!!!!!!!~~!~: !&@@P?7777777G@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&?Y&@J:                                     
+                                                :!J55J!:                        7&@G?!7G@@@@@@BJ!!!!!!~~~^:..    ?@@@B?77777777P&@@@@@@@@@@@@@@@@@@@@@@@@@@@&J?B@P~                                     
+            .~?????????????????????????????7?????????777??????????????????????7?G@@BP55B@@@@@@&PYJJJJ????????????P@@@#P55555555P#@@@@@@@@@@@@@@@@@@@@@@@@@@@&GPB@#5J????????????????7^                  
+            :5@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&&&####&##&@&&#&@&&##&@@@@&#BGGB&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&#BGGB#&@@@@@@@@@@&###&@@@@@@@@@@@@@@@&#BGGB&@@@@@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@@&BBBB#&@@@@@&BBBBBBBBBGPPPGPPPPGGPPPPPPPGPPGPPG#@#P5G#BPPB@@&#BBB#@@@@@@@@@@@@@@@#BGGGBBBB#&@@@B5PBBGPG#@&BGGGB#BPPPPGBBBBBBBB#&@@@@&G5G#BPPG&@@@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@BPPGBP5G&@@&BPPBBBBBBBB55B&&&&&&&&G55B@&P55G&#P5G#P5B####P5BBPPGBP5G&@@@@@@@@@@@&BPPB##BBBBPPG#BPP#&#&G5G#G5GBBG55P#&P55GBBBBBBPPG#&&G5G###&P5G&@@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@G5G&@B5P#@@#P5G@@&####B55PPB&@#GPP55P#@&BGG#@&G5PPPG&#GB&#PPP5G&&G5P&@@@@@@@@@@@&G5G@@&##&@@G5PPP#@BP&&G5PP5B@@@BPG&@G5P#@@&#&@&BPPPPPG&&GG&#P5#@@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@G5G&&B5P#@&G5G#@@&###BG5PP5P#@#P5GGP5B@@&&&&@&G55G#&@&&&@&BP55G&&G5P#@@@@@@@@@@@&P5G&&#BB#@&P5PB&@@&&&@&G555G@@@@&#&@G55#@&P55G&&G55G#@@&&&@@BPP#@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@G5G&&B5PGGG55PB@@#BBBBG5PG5P#@#PP##P5B@&G5PB@&G55P&@#GPPB@&BP5G&@G5PGGB#&@@@@@@@#55B@@&&##BP555B&@BGPG&@#P55G@&B#@@@@GP5#@&P5PB@&G55P#@&GPPG@@BPP#@@@@@@@@@#7                  
+            :5@@@@@@@@@@@G5G&@&####GP55G@@&#####GP55P&@#P5##P5B@&P55G&#P5P#&BP5555B&&G5P#@&####G5P#@@@@@@&G5G@&BP5PPP55G&&GP555P#&#P5G@&GPG&@@B55#@@##&@&BP5P#&#P5555G#@B5P#@@@@@@@@#7                  
+            :5@@@@@@@@@@@G5PGBBBBBBG555PBBBBBBBBP5P5PGBG55#&BP5GGP555PP55PGP5PB##G5PGP55GBBBBBBP5PB@@@@@@&G5PBGP5P&&#P5GG55GB#GP5GBP55BG555PG#GP5GBBBBBGP5555GP5PG##G5PBG55B&@@@@@@@#7                  
+            :5@@@@@@@@@@@&BGPPPPPPPPB#BGPPPPPPPPPG##GPPPG#@@@#GPPGB#BGGBBGPGB&@@@@BPPPGPPPPPPPPPB#@@@@@@@@&BGPPPB#@@@&BPPG#@@@@#GPPGGGPPGBBGPPPPPPPPPPPPGB##GPGB&@@@&BPPPGB&@@@@@@@@#7                  
+            :5@@@@@@@@@@@@@@&&&&&&&@@@@@&&&&&&&&@@@@@&&&@@@@@@@&&@@@@@@@@@@@@@@@@@@@&&@&&&&&&&&@@@@@@@@@@@@@&&&@@@@@@@@@@@@@@@@@@&&&@@&@@@@@&##&@&&&&&&&@@@@@@@@@@@@@@@&&&@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#7                  
+            :5@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#7                  
+            :Y@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#?                  
+            .7#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@G~                  
+              :7P&@@@@&GPPPPPPPPPPPPPPPPPPPPPPPPPPGGGBB&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&#BBGGGPPPPPPPPPPPPPPPPPPPPPPPP5PB&@@@@BJ~.                   
+                .~J#@@@B5?777777777???JJY55PGGBBBB###&&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&####BBBBGPP55YJJJ?77777777!7YG#@@#P?:                      
+                   :7P#@@#PYY5PGGB##&&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&&##BBGPPYY5B@@@#J~.                        
+                      ^?B@@@@@@@@@@@@@@@@@@@&&#BGG#@@@@@#Y?!~!YB#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#GY7~~!7@@@@@&##&&@@@@@@@@@@@@@@@@@@#57:                           
+                        .!5&@@&&#BBPP5YJ7!!~~^:...Y&@@@@&GJ!^:..^!YB&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&B57^.   .~Y@@@@@B7^^~!!77JY5PPB##&&@@BJ^.                             
+                           ~!~^^:..               :75#@@@@&&GY7~^:..^!JP#&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&#PJ7^.    .~YB&@@@@#5!.            .::^~!!:                                
+                                                     :?G&@@@@@#GY?!~:...:~?5B#&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#5?~:.     .!YB&@@@@#57^                                                       
+                                                       .^75#@@@@@&B5J7!~:.  .:~?YG#&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&B5?!:      .^75#@@@@@B57:                                                          
+                                                          .:75B@@@@@&BPJ?!!~^:.  .:~7JPB#&&@@@@@@@@@@@@@@@@@&&BGGPYJ~.       .~?P#@@@@&#5!:                                                             
+                                                              :~JP#@@@@@#GYJ7!!~^:..   .:^~7J5GB######GP5Y?!~^..         .~75B@@@@@&PJ~.                                                                
+                                                                 .^?PB&@@@@&BGY?7!~^^:..      .:::^:::.              .~7YG&@@@@&B57^.                                                                   
+                                                                     :~JG#@@@@@&#PY?7~^::...                    .:~75G&@@@@@#P?~:                                                                       
+                                                                         :!YG#@@@@@&&B5J7~:........         .^7JPB&@@@@@#GJ!:                                                                           
+                                                                            .:!YG&@@@@@@&#GY?!^:::.    :~7Y5B&@@@@@@#GJ!^.                                                                              
+                                                                                .:!J5B&@@@@@@&#BGYJ?J5G#&@@@@@&#GY?!:.                                                                                  
+                                                                                     .^7YG#&@@@@@@@@@@@@@@&#5?~:.                                                                                       
+                                                                                          :~!J5G#&&&&#G5J!^:                                                                                            
+                                                                                               .:^~~^:.                                                                                                 
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                               
+                                                                                            PandaAim V7
+                                                                                MUST ADJUST SCRIPT IN COMPILER            
+                                                                                         By LethalPanda
+                                                                                         credit LEGACYZ
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+//PandaAimV7--LAYOUT--Work On both PS4 or XBOX--
+int PandaRX = PS4_RX;
+int PandaRY = PS4_RY;
+int PandaADS = PS4_L2;
+int PandaFIRE = PS4_R2;
+define PandaOn = TRUE;//DO NOT TOUCH
+define PandaOff = FALSE;//DO NOT TOUCH
+
+
+
+//PandaAimV7--AIMASSIST 3 TYPES--Toggles and value of the Aim Assist--
+int PandaV7AimAssist = 8;
+int PandaV7AimAssist2 = 8;
+int PandaV7AimAssist3 = 8;
+int PandaV7Delay = 1;// I Suggest Leave It at 1
+
+
+//PandaAimV7--ANTI RECOIL--Toggles and value of the Anti Recoil--
+int PandaAimAntiRecoilV7 = 30;
+int PandaAntiRecoilFunction;
+int PandaAimAntiRecoilToggle = PandaOn;
+
+//PandaAimV7--MODS--Toggles and value of the Mods--
+int PandaRapidFire = PandaOn;
+int PandaInputDelayReducer = PandaOn;
+
+//PandaAimV7--OLED SCREEN--DO NOT TOUCH--
+const string LethalOled = "       Lethal"
+const string LethalOled2 = "    Panda Aim V7"
+//---Do not touch anything below---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+main {
+if(PandaInputDelayReducer)vm_tctrl(-2)combo_run(PandaAimAssist)PANDAFUNCTION()combo_run(PandaAimAssist2)PANDAFUNCTION2()combo_run(PandaAimAssist3)PANDAFUNCTION3()if(PandaAimAntiRecoilToggle)if(get_val(PandaADS) && get_val(PandaFIRE))combo_run(PandaAimV7AntiRecoil)if(abs(get_val(PandaRX)) > PandaAimAntiRecoilV7 || abs(get_val(PandaRY)) > PandaAimAntiRecoilV7)combo_stop(PandaAimV7AntiRecoil)if(get_val(PandaFIRE))combo_run(PandaRapidFire)}
+init {combo_run(LethalScreen)}
+
+function  PANDAFUNCTION() {
+if(abs(get_val(PandaRX)) > 15 || abs(get_val(PandaRY)) > 15 )combo_stop(PandaAimAssist)}function  PANDAFUNCTION2() {
+if(abs(get_val(PandaRX)) > 16 || abs(get_val(PandaRY)) > 16 )combo_stop(PandaAimAssist2)}function  PANDAFUNCTION3() {
+if(abs(get_val(PandaRX)) > 17 || abs(get_val(PandaRY)) > 17 )combo_stop(PandaAimAssist3)}
+
+
+combo PandaAimAssist {
+set_val(PandaRX,PandaV7AimAssist)wait(PandaV7Delay)set_val(PandaRY,PandaV7AimAssist) set_val(PandaRX,-PandaV7AimAssist)wait(PandaV7Delay)set_val(PandaRY,-PandaV7AimAssist)}
+combo PandaAimAssist2 {
+set_val(PandaRX,PandaV7AimAssist)set_val(PandaRY,PandaV7AimAssist) set_val(PandaRX,-PandaV7AimAssist)wait(PandaV7Delay)set_val(PandaRY,-PandaV7AimAssist)}
+combo PandaAimAssist3 {set_val(PandaRX,PandaV7AimAssist) set_val(PandaRY,PandaV7AimAssist)wait(PandaV7Delay)set_val(PandaRX,-PandaV7AimAssist) set_val(PandaRY,-PandaV7AimAssist)wait(PandaV7Delay)}
+combo PandaAimV7AntiRecoil {  
+PandaAntiRecoilFunction = get_ival(PS4_RY) +  PandaAimAntiRecoilV7; if(PandaAntiRecoilFunction>  100 + 100 - 100 )PandaAimAntiRecoilV7 = 100 - 100 + 100;set_val(PS4_RY,PandaAimAntiRecoilV7)}
+combo PandaRapidFire { set_val(PandaFIRE,100)wait(10)set_val(PandaFIRE,0)wait(10)}
+combo LethalScreen{cls_oled(0)print(LEGACYZX(18,LEGACYZ),15,LEGACYZ2,OLED_WHITE,LethalOled[1 + -1])print(LEGACYZX(32,LEGACYZ),27,LEGACYZ2,OLED_WHITE,LethalOled2[1 + -1]) wait(10000) 
+cls_oled(0)}
+function LEGACYZX (int a,int b){
+ return(OLED_WIDTH*2  + ((a / b) * 2));
+} 
+int LEGACYZ = OLED_FONT_SMALL_WIDTH;
+int LEGACYZ2 = OLED_FONT_SMALL; ˙ªè∫Ç∞á∂Ü≤Ä≤Ö∞Å∏
