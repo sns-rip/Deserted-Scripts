@@ -1,0 +1,1852 @@
+// 10 Loadouts with Weapon AI
+// Plug n Play 6 Aim Assists
+// Zen Assist & Float Sticky Aim Added
+// Must Enable Deadzone on Script and Set IN game Deadzone to 0 --- RIGHT STICK
+// Ground Loot AR ---- L2 + Dpad right
+// Loadout Mode ---- L2 + Dpad up
+// Adjust Loadout weapon recoil with ---- L2 + Dpad left,right for X Dpad up, Down for Y
+// Will add tables soon!
+
+
+//
+// Boot logo:
+ const int16 BOOT_LOGO[] = { 
+118, 34,
+    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
+    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
+    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
+    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
+    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
+    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x1F9F,0xE080,0x7DFD,0xF7BF,0xBFBF,0x3FDF,0x83C7,0x8033,0x3186,0x071B,0x1198,0x6662,0x6733,0x3307,0x0800,
+    0xC646,0x1C38,0x6C66,0xC189,0x898C,0xC4CC,0x0C23,0x8319,0x0070,0xC030,0x1A06,0x0606,0x3303,0x3031,0x860C,0xC4C3,0x6300,0xCC70,0x1919,0x99CC,0x8CC0,0x6418,0x3F1F,0x098C,0x03F1,0xE07C,0x7E7E,0x3E3E,0x01B0,0x60C0,0x447E,0x300C,
+    0x47C1,0x9191,0x80C8,0xD803,0x8183,0x0101,0x8CC0,0xB01B,0x0606,0x0603,0x0330,0x0E06,0x0C04,0x2431,0x86C2,0x6618,0xD8D8,0x0C6C,0xE030,0x1878,0x7FF9,0xE3F7,0xFBCF,0xFFFF,0xF8FF,0x79C0,0x40F0
+ }
+
+
+// Controller Button Layout:
+const int8 ButtonLayoutMap[][] = {
+	// ADS	  Tact	  Ping	  Focus	  Fire	  Lethal  Switch Action Jump	Melee
+	{ XB1_LT, XB1_LB, XB1_UP, XB1_LS, XB1_RT, XB1_RB, XB1_Y, XB1_B, XB1_A, XB1_RS }, // Default
+	{ XB1_LT, XB1_LB, XB1_UP, XB1_LS, XB1_RT, XB1_RB, XB1_Y, XB1_RS, XB1_A, XB1_B }, // Tactical
+	{ XB1_RT, XB1_RB, XB1_UP, XB1_RS, XB1_LT, XB1_LB, XB1_Y, XB1_B, XB1_A, XB1_LS }, // Lefty
+	{ XB1_RB, XB1_LB, XB1_UP, XB1_LS, XB1_RT, XB1_LT, XB1_Y, XB1_B, XB1_A, XB1_RS }, // Nomad/Charlie
+	{ XB1_RB, XB1_LB, XB1_UP, XB1_LS, XB1_RT, XB1_LT, XB1_Y, XB1_RS, XB1_A, XB1_B }, // Nomad/Charlie Tac
+	{ XB1_LB, XB1_RB, XB1_UP, XB1_RS, XB1_LT, XB1_RT, XB1_Y, XB1_B, XB1_A, XB1_LS }, // Nomad/Charlie Left
+	{ XB1_LT, XB1_A, XB1_UP, XB1_LS, XB1_RT, XB1_RB, XB1_Y, XB1_B, XB1_LB, XB1_RS }, // Bumper Jumper
+	{ XB1_LT, XB1_A, XB1_UP, XB1_LS, XB1_RT, XB1_RB, XB1_Y, XB1_RS, XB1_LB, XB1_B }, // Bumper Jumper Tact
+	{ XB1_LT, XB1_RB, XB1_UP, XB1_LS, XB1_LB, XB1_RT, XB1_Y, XB1_B, XB1_A, XB1_RS }, // One-hand Gunslinger
+	{ XB1_LT, XB1_LB, XB1_UP, XB1_LS, XB1_RT, XB1_RB, XB1_Y, XB1_B, XB1_RS, XB1_A }, // Stick and Move
+	{ XB1_LT, XB1_LB, XB1_UP, XB1_LS, XB1_RT, XB1_RS, XB1_Y, XB1_B, XB1_A, XB1_RB }, // Brawler
+	{ XB1_LT, XB1_A, XB1_UP, XB1_LS, XB1_RT, XB1_RS, XB1_Y, XB1_B, XB1_LB, XB1_RB }, // Beast
+	{ XB1_LT, XB1_RB, XB1_LB, XB1_LS, XB1_RT, XB1_RB, XB1_Y, XB1_B, XB1_A, XB1_RS }, // Bumper Ping
+	{ XB1_LT, XB1_RB, XB1_LB, XB1_LS, XB1_RT, XB1_RB, XB1_Y, XB1_RS, XB1_A, XB1_B }  // Bumper Ping Tactical
+}
+
+// Controller Stick Layout:
+const int8 StickLayoutMap[][] = {
+	// Move   	Strafe  	Look    Rotate    
+	{ POLAR_LY, POLAR_LX, POLAR_RY, POLAR_RX }, // Default
+	{ POLAR_RY, POLAR_RX, POLAR_LY, POLAR_LX }, // Southpaw
+	{ POLAR_LY, POLAR_RX, POLAR_RY, POLAR_LX }, // Legacy
+	{ POLAR_RY, POLAR_LX, POLAR_LY, POLAR_RX }, // Legacy Southpaw
+	{ POLAR_RY, POLAR_RX, POLAR_LY, POLAR_LX }, // Southpaw No Click Swap
+	{ POLAR_RY, POLAR_LX, POLAR_LY, POLAR_RX }  // Legacy Southpaw No Click Swap
+}
+
+// Display formatting:
+const int8 FontHeight[] = { OLED_FONT_SMALL_HEIGHT, OLED_FONT_MEDIUM_HEIGHT, OLED_FONT_LARGE_HEIGHT }
+const int8 FontWidth[] = { OLED_FONT_SMALL_WIDTH, OLED_FONT_MEDIUM_WIDTH, OLED_FONT_LARGE_WIDTH }
+const int8 LineNumber[] = { 0x15, 0x23, 0x2e }
+
+ // LED Color Values
+ const int16 ColorValues[][] = {
+	{ 0, 0x64, 0x63 }, // Red
+	{ 0x78, 0x64, 0x45 }, // Green
+	{ 0xc8, 0x64, 0x45 }, // Blue
+	{ 0x012c, 0x64, 0x32 } // Purple
+}
+
+// Menu items:
+const int16 MenuItems[][] = {
+	{ 0, 0, HairTriggers, 		0, FALSE, TRUE },
+	{ 0, 0, ControllerRumbles, 	0, FALSE, TRUE },
+	{ 1, 0, Deadzone, 			1, FALSE, TRUE },
+	{ 1, 2, DropShot, 			1, DropShot_Off, DropShot_ADSOnly },
+	{ 0, 0, HoldBreath, 		0, FALSE, TRUE },
+	{ 0, 0, ButtonLayout, 		0, ButtonLayout_Default, ButtonLayout_BumperPingTactical },
+	{ 0, 0, StickLayout, 		0, StickLayout_Default, StickLayout_SouthpawNoClickSwap },
+	{ 1, 4, FloatStickyAim, 	1, FALSE, TRUE },
+	{ 1, 6, ARGroundLoot, 		1, FALSE, TRUE },
+	{ 0, 0, YY, 				0, FALSE, TRUE },
+	{ 0, 0, AutoSlide, 			0, FALSE, TRUE },
+	{ 1, 8, HeadshotAssist, 	1, FALSE, TRUE },
+	{ 1, 0x0a, ZenAssist, 	1, FALSE, TRUE },
+	{ 0, 0, Inverted, 			0, FALSE, TRUE },
+	{ 1, 0x0c, LoadOut, 		1, 1, 0x0a }
+}
+
+// Submenu items:
+const int16 SubMenuItems[][] = {
+	{ DeadzoneLeft, 0, 0x63 },
+	{ DeadzoneRight, 0, 0x63 },
+	{ DropShotHold, 0x64, 0x1770 },
+	{ DropShotReset, 0x64, 0x1770 },
+	{ FloatStickyTime, 1, 0x64 },
+	{ FloatStickySize, 1, 0x64 },
+	{ ARGroundVertical, 0, 0x64 },
+	{ ARGroundHorizontal, 0xffffff9c, 0x64 },
+	{ HeadshotStrength, 1, 0x64 },
+	{ HeadshotTime, 1, 0x7d0 },
+	{ ZenAssistRadius, 1, 0x64 },
+	{ ZenAssistSteps, 1, 0x64 },
+	{ PrimaryWeapon, M4, SniperShotgun },
+	{ SecondaryWeapon, M4, SniperShotgun }
+}
+
+// Weapon data:
+const int16 WeaponData[][] = {
+	 { 9, 4 },
+		/* 30 round (2200) */ { 0, 250 }, { -5, 250 }, { 12, 500 }, { -3, 1200 },
+		/* 45 Round (3300) */ { -4, 700 }, { -3, 200 }, { 0, 200 },
+		/* 60 Round (4410) */ { 4, 400 }, { 0, 710 },
+		/* Vertical */ { 34, 1100 }, { 22, 2200 }, { 30, 500 }, { 31, 610 },
+	 { 7, 4 },
+		/* 30 Round (2800) */ { 0, 1250 }, { -10, 750 }, { -1, 800 },
+		/* 40 Round (3800) */ { -1, 1000},
+		/* 60 Round (5700) */ { -10, 700}, { -1, 700}, { -5, 700},
+		/* Vertical */ { 27, 1000 }, { 19, 750 }, { 18, 2050 }, { 20, 2100 },
+	 { 7, 5 },
+		/* 20 Round (1900) */ { -5, 500 }, { -7, 500 }, { -12, 100 }, { -10, 700 }, { -5, 200 },
+		/* 30 Round (3000) */ { -3, 1000 },
+		/* 40 Round (4000) */ { -4, 1000 },
+		/* Vertical */ { 30, 1200 }, { 28, 400 }, { 25, 300 }, { 24, 1100 }, { 27, 1000 },
+	 { 9, 6 },
+		/* 15 Round Mag (1250) */ { 0, 1250 },
+		/* 30 Round Mag (2500) */ { 0, 1250 }, { -16, 500 }, { -15, 250 }, { -4, 350 }, { 0, 150 },
+		/* 40 Round Mag (3300) */ { 14, 500 }, { 0, 300 },
+		/* 60 Round Mag (5000) */ { 6, 1700 },
+		/* Vertical */ { 37, 600 }, { 28, 650 }, { 8, 650 }, { 6, 600 }, { 5, 800 }, { 9, 1700 },
+	 { 4, 3 },
+		/* 30 Round Mag (2500) */ { 0, 1000 }, { -10, 1500 },
+		/* 42 Round Mag (3350) */ { -6, 650 }, { -2, 200 },
+		/* Vertical */ { 30, 1000 }, { 12, 1500 }, { 10, 850 },
+	 { 5, 5 },
+		/* 20 Round Mag (1900) */ { 0, 400 }, { -3, 700 }, { -6, 800 },
+		/* 30 Round Mag (2800) */ { -4, 900 },
+		/* 45 Round Mag (4100) */ { -0, 1300 },
+		/* Vertical */ { 34, 400 }, { 30, 700 }, { 22, 800 }, { 12, 900 }, { 15, 1300 },
+	 { 6, 7 },
+		/* 20 Round Mag (1900) */ { -9, 600 }, { -10, 1300 },
+		/* 30 Round Mag (2800) */ { -8, 900 },
+		/* 45 Round Mag (4100) */ { -7, 1300 },
+		/* 60 Round Mag (5600) */ { -2, 1000 }, { 0, 500 },
+		/* Vertical */ { 23, 300 }, { 32, 300 }, { 17, 1300 }, { 13, 900 }, { 14, 1300 }, { 15, 1000 }, { 17, 1500 },
+	 { 6, 5 },
+		/* 20 Round Mag (1400) */ { 0, 500 }, { 2, 400 }, { 6, 500 },
+		/* 30 Round Mag (2100) */ { 12, 400 }, { 16, 300 },
+		/* 45 Round Mag (3500) */ { 7, 1400 },
+		/* Vertical */ { 44, 500 }, { 25, 400 }, { 10, 500 }, { 8, 700 }, { 16, 1400 },
+	 { 6, 3 },
+		/* 30 Round Mag (2200) */ { 0, 1200 }, { 9, 500 }, { 14, 300 }, { 5, 200 },
+		/* 45 Round Mag (3300) */ { 2, 1100 },
+		/* 60 Round Mag (4400) */ { 0, 1100 },
+		/* Vertical */ 	{ 33, 500 }, { 29, 1700 }, { 27, 2200 },
+	 { 2, 4 },
+		/* 30 Round Mag (3000) */ { -6, 3000 },
+		/* 45 Round Mag (4500) */ { -4, 1500 },
+		/* Vertical */ { 22, 800 }, { 23, 800 }, { 11, 1400 }, { 8, 1500 },
+	 { 4, 5 },
+		/* 20 Round Mag (1700) */ { -5, 1500 }, { -8, 200 },
+		/* 25 Round Mag (2100) */ { -7, 400 },
+		/* 50 Round Mag (4200) */ { -3, 2100 },
+		/* Vertical */ { 56, 200 }, { 40, 1200 }, { 34, 300 }, { 31, 400 }, { 35, 2100 },
+	 { 6, 9 },
+		/* 10 Round Mag (1000) */ { -6, 1000 },
+		/* 15 Round Mag (1500) */ { 4, 500 },
+		/* 20 Round Mag (2000) */ { -7, 500 },
+		/* 30 Round Mag (3000) */ { -9, 500 },
+		/* 50 Round Mag (5000) */ { -6, 1000 }, { -4, 1000 },
+		/* Vertical */ { 46, 200 }, { 44, 800 }, { 43, 500 }, { 44, 500 }, { 42, 500 }, { 39, 500 }, { 40, 500 }, { 41, 500 }, { 42, 500 },
+	 { 4, 6 },
+		/* 20 Round Mag (2200) */ { 0, 2200 },
+		/* 30 Round Mag (3100) */ { 0, 900 },
+		/* 50 Round Mag (5300) */ { -2, 1700 }, { -5, 500 },
+		/* Vertical */ { 48, 500 }, { 30, 1300 }, { 24, 400 }, { 26, 900 }, { 34, 1700 }, { 24, 500 },
+	 { 3, 4 },
+		/* 5 Round Mag */ { -5, 600 },
+		/* 10 Round Mag */ { 14, 600 },
+		/* 15 Round Mag */ { 13, 600 },
+		/* Vertical */ { 50, 600 }, { 35, 600 }, { 36, 300 }, { 33, 300 },
+	 { 6, 7 },
+		/* 20 Round Mag */ { 0, 600 }, { 5, 700 }, { 13, 500 },
+		/* 30 Round Mag */ { 14, 900 },
+		/* 50 Round Mag */ { 12, 700 }, { 7, 1100 },
+		/* Vertical */ { 45, 600 }, { 38, 700 }, { 34, 500 }, { 12, 450 }, { 19, 450 }, { 26, 900 }, { 33, 900 },
+	 { 4, 3 },
+		/* 30 Round Mag (2000) */ { 0, 2000 },
+		/* 40 Round Mag (2600) */ { 0, 600 },
+		/* 50 Round Mag (3200) */ { -2, 600 },
+		/* 60 Round Mag (3800) */ { -1, 600 },
+		/* Vertical */ { 31, 2000 }, { 33, 600 }, { 34, 1200 },
+	 { 4, 4 },
+		/* 25 Round Mag (2000) */ { 0, 1200 }, { -10, 400 }, { -11, 400 },
+		/* 32 Round Mag (2700 */ { -2, 700 },
+		/* Vertical */ { 30, 800 }, { 9, 1000 }, { 20, 200 }, { 28, 700 },
+	 { 6, 5 },
+		/* 15 Round Mag (1100) */ { 0, 800 }, { -10, 300 },
+		/* 30 Round Mag (2200) */ { -5, 500 }, { 6, 600 },
+		/* 40 Round Mag (3100) */ { 9, 900 },
+		/* 50 Round Mag (3800) */ { -4, 700 },
+		/* Vertical */ { 37, 200 }, { 25, 900 }, { 25, 1100 }, { 23, 900 }, { 31, 700 },
+	 { 5, 5 },
+		/* 30 Round Mag (2400) */ { 0, 1100 }, { -10, 900 }, { -8, 400 },
+		/* 45 Round Mag (3500) */ { -6, 200 }, { 9, 900 },
+		/* Vertical */ { 30, 700 }, { 12, 1100 }, { 18, 600 }, { 18, 700 }, { 17, 400 },
+	 { 6, 4 },
+		/* 50 Round Mag (4300) */ { 0, 300 }, { -10, 200 }, { -5, 300 }, { 8, 500 }, { 0, 2400 }, { 4, 600 },
+		/* Vertical */ { 30, 500 }, { 19, 800 }, { 18, 2500 }, { 26, 500 },
+	 { 4, 3 },
+		/* 64 Round Mag (6000) */ { 0, 500 }, { -3, 400 }, { -10, 600 }, { -2, 4500 },
+		/* Vertical */ { 30, 700 }, { 13, 1400 }, { 19, 3900 },
+	 { 6, 4 },
+		/* 20 Round Mag (1400) */ { 0, 100 }, { -8, 500 }, { 4, 800 },
+		/* 30 Round Mag (2100) */ { -5, 500 }, { -8, 200 },
+		/* 50 Round Mag (3600) */ { -4, 1500 },
+		/* Vertical */ { 29, 1000 }, { 26, 400 }, { 25, 700 }, { 28, 1500 },
+	 { 2, 2 },
+		/* 50 Round Mag (3400) */ { 0, 2500 }, { 1, 900 },
+		/* Vertical */ { 31, 2500 }, { 29, 900 },
+	 { 2, 2 },
+		/* 30 Round Mag (1700) */ { 0, 1700 },
+		/* 45 Round Mag (2500) */ { 1, 800 },
+		/* Vertical */ { 35, 700 }, { 23, 1800 },
+	 { 6, 5 },
+		/* 100 Round Mag (9300) */ { 3, 2000 }, { 7, 2700 }, { -3, 2600 },
+		/* 125 Round Mag (11600) */ { 8, 1200 }, { 6, 1100 },
+		/* 150 Round Mag (13900) */ { 1, 2300 },
+		/* Vertical */ { 20, 2200 }, { 2, 4100 }, { 8, 1200 }, { 27, 900 }, { 8, 5500 },
+	 { 7, 2 },
+		/* 30 Round Mag (2400) */ { 0, 500 }, { 8, 700 }, { -5, 1200 },
+		/* 42 Round Mag (3500) */ { 0, 1100 },
+		/* 60 Round Mag (4900) */ { 1, 700 }, { 3, 700 },
+		/* 100 Round Mag (8300) */ { 0, 3400 },
+		/* Vertical */ { 30, 2000 }, { 27, 6300 },
+	 { 6, 6 }, 
+		/* 75 Round Mag (5800) */ { 0, 800 }, { -14, 2100 }, { -6, 2900 },
+		/* 100 Round Mag (7800) */ { -11, 800 }, { -18, 400 }, { -8, 800 },
+		/* Vertical */ { 30, 800 }, { 20, 2500 }, { 17, 2500 }, { 23, 800 }, { 25, 400 }, { 28, 800 },
+	 { 6, 3 },
+		/* 50 Round Mag (5500) */ { 0, 1000 }, { -9, 1600 }, { 5, 500 }, { -1, 2400 },
+		/* 75 Round Mag (8200) */ { -1, 2700 },
+		/* 100 Round Mag (10900) */ { -2, 2700 },
+		/* Vertical */ { 35, 500 }, { 26, 1600 }, { 24, 8800 },
+	 { 10, 8 },
+		/* 30 Round Mag (3100) */ { -5, 500 }, { 1, 1500 }, { 6, 1100 },
+		/* 40 Round Mag (4000) */ { 3, 200 }, { 5, 700 },
+		/* 75 Round Mag (7600) */ { 4, 1000 }, { 5, 1400 }, { 3, 1200 },
+		/* 100 Round Mag (10100) */ { -3, 1800 }, { 4, 700 },
+		/* Vertical */ { 25, 500 }, { 20, 2600 }, { 12, 900 }, { 12, 2000 }, { 15, 800 }, { 22, 800 }, { 20, 2000 }, { 17, 500 },
+	 { 6, 3 },
+		/* 75 Round Mag (5600) */ { 0, 1000 }, { -6, 1600 }, { -6, 2400 }, { -7, 600 },
+		/* 100 Round Mag (7600) */ { -4, 1500 }, { -3, 500 },
+		/* Vertical */ { 30, 1000 }, { 22, 4000 }, { 23, 2600 }
+}
+
+const int16 WeaponIndex[] = {
+	0, 14, 26, 39, 55, 63, 74, 88, 100, 110,
+	117, 127, 143, 154, 162,
+	176, 184, 193, 205, 216, 227, 235, 246, 251,
+	256, 268, 278, 291, 301, 320
+}
+
+// Button Layout:
+const string ButtonLayoutName[] = {
+	"Default", "Tactical", "Lefty", "N0M4D/Charlie", "N0M4D/Charlie Tact", "N0M4D/Charlie L3F7", "Bumper Jumper",
+	"Bumper Jumper Tact", "OneHand Gunslinger", "Stick and Move", "Brawler", "Beast", "Bumper Ping","Bumper Ping Tac"
+}
+
+// Drop Shot selectors:
+const string DropShotName[] = { "Disabled", "Fire Only", "ADS Only", "ADS & Fire" }
+
+// Load out compensation:
+const string LoadOutCompensation[] = { "Vertical: ", "Horizontal: " }
+
+// Load out menu:
+const string LoadOutMenu = "Loadout #";
+
+// Load out weapons:
+const string WeaponName[] = {
+	"M4", "TAQ-56", "Kastov 762", "Lachmann-556", "STB 556", "Kastov-74u", "Kastov 545", "Chimera", "M13B", "ISO Hemlock",
+	"SO-14", "Lachmnann-762", "TAQ-V", "FTAC Recon", "Cronen Squall",
+	"VEL 46", "MX9", "Lachmann Sub", "Vaznev-9k", "FSS Hurricane", "Minibak", "BAS-P", "PDSW 528", "Fennec 45",
+	"Sakin MG38", "HCR 56", "556 Icarus", "RAAL MG", "RPK", "RAPP H", "Sniper/Shotgun"
+}
+
+// Menu ability:
+const string MenuAbility[] = { "No Edit Variable", "A/CROSS to Edit" }
+
+// Menu names:
+const string MenuNames[] = { 
+	"Hair Trigger", "Controller Rumble", "Deadzone", "Drop Shot", "Hold Breath", "Button Layout", "Stick Layout",
+	"Float Sticky Aim", "AR Ground Loot", "YY", "Auto Slide", "Head Shot Assist", "Zen Assist", /*"DoGz Polar V6",*/ "Inverted", "Edit Loadout"
+}
+
+// Profile names:
+const string ProfileName[] = { "Primary", "Secondary", "Ground Loot", "Loadout" }
+
+// Settings notification:
+const string SettingsSaved = "SAVED SETTINGS";
+
+// Status:
+const string OffOn[] = { "OFF", "ON" }
+
+// Stick Layout:
+const string StickLayoutName[] = { "Default", "Southpaw", "Legacy", "Legacy Southpaw", "Southpaw NCS", "Legacy SP NCS" }
+
+// Sub menu items:
+const string SubMenuNames[] = {
+	"Deadzone Left", "Deadzone Right",
+	"Drop Shot Hold", "Drop Shot Reset",
+	"Float Sticky Time", "Float Sticky Size",
+	"AR Vertical", "AR Horizontal",
+	"Headshot Strength", "Headshot Time",
+	"Zen Radius", "Zen Steps",
+	"Primary", "Secondary"
+}
+
+// Enumeration:
+enum {
+	// Activators:
+	FireOnly = 1, ADSOnly, ADSAndFire,
+	
+	// Button Layout:	
+	ButtonLayout_Default = 0, ButtonLayout_Tactical, ButtonLayout_Lefty, ButtonLayout_NomadCharlie, ButtonLayout_NomadCharlieTactical, ButtonLayout_NomadCharlieLefty, ButtonLayout_BumperJumper,
+	ButtonLayout_BumperJumperTactical, ButtonLayout_OneHandGunslinger, ButtonLayout_StickAndMove, ButtonLayout_Brawler, ButtonLayout_Beast, ButtonLayout_BumperPing, ButtonLayout_BumperPingTactical,
+	
+	// Button Layout IDs:
+	ADS = 0, Tactical, Ping, Focus, Fire, Lethal, Weapon, Action, Jump, Melee,
+	
+	// Color attributes:
+	Hue = 0, Saturation, Brightness,
+	
+	// Color IDs:
+	Red = 0, Green, Blue, Purple,
+
+	// Display:
+	Depth = 0, EditDepth, Update, ScreenSaver, ScreenSaverCounter,
+	Buffer, BufferInsertCopyValue, BufferInsertDigitCount, BufferInsertDigits, // (5)
+	
+	// Drop Shot:
+	DropShot_Off = 0, DropShot_FireOnly, DropShot_ADSAndFire, DropShot_ADSOnly,
+	
+	// Formatting constants:
+	AlignCenter = 0xfffd, AlignBottom = 0xfffe, AlignRight = 0xffff, AlignLeft = 0x0002, AlignTop = 0x0005,
+	
+	// Loadout compensation:
+	Vertical = 0, Horizontal,
+	
+	// Loadout weapons:
+	M4 = 0, TAQ56, Kastov762, Lachmann556, STB_556, Kastov74u, Kastov545, Chimera, M13B, ISOHemlock,
+	Lachmann762, SO_14, TAQ_V, FTAC_RECON, Cronen,
+	VEL_46, MX9, LachmannSub, Vaznev9k, FSS_Hurricane, Minibak, BAS_P, PDSW528, Fennec,
+	SAKINMG38, HCR_56, Icarus556, RAAL_MG, RPK, RAPP_H,
+	SniperShotgun,
+	
+	// Menu:
+	HairTriggers = 0, ControllerRumbles, Deadzone, DropShot, HoldBreath, ButtonLayout, StickLayout,
+	FloatStickyAim, ARGroundLoot, YY, AutoSlide, HeadshotAssist, ZenAssist, Inverted, LoadOut,
+	// Submenu:
+	DeadzoneLeft, DeadzoneRight, DropShotHold, DropShotReset, FloatStickyTime, FloatStickySize, ARGroundVertical, ARGroundHorizontal, HeadshotStrength, HeadshotTime, ZenAssistRadius, ZenAssistSteps,
+
+	// Weapon Select variables:
+	PrimaryWeapon, SecondaryWeapon = PrimaryWeapon + 0x0a,
+	PrimaryWeaponVertical = SecondaryWeapon + 0x0a, PrimaryWeaponHorizontal = PrimaryWeaponVertical + 0x0a,
+	SecondaryWeaponVertical = PrimaryWeaponHorizontal + 0x0a, SecondaryWeaponHorizontal = SecondaryWeaponVertical + 0x0a,
+	
+	// Menu position constants:
+	DisplayHome = 0, DisplayMenu, DisplayEdit,
+	
+	// Menu variables:
+	Index = 0,
+	Minimum, Maximum, EditValue, EditValueMinimum, EditValueMaximum, VerticalEdit, HorizontalEdit,
+	
+	// Profiles
+	Primary = 1, Secondary, GroundLoot = 4,
+	
+	// Stick Layout:
+	StickLayout_Default = 0, StickLayout_Southpaw, StickLayout_Legacy, StickLayout_LegacySouthpaw, StickLayout_NoClickSwap, StickLayout_SouthpawNoClickSwap,
+	
+	// Stick IDs:
+	MoveY = 0, MoveX, AimY, AimX,
+	
+	// State:
+	HoldingADS = 0, HoldingFire, CurrentProfile, CurrentWeapon, CurrentPrimary, CurrentSecondary, CurrentVerticalCompensation, CurrentHorizontalCompensation,
+	
+	// Sub menu:
+	MenuItemCanEdit = 0, MenuItemEditStart, MenuItemRelation, MenuItemDepth, MenuItemMinimum, MenuItemMaximum
+}
+
+// Variables:
+int Button[0x0a]; 	// Controller configuration
+int Display[0x0d]; 	// Display data
+int Menu[8]; 		// Menu data
+int Settings[0x57]; // User configuration
+int State[8]; 		// Script state
+int Stick[4]; 		// Joystick data
+int i; 				// Iterator
+
+init {
+	Display[Buffer] = 1; // Required, changing this will throw off the display
+	Display[Update] = TRUE; // Immediately update the display
+	Menu[Minimum] = HairTriggers;
+	Menu[Maximum] = LoadOut;
+	Settings[LoadOut] = 1; // Default loadout
+	Settings[ARGroundLoot] = TRUE; // We are using GroundLoot by default
+	State[CurrentProfile] = Primary | GroundLoot; // Set CurrentProfile to GroundLoot (will toggle back to Primary by default)
+	SetLEDColor(Blue); // Script begins on GroundLoot profile
+	LoadSettings(); // Load user configuration data
+}
+
+main {
+	
+	// Check which display is showing and handle the user input accordingly
+	if(Display[Depth] == DisplayHome) {
+		
+		// Check for display update
+		if(Display[Update]) {
+		
+			cls_oled(OLED_BLACK); // Clear screen
+			DrawLogo(0, 0, 0); // Draw logo
+			SetControllerConfig(); // Set controller config
+			SetCurrentWeaponData(); // Set current weapon data
+			Display[Update] = FALSE; // Disable display update
+			Display[ScreenSaver] = FALSE; // Reset screensaver
+			Display[ScreenSaverCounter] = 0; // Reset screensaver counter
+			
+		} else if(event_press(XB1_Y) && !(State[CurrentProfile] & GroundLoot)) {
+		
+			State[CurrentProfile] = State[CurrentProfile] ^ (Primary | Secondary); // Toggle from Primary to Secondary
+			SetCurrentWeaponData();
+			combo_stop(Combo_SwitchLoadOut); // Just incase user spams the controls
+			combo_restart(Combo_SwitchProfile); // Switch profile
+		
+		} else {
+		
+			if(get_ival(XB1_LT)) {
+			
+				// Check for menu actions (enter menu, enable GroundLoot, enable LoadOut)
+				if(event_press(XB1_MENU)) {
+				
+					set_hsb(0, 0, 0); // Set LED color
+					Display[Depth]++; // Increase display depth (entering menu)
+					Display[Update] = TRUE; // Update screen next iteration
+					
+				} else if(event_press(XB1_UP) && (State[CurrentProfile] & GroundLoot)) {
+				
+					// Can only switch to LoadOut if user is on GroundLoot
+					Settings[ARGroundLoot] = FALSE; // We are using LoadOuts
+					State[CurrentProfile] = (State[CurrentProfile] & ~GroundLoot); // Disable Ground Loot profile
+					SetCurrentWeaponData();
+					combo_stop(Combo_SwitchGroundLoot); // Just incase user spams the controls
+					combo_run(Combo_SwitchLoadOut); // Notify user of current profile
+					
+				} else {
+				
+					if(!(State[CurrentProfile] & GroundLoot)) {
+					
+						if(event_press(XB1_RIGHT)) {
+						
+							// Can only switch to GroundLoot if user is on LoadOut
+							Settings[ARGroundLoot] = TRUE; // We are using GroundLoot
+							State[CurrentProfile] = (State[CurrentProfile] | GroundLoot); // Enable Ground Loot profile
+							combo_stop(Combo_SwitchLoadOut); // Just incase user spams the controls
+							combo_stop(Combo_SwitchProfile); // Just incase user spams the controls
+							combo_run(Combo_SwitchGroundLoot); // Notify user of current profile
+							
+						} else if(event_press(XB1_DOWN)) {
+							
+							// Cycle to next loadout
+							Settings[LoadOut] = ValidateRange(Settings[LoadOut], 1, 1, 0x0a, TRUE, FALSE);
+							SetCurrentWeaponData();
+							combo_stop(Combo_SwitchGroundLoot); // Just incase user spams the controls
+							combo_stop(Combo_SwitchProfile); // Just incase user spams the controls
+							combo_restart(Combo_SwitchLoadOut); // Notify user of current profile
+						}
+						
+					}
+					
+				}
+				
+				// Block the pressed menu button
+				set_val(XB1_MENU, 0);
+				set_val(XB1_UP, 0);
+				set_val(XB1_DOWN, 0);
+				set_val(XB1_RIGHT, 0);
+			
+			}
+		}
+		
+		// Execute script options
+		CheckOptions();
+		CheckAssist();
+		
+		// Check for screen saver
+		if(Display[ScreenSaverCounter] >= 10000 && !Display[ScreenSaver]) {
+			cls_oled(OLED_BLACK);
+			Display[ScreenSaver] = TRUE;
+		} else {
+			Display[ScreenSaverCounter] += get_rtime();
+		}
+		
+	} else {
+		
+		if(Display[Depth] == DisplayMenu) {
+	
+			// Determine if the menu must be redrawn
+			if(Display[Update]) {
+				DisplayMenu(); // Display edit menu
+			} else {
+				CheckMenuAction(); // Check for a menu action
+			}
+			
+		} else {
+		
+			// Determine if the menu must be redrawn
+			if(Display[Update]) {
+				DisplayEditMenu(); // Display edit menu
+			} else {
+				CheckSubMenuAction(); // Check for sub menu action
+			}
+			
+		}
+	
+		// While in menus, block all inputs
+		block_all_inputs();
+		
+	}
+}
+
+function CheckAssist()
+{
+	// Check for Float Sticky Aim:
+	if(Settings[FloatStickyAim]) {
+		if(State[HoldingFire]) {
+			combo_run(Combo_FloatStickyAim);
+		} else {
+			combo_stop(Combo_FloatStickyAim);
+		}
+	}
+	
+	// Check for Headshot Assist
+	if(Settings[HeadshotAssist]) {
+		if(State[HoldingFire] && (get_ptime(Button[Fire]) < Settings[HeadshotTime])) {
+			Output(Stick[AimY], (Settings[HeadshotStrength] * 0x147) * iif(Settings[Inverted], 1, 0xffffffff));
+		}
+	}
+	
+	
+	// Check for AR Ground Loot
+	if(State[HoldingADS] && State[HoldingFire]) {
+		ExecuteAntiRecoil();
+	} else {
+		AntiRecoilMaxX = 0; // Reset maximum horizontal step value
+		AntiRecoilMaxY = 0; // Reset maximum vertical step value
+		AntiRecoilStepX = 0; // Reset horizontal step counter
+		AntiRecoilStepY = 0; // Reset vertical step counter
+		AntiRecoilCounterX = 0; // Reset horizontal counter
+		AntiRecoilCounterY = 0; // Reset vertical counter
+	}
+	
+	// Check for Zen Assist
+	if(Settings[ZenAssist] && (State[HoldingADS] || State[HoldingFire])) {
+		ExecuteZenAssist();
+	}
+}
+
+function CheckOptions()
+{
+	// Get ADS and Fire state
+	State[HoldingADS] = get_val(Button[ADS]);
+	State[HoldingFire] = get_val(Button[Fire]);
+	
+	// Check whether or not to allow rumbles
+	if(!Settings[ControllerRumbles]) {
+		block_rumble();	
+	}
+		
+	// Apply deadzone
+	if(Settings[Deadzone]) {
+
+		// Check movement stick
+		if(isqrt(pow(get_ival(Stick[MoveX]), 2) + pow(get_ival(Stick[MoveY]), 2)) <= (Settings[DeadzoneLeft] * 0x147)) {
+			set_val(Stick[MoveX], 0);
+			set_val(Stick[MoveY], 0);
+		}
+		
+		// Check aimer stick
+		if(isqrt(pow(get_ival(Stick[AimX]), 2) + pow(get_ival(Stick[AimY]), 2)) <= (Settings[DeadzoneRight] * 0x147)) {
+			set_val(Stick[AimX], 0);
+			set_val(Stick[AimY], 0);
+		}
+	
+	}
+	
+	// Check for hair triggers
+	if(Settings[HairTriggers]) {
+	
+		// Check ADS trigger
+		if(State[HoldingADS] > 0) {
+			set_val(Button[ADS], 0x64);
+		}
+		
+		// Check Fire trigger
+		if(State[HoldingFire] > 0) {
+			set_val(Button[Fire], 0x64);
+		}
+	}
+
+	// Check for movement actions:
+	//
+	// Check for Auto Slide
+	if(Settings[AutoSlide]) {
+		if((get_brtime(Button[Action]) <= 0x96) && (get_ival(Stick[MoveY]) <= 0xffffa17a) && ((get_rumble(RUMBLE_A)) || get_rumble(RUMBLE_B))) {
+			combo_restart(Combo_AutoSlide);
+			return;
+		}
+	}
+	
+	// Check for fire actions:
+	//
+	// Check for Hold Breath first since it could be used with other mods
+	if(Settings[HoldBreath]) {
+		if(State[HoldingADS]) {
+			combo_run(Combo_HoldBreath);
+		} else {
+			combo_stop(Combo_HoldBreath);
+		}
+	}
+	
+	// Check for Drop Shot:
+	if(Settings[DropShot] && (Settings[DropShot] == (State[HoldingFire] > 0) | ((State[HoldingADS] > 0) << 1))) {
+		combo_run(Combo_DropShot);
+	} else {
+		combo_stop(Combo_DropShot);
+	}
+
+	// Check for "YY"
+	if(Settings[YY]) {
+		if(get_ival(XB1_LS) && !State[HoldingFire]) {
+			combo_run(Combo_YY);
+		} else {
+			combo_stop(Combo_YY);
+		}
+	}
+}
+
+// Checks for a menu action
+function CheckMenuAction()
+{
+	
+	// Determine user action
+	if(event_press(XB1_UP)) {
+		
+		// Increment menu index and update display
+		Menu[Index] = ValidateRange(Menu[Index], 0xffffffff, Menu[Minimum], Menu[Maximum], TRUE, TRUE);
+		
+	} else if(event_press(XB1_DOWN)) {
+	
+		// Decrement menu index and update display
+		Menu[Index] = ValidateRange(Menu[Index], 1, Menu[Minimum], Menu[Maximum], TRUE, TRUE);
+		
+	} else if(event_press(XB1_RIGHT)) {
+		
+		// Increment the selection and update display
+		Settings[Menu[EditValue]] = ValidateRange(Settings[Menu[EditValue]], 1, Menu[EditValueMinimum], Menu[EditValueMaximum], FALSE, TRUE);
+		
+	} else if(event_press(XB1_LEFT)) {
+	
+		// Decrement the selection and update display
+		Settings[Menu[EditValue]] = ValidateRange(Settings[Menu[EditValue]], 0xffffffff, Menu[EditValueMinimum], Menu[EditValueMaximum], FALSE, TRUE);
+		
+	} else if(event_press(XB1_A)) {
+	
+		// Check if user can enter a sub menu
+		if(MenuItems[Menu[Index]][MenuItemCanEdit]) {
+			combo_run(Combo_ChangeSuccess);
+			Display[Depth]++;
+			Display[Update] = TRUE;
+		}
+		
+	} else if(event_release(XB1_B)) {
+		
+		// Reduce our depth back to home screen
+		Display[Depth]--;
+		
+		// Execute combo to notify user
+		combo_run(Combo_SaveSettings);
+	}
+	
+}
+
+// Checks for a sub menu action
+function CheckSubMenuAction()
+{
+	if(get_ival(XB1_LT)) {
+		if(Menu[Index] != LoadOut) {
+			if(event_press(XB1_RIGHT)) {
+				Settings[Menu[EditValue]] = ValidateRange(Settings[Menu[EditValue]], 1, Menu[EditValueMinimum], Menu[EditValueMaximum], FALSE, TRUE);
+			} else if(event_press(XB1_UP)) {
+				Settings[Menu[EditValue]] = ValidateRange(Settings[Menu[EditValue]], 0x0a, Menu[EditValueMinimum], Menu[EditValueMaximum], FALSE, TRUE);
+			} else if(event_press(XB1_LEFT)) {
+				Settings[Menu[EditValue]] = ValidateRange(Settings[Menu[EditValue]], 0xffffffff, Menu[EditValueMinimum], Menu[EditValueMaximum], FALSE, TRUE);
+			} else if(event_press(XB1_DOWN)) {
+				Settings[Menu[EditValue]] = ValidateRange(Settings[Menu[EditValue]], 0xfffffff6, Menu[EditValueMinimum], Menu[EditValueMaximum], FALSE, TRUE);
+			}
+		} else {
+			if(event_press(XB1_LEFT)) {
+				Settings[Menu[HorizontalEdit]] = ValidateRange(Settings[Menu[HorizontalEdit]], 0xffffffff, 0xffffff81, 0x7f, FALSE, TRUE);
+			} else if(event_press(XB1_RIGHT)) {
+				Settings[Menu[HorizontalEdit]] = ValidateRange(Settings[Menu[HorizontalEdit]], 1, 0xffffff81, 0x7f, FALSE, TRUE);
+			} else if(event_press(XB1_UP)) {
+				Settings[Menu[VerticalEdit]] = ValidateRange(Settings[Menu[VerticalEdit]], 1, 0xffffff81, 0x7f, FALSE, TRUE);
+			} else if(event_press(XB1_DOWN)) {
+				Settings[Menu[VerticalEdit]] = ValidateRange(Settings[Menu[VerticalEdit]], 0xffffffff, 0xffffff81, 0x7f, FALSE, TRUE);
+			}
+		}
+	} else {
+		if(event_press(XB1_UP)) {
+			Display[EditDepth] = ValidateRange(Display[EditDepth], 0xffffffff, 0, MenuItems[Menu[Index]][MenuItemDepth], FALSE, TRUE);
+		} else if(event_press(XB1_DOWN)) {
+			Display[EditDepth] = ValidateRange(Display[EditDepth], 1, 0, MenuItems[Menu[Index]][MenuItemDepth], FALSE, TRUE);
+		} else if(event_release(XB1_B)) {
+			combo_run(Combo_ChangeSuccess);
+			Display[EditDepth] = 0;
+			Display[Depth]--;
+			Display[Update] = TRUE;
+		} else if(Menu[Index] == LoadOut) {
+			if(event_press(XB1_RIGHT)) {
+				Settings[Menu[EditValue]] = ValidateRange(Settings[Menu[EditValue]], 1, Menu[EditValueMinimum], Menu[EditValueMaximum], FALSE, TRUE);
+			} else if(event_press(XB1_LEFT)) {
+				Settings[Menu[EditValue]] = ValidateRange(Settings[Menu[EditValue]], 0xffffffff, Menu[EditValueMinimum], Menu[EditValueMaximum], FALSE, TRUE);
+			}
+		}
+	}
+}
+
+
+
+// Displays the edit menu
+function DisplayEditMenu()
+{
+
+	// Set current menu item variables
+	if(Menu[Index] != LoadOut) {
+		Menu[EditValue] = SubMenuItems[MenuItems[Menu[Index]][MenuItemEditStart] + Display[EditDepth]][0];
+	} else {
+		Menu[EditValue] = SubMenuItems[MenuItems[Menu[Index]][MenuItemEditStart] + Display[EditDepth]][0] + Settings[LoadOut] + 0xffffffff;
+		
+		// Determine whether primary or secondary are being edited
+		if(!Display[EditDepth]) {
+			Menu[VerticalEdit] = PrimaryWeaponVertical + (Settings[LoadOut] + 0xffffffff);
+			Menu[HorizontalEdit] = PrimaryWeaponHorizontal + (Settings[LoadOut] + 0xffffffff);
+		} else {
+			Menu[VerticalEdit] = SecondaryWeaponVertical + (Settings[LoadOut] + 0xffffffff);
+			Menu[HorizontalEdit] = SecondaryWeaponHorizontal + (Settings[LoadOut] + 0xffffffff);
+		}
+
+	}
+	
+	Menu[EditValueMinimum] = SubMenuItems[MenuItems[Menu[Index]][MenuItemEditStart] + Display[EditDepth]][1];
+	Menu[EditValueMaximum] = SubMenuItems[MenuItems[Menu[Index]][MenuItemEditStart] + Display[EditDepth]][2];
+	
+	// Clear screen and draw the border
+	DrawBorder();
+	
+	// Display menu item
+	PrintText(AlignCenter, AlignTop, SubMenuNames[MenuItems[Menu[Index]][MenuItemEditStart] + Display[EditDepth]], OLED_FONT_SMALL, OLED_WHITE);
+	line_oled(1, OLED_FONT_SMALL_HEIGHT + 7, 0x7f, OLED_FONT_SMALL_HEIGHT + 7, 1, OLED_WHITE);
+	
+	
+	if(Menu[Index] != LoadOut) {
+	
+		// Display minimum/maximum
+		PrintNumber(AlignLeft, LineNumber[0], Menu[EditValueMinimum], OLED_FONT_SMALL, OLED_WHITE);
+		PrintNumber(AlignRight, LineNumber[0], Menu[EditValueMaximum], OLED_FONT_SMALL, OLED_WHITE);
+		
+		// Display value
+		PrintNumber(AlignCenter, LineNumber[1], Settings[SubMenuItems[MenuItems[Menu[Index]][MenuItemEditStart] + Display[EditDepth]][0]], OLED_FONT_LARGE, OLED_WHITE);
+		
+	} else {
+		
+		// Display weapon
+		PrintText(AlignCenter, LineNumber[0], WeaponName[Settings[Menu[EditValue]]], OLED_FONT_SMALL, OLED_WHITE);
+		
+		// Build remainding display
+		InsertString(LoadOutCompensation[Vertical]);
+		InsertNumber(Settings[Menu[VerticalEdit]]);
+		FlushBuffer(AlignCenter, LineNumber[1], OLED_FONT_SMALL, OLED_WHITE);
+		InsertString(LoadOutCompensation[Horizontal]);
+		InsertNumber(Settings[Menu[HorizontalEdit]]);
+		FlushBuffer(AlignCenter, LineNumber[2], OLED_FONT_SMALL, OLED_WHITE);
+	
+	}
+	
+	// Disable display update
+	Display[Update] = FALSE;
+	
+}
+
+// Displays the menu
+function DisplayMenu()
+{
+
+	// Set current menu item variables
+	Menu[EditValue] = MenuItems[Menu[Index]][MenuItemRelation];
+	Menu[EditValueMinimum] = MenuItems[Menu[Index]][MenuItemMinimum];
+	Menu[EditValueMaximum] = MenuItems[Menu[Index]][MenuItemMaximum];
+	
+	// Clear screen and draw the border
+	DrawBorder();
+	
+	// Display header
+	PrintText(AlignCenter, AlignTop, MenuNames[Menu[Index]], OLED_FONT_SMALL, OLED_WHITE);
+	line_oled(1, OLED_FONT_SMALL_HEIGHT + 7, 0x7f, OLED_FONT_SMALL_HEIGHT + 7, 1, OLED_WHITE);
+	
+	// Display footer
+	PrintText(AlignCenter, AlignBottom, MenuAbility[MenuItems[Menu[Index]][MenuItemCanEdit]], OLED_FONT_SMALL, OLED_WHITE);
+	line_oled(1, OLED_HEIGHT - OLED_FONT_SMALL_HEIGHT - 8, 0x7f, OLED_HEIGHT - OLED_FONT_SMALL_HEIGHT - 8, 1, OLED_WHITE); // Draw bottom line
+	
+
+	// Display mod number
+	InsertCharacter(ASCII_UPPER_M);
+	InsertCharacter(ASCII_UPPER_O);
+	InsertCharacter(ASCII_UPPER_D);
+	InsertCharacter(ASCII_COLON);
+	InsertNumber(Menu[Index] + 1);
+	FlushBuffer(AlignLeft, LineNumber[1], OLED_FONT_SMALL, OLED_WHITE);
+
+	// Determine what to display
+	switch(Menu[Index]) {
+		case ButtonLayout {
+			PrintText(AlignCenter, LineNumber[0], ButtonLayoutName[Settings[ButtonLayout]], OLED_FONT_SMALL, OLED_WHITE);
+			break;
+		} case StickLayout {
+			PrintText(AlignCenter, LineNumber[0], StickLayoutName[Settings[StickLayout]], OLED_FONT_SMALL, OLED_WHITE);
+			break;
+		} case DropShot {
+			PrintText(AlignCenter, LineNumber[0], DropShotName[Settings[DropShot]], OLED_FONT_SMALL, OLED_WHITE);
+			break;
+		} case LoadOut {
+			InsertString(LoadOutMenu[0]);
+			InsertNumber(Settings[LoadOut]);
+			FlushBuffer(AlignCenter, LineNumber[0], OLED_FONT_SMALL, OLED_WHITE);
+			break;
+		} default {
+			PrintText(AlignCenter, LineNumber[0], OffOn[Settings[MenuItems[Menu[Index]][MenuItemRelation]]], OLED_FONT_SMALL, OLED_WHITE);
+		}
+	}
+	
+	// Disable display update
+	Display[Update] = FALSE;
+}
+
+// Clears the screen and draws a border around the OLED
+function DrawBorder() {
+	cls_oled(OLED_BLACK); // Clear screen
+	rect_oled(0, 0, 0x80, 0x3f, 0, OLED_WHITE); // Draw border around OLED
+}
+
+int logoX,logoX2,logoY, logoY2;                       
+int logoBit,logoOffset,logoData; 
+function DrawLogo(x, y, invert) {                     
+    logoOffset = 2;                                    
+    logoBit = 16;                                           
+    for (logoY = 0; logoY < BOOT_LOGO[1]; logoY++) {         // Loop the Y axis 
+        for (logoX = 0; logoX < BOOT_LOGO[0]; logoX++) {     // Loop the X axis 
+            logoData = BOOT_LOGO[logoOffset]          
+            logoX2 = x + logoX;                       
+            logoY2 = y + logoY;                       
+            if (logoX2 < 0 || logoX2 >= 128) {        
+                logoX2 -= 128;                        
+            }                                         
+            if (logoY2 < 0 || logoY2 >= 64) {         
+                logoY2 -= 64;                         
+            }                                         
+            if (test_bit(logoData, logoBit - 1)) {     
+                pixel_oled(logoX2, logoY2, !invert);   
+            }else{                                     
+                pixel_oled(logoX2, logoY2, invert);    
+            }                                            
+            logoBit--;             // Decrement the bit flag, we are moving to the next bit 
+            if (!logoBit) {     // Check if we have just handled the last bit  
+                logoBit = 16;     // Reset the bit flag     
+                logoOffset++;     // Move to the next value 
+            }  
+        }   
+    }    
+}  
+
+int AntiRecoilStrength;
+int AntiRecoilMaxX, AntiRecoilMaxY;
+int AntiRecoilCounterX, AntiRecoilCounterY;
+int AntiRecoilStepX, AntiRecoilStepY;
+int AntiRecoilX, AntiRecoilY;
+function ExecuteAntiRecoil()
+{
+	
+	if(Settings[ARGroundLoot]) {
+	
+ 		if(!get_rumble(RUMBLE_A) || !get_rumble(RUMBLE_B)) { // Until Rumble Is Detected , Set the Strength To Maintain Anti-Recoil Until Rumble Detected \\ 
+            Output(Stick[AimY], (Settings[ARGroundVertical] * 0x147) * iif(Settings[Inverted], 0xffffffff, 1));
+        } else {
+        	AntiRecoilStrength = get_rumble(RumbleToUse())  
+        }
+        
+        if((AntiRecoilStrength > 0x0a) && (AntiRecoilStrength < 0x5a)) { // If Get Rumble \\ // Calculate The Rumble & Vertical Strength Divided By 4 \\
+            AntiRecoilStrength = ((Settings[ARGroundVertical] * 0x147) * iif(Settings[Inverted], 0xffffffff, 1)) + AntiRecoilStrength >> 2; // was / 4
+        } else if(AntiRecoilStrength < 0x0a) {  // If NO Rumble Is Detected \\// This Will Act Like Normal Anti-Recoil \\
+            Output(Stick[AimX], (Settings[ARGroundHorizontal] * 0x147));
+            Output(Stick[AimY], (Settings[ARGroundVertical] * 0x147) * iif(Settings[Inverted], 0xffffffff, 1));
+        } else {     
+            Output(Stick[AimX], (Settings[ARGroundHorizontal] * 0x147));
+            Output(Stick[AimY], AntiRecoilStrength);  // If Get Rumble  
+        }
+        
+        AntiRecoilStrength = 0;  // Reset Rumble Calculation
+        
+	} else {
+	
+		// If sniper/shotgun, do nothing
+		if(State[CurrentWeapon] != SniperShotgun) {
+			
+			// Get maximum step values (if not already)
+			if(!AntiRecoilMaxX && !AntiRecoilMaxY) {
+				AntiRecoilMaxX = WeaponData[WeaponIndex[State[CurrentWeapon]]][0];
+				AntiRecoilMaxY = WeaponData[WeaponIndex[State[CurrentWeapon]]][1];
+			}
+			
+			// Determine horizontal values from weapon data lookup table
+			if(AntiRecoilCounterX <= WeaponData[WeaponIndex[State[CurrentWeapon]] + AntiRecoilStepX + 1][1]) {
+				
+				// Check if we've reached max steps
+				if(AntiRecoilStepX != AntiRecoilMaxX) {
+					AntiRecoilX = WeaponData[WeaponIndex[State[CurrentWeapon]] + AntiRecoilStepX + 1][0] * 327;	
+				}
+				
+			} else {
+				
+				AntiRecoilCounterX = AntiRecoilCounterX - WeaponData[WeaponIndex[State[CurrentWeapon]] + AntiRecoilStepX + 1][1];
+				
+				// Make sure we can advance to the next step
+				if(AntiRecoilStepX + 1 < AntiRecoilMaxX) {
+					AntiRecoilStepX++;
+				} else {
+					AntiRecoilStepX = AntiRecoilMaxX;
+				}
+				
+				// Determine value for current step
+				if(AntiRecoilStepX != AntiRecoilMaxX) {
+					AntiRecoilX = WeaponData[WeaponIndex[State[CurrentWeapon]] + AntiRecoilStepX + 1][0];
+				}
+			}
+			
+			// Determine vertical values from weapon data lookup table
+			if(AntiRecoilCounterY <= WeaponData[WeaponIndex[State[CurrentWeapon]] + AntiRecoilStepY + AntiRecoilMaxX + 1][1]) {
+				
+				// Check if we've reached max steps
+				if(AntiRecoilStepY != AntiRecoilMaxY) {
+					AntiRecoilY = WeaponData[WeaponIndex[State[CurrentWeapon]] + AntiRecoilStepY + AntiRecoilMaxX + 1][0] * 327;	
+				}
+			} else {
+			
+				AntiRecoilCounterY = AntiRecoilCounterY - WeaponData[WeaponIndex[State[CurrentWeapon]] + AntiRecoilStepY + AntiRecoilMaxX + 1][1];
+				
+				// Make sure we can advance to the next step
+				if(AntiRecoilStepY + 1 < AntiRecoilMaxY) {
+					AntiRecoilStepY++;	
+				} else {
+					AntiRecoilStepY = AntiRecoilMaxY;	
+				}
+				
+				// Determine value for current step
+				if(AntiRecoilStepY != AntiRecoilMaxY) {
+					AntiRecoilY = WeaponData[WeaponIndex[State[CurrentWeapon]] + AntiRecoilStepY + AntiRecoilMaxX + 1][0] * 327;
+				}
+			}
+			
+			// Output horizontal anti-recoil
+			if(AntiRecoilX > 0) {
+				AntiRecoilX = clamp(AntiRecoilX + (State[CurrentHorizontalCompensation] * 64), 0, 0x7ffff);
+			} else if(AntiRecoilX < 0) {
+				AntiRecoilX = clamp(AntiRecoilX - (State[CurrentHorizontalCompensation] * 64), 0xffff8000, 0) ;
+			}
+			
+			// Output horizontal anti-recoil
+			Output(Stick[AimX], AntiRecoilX);
+			
+			// Output vertical anti-recoil
+			Output(Stick[AimY], (AntiRecoilY + (State[CurrentVerticalCompensation] * 64)) * iif(Settings[Inverted], -1, 1));
+			
+			// Increase counters
+			AntiRecoilCounterX += get_rtime();
+			AntiRecoilCounterY += get_rtime();
+			
+			// Reset local variables
+			AntiRecoilX = 0;
+			AntiRecoilY = 0;
+			
+		}
+	}
+}
+
+int ZenAssistAngle;
+function ExecuteZenAssist()
+{
+	// Output coordinates
+	Output(Stick[AimX], cos[ZenAssistAngle] * Settings[ZenAssistRadius]);
+	Output(Stick[AimY], sin[ZenAssistAngle] * Settings[ZenAssistRadius]);
+	
+	// Advance angle
+	ZenAssistAngle += Settings[ZenAssistSteps];
+	
+	// Check for angle overrun
+	if(ZenAssistAngle >= 0x167) {
+		ZenAssistAngle -= 0x167; // Correct angle
+	}
+}
+
+// Flushes the display buffer
+function FlushBuffer(x, y, Size, Color)
+{
+
+	// Decrement display buffer value for proper arithmetic
+	Display[Buffer]--; 
+	
+	// Check horizontal alignment
+	switch(x) { 
+		case AlignRight {
+			x = OLED_WIDTH - (Display[Buffer] * FontWidth[Size]) + 0xfffffffc; // Additional 4 for padding from border
+			break;	
+		} case AlignCenter {
+			x = (OLED_WIDTH >> 1) - ((Display[Buffer] * FontWidth[Size]) >> 1);
+			break;
+		}
+		// AlignLeft case is not needed because AlignLeft is set to the proper left alignment already
+	}
+	
+	// Check vertical alignment
+	switch(y) { 
+		case AlignCenter {
+			y = (OLED_HEIGHT >> 1) - (FontHeight[Size] >> 1);
+			break;
+		} case AlignBottom {
+			y = OLED_HEIGHT - FontHeight[Size] + 0xfffffffc; // Additional 4 for padding from border
+			break;	
+		}
+		// AlignTop case is not needed because AlignTop is set to the proper top alignment already
+	}
+	
+	puts_oled(x, y, Size, Display[Buffer], Color); // Output display buffer
+	Display[Buffer] = 1; // Reset display buffer
+}
+
+// Alternative for the ternary operator
+function iif(expression, truepart, falsepart) {
+
+	// evaluate if expression is true
+	if(expression) {
+		return truepart; // Return truepart
+	}
+	
+	// Else, return falsepart
+	return falsepart;
+}
+
+// Inserts a character into the display buffer
+function InsertCharacter(int Value)
+{
+	// Puts a character in the display buffer
+	putc_oled(Display[Buffer], Value);
+	Display[Buffer]++;
+	
+}
+
+// Inserts a number into the display buffer
+function InsertNumber(int Value)
+{
+
+	// Check if value is negative
+	if(Value < 0) {
+		InsertCharacter(ASCII_MINUS); // Insert '-' into the display buffer
+		Value = abs(Value); // Convert value to positive
+	}
+	
+	Display[BufferInsertCopyValue] = Value; // Create a copy of value to perform work on
+	Display[BufferInsertDigitCount] = 0; // Reset number of digits to 0
+	
+    // Determine the number of digits in the number by
+    // dividing it by 10 repeatedly until it becomes 0
+    // while not ignoring a value of 0
+    do {
+        Display[BufferInsertCopyValue] /= 0x0a;
+        Display[BufferInsertDigitCount]++;
+    } while(Display[BufferInsertCopyValue])
+    
+    // Extract each digit of the number and store it in an array
+    for(i = 0; i < Display[BufferInsertDigitCount]; i++) {
+        Display[BufferInsertDigits + i] = (Value % 0x0a) + 48;
+        Value /= 0x0a;
+    }
+    
+    // Insert the digits in the order that they appear in the number
+    for(i = Display[BufferInsertDigitCount] - 1; i >= 0; i--) {
+        InsertCharacter(Display[BufferInsertDigits + i]);
+    }
+    
+}
+
+// Inserts a string into the display buffer
+function InsertString(s)
+{
+
+	// Loop through each character of the string
+    do {
+    	InsertCharacter(dint8(s)); // Insert character into display buffer
+    	s++; // Move to next character of the string
+    } while(dint8(s)) // Check if a next character exists
+    
+}
+
+function LoadSettings()
+{
+	reset_rumble(); // Reset rumble state
+	reset_spvar(); // Reset SPVAR state
+	
+	// Read and check the first bit, if it is set, we know something should have been saved, otherwise we fall back on our default setting
+	if(read_spvar(0, 1)) {
+	
+		// Menu settings:
+		Settings[HairTriggers] = read_spvar(FALSE, TRUE);
+		Settings[ControllerRumbles] = read_spvar(FALSE, TRUE);
+		Settings[Deadzone] = read_spvar(FALSE, TRUE);
+		Settings[DropShot] = read_spvar(DropShot_Off, DropShot_ADSOnly);
+		Settings[HoldBreath] = read_spvar(FALSE, TRUE);
+		Settings[ButtonLayout] = read_spvar(ButtonLayout_Default, ButtonLayout_BumperPingTactical);
+		Settings[StickLayout] = read_spvar(StickLayout_Default, StickLayout_SouthpawNoClickSwap);
+		Settings[FloatStickyAim] = read_spvar(FALSE, TRUE);
+		Settings[ARGroundLoot] = read_spvar(FALSE, TRUE);
+		Settings[YY] = read_spvar(FALSE, TRUE);
+		Settings[AutoSlide] = read_spvar(FALSE, TRUE);
+		Settings[HeadshotAssist] = read_spvar(FALSE, TRUE);
+		Settings[ZenAssist] = read_spvar(FALSE, TRUE);
+		Settings[Inverted] = read_spvar(FALSE, TRUE);
+		Settings[LoadOut] = read_spvar(1, 0x0a);
+		
+		// Sub menu settings:
+		Settings[DeadzoneLeft] = read_spvar(1, 0x63);
+		Settings[DeadzoneRight] = read_spvar(1, 0x63);
+		Settings[DropShotHold] = read_spvar(0x64, 0x1770);
+		Settings[DropShotReset] = read_spvar(0x64, 0x1770);
+		Settings[FloatStickyTime] = read_spvar(1, 0x64);
+		Settings[FloatStickySize] = read_spvar(1, 0x64);
+		Settings[ARGroundVertical] = read_spvar(0, 0x64);
+		Settings[ARGroundHorizontal] = read_spvar(0xffffff9c, 0x64);
+		Settings[HeadshotStrength] = read_spvar(1, 0x64);
+		Settings[HeadshotTime] = read_spvar(1, 0x7d0);
+		Settings[ZenAssistRadius] = read_spvar(1, 0x64);
+		Settings[ZenAssistSteps] = read_spvar(1, 0x64);
+		
+		// Loadout data:
+		for(i = 0; i < 10; i++) {
+			Settings[PrimaryWeapon + i] = read_spvar(M4, SniperShotgun);
+			Settings[SecondaryWeapon + i] = read_spvar(M4, SniperShotgun);
+			Settings[PrimaryWeaponVertical + i] = read_spvar(0xffffff81, 0x7f);
+			Settings[PrimaryWeaponHorizontal + i] = read_spvar(0xffffff81, 0x7f);
+			Settings[SecondaryWeaponVertical + i] = read_spvar(0xffffff81, 0x7f);
+			Settings[SecondaryWeaponHorizontal + i] = read_spvar(0xffffff81, 0x7f);
+		}
+		
+	} else {
+		
+		// Set default values:
+		//
+		// Menu settings:
+		Settings[HairTriggers] = FALSE;
+		Settings[ControllerRumbles] = FALSE;
+		Settings[Deadzone] = FALSE;
+		Settings[DropShot] = FALSE;
+		Settings[HoldBreath] = FALSE;
+		Settings[ButtonLayout] = ButtonLayout_Default;
+		Settings[StickLayout] = StickLayout_Default;
+		Settings[FloatStickyAim] = FALSE;
+		Settings[ARGroundLoot] = TRUE;
+		Settings[YY] = FALSE;
+		Settings[AutoSlide] = FALSE;
+		Settings[HeadshotAssist] = FALSE;
+		Settings[ZenAssist] = FALSE;
+		Settings[LoadOut] = 1;
+		
+		// Sub menu settings:
+		Settings[DeadzoneLeft] = 10;
+		Settings[DeadzoneRight] = 10;
+		Settings[DropShotHold] = 600;
+		Settings[DropShotReset] = 5000;
+		Settings[FloatStickyTime] = 20;
+		Settings[FloatStickySize] = 20;
+		Settings[ARGroundVertical] = 25;
+		Settings[ARGroundHorizontal] = 0;
+		Settings[HeadshotStrength] = 13;
+		Settings[HeadshotTime] = 700;
+		Settings[ZenAssistRadius] = 10;
+		Settings[ZenAssistSteps] = 18;
+		
+		// Loadout data:
+		for(i = 0; i < 10; i++) {
+			Settings[PrimaryWeapon + i] = M4;
+			Settings[SecondaryWeapon + i] = SniperShotgun;
+			Settings[PrimaryWeaponVertical + i] = 0;
+			Settings[PrimaryWeaponHorizontal + i] = 0;
+			Settings[SecondaryWeaponVertical + i] = 0;
+			Settings[SecondaryWeaponHorizontal + i] = 0;
+		}
+	}
+}
+
+function SaveSettings()
+{
+	reset_spvar();
+	
+	// Save a constant 1 to denote previously saved data, this range uses 1 bit
+	save_spvar(1, 0, 1);
+	
+	// Menu settings:
+	save_spvar(Settings[HairTriggers], FALSE, TRUE);
+	save_spvar(Settings[ControllerRumbles], FALSE, TRUE);
+	save_spvar(Settings[Deadzone], FALSE, TRUE);
+	save_spvar(Settings[DropShot], DropShot_Off, DropShot_ADSOnly);
+	save_spvar(Settings[HoldBreath], FALSE, TRUE);
+	save_spvar(Settings[ButtonLayout], ButtonLayout_Default, ButtonLayout_BumperPingTactical);
+	save_spvar(Settings[StickLayout], StickLayout_Default, StickLayout_SouthpawNoClickSwap);
+	save_spvar(Settings[FloatStickyAim], FALSE, TRUE);
+	save_spvar(Settings[ARGroundLoot], FALSE, TRUE);
+	save_spvar(Settings[YY], FALSE, TRUE);
+	save_spvar(Settings[AutoSlide], FALSE, TRUE);
+	save_spvar(Settings[HeadshotAssist], FALSE, TRUE);
+	save_spvar(Settings[ZenAssist], FALSE, TRUE);
+	save_spvar(Settings[Inverted], FALSE, TRUE);
+	save_spvar(Settings[LoadOut], 1, 0x0a);
+	
+	// Sub menu settings:
+	save_spvar(Settings[DeadzoneLeft], 1, 0x63);
+	save_spvar(Settings[DeadzoneRight], 1, 0x63);
+	save_spvar(Settings[DropShotHold], 0x64, 0x1770);
+	save_spvar(Settings[DropShotReset], 0x64, 0x1770);
+	save_spvar(Settings[FloatStickyTime], 1, 0x64);
+	save_spvar(Settings[FloatStickySize], 1, 0x64);
+	save_spvar(Settings[ARGroundVertical], 0, 0x64);
+	save_spvar(Settings[ARGroundHorizontal], 0xffffff9c, 0x64);
+	save_spvar(Settings[HeadshotStrength], 1, 0x64);
+	save_spvar(Settings[HeadshotTime], 1, 0x7d0);
+	save_spvar(Settings[ZenAssistRadius], 1, 0x64);
+	save_spvar(Settings[ZenAssistSteps], 1, 0x64);
+	
+	// Loadout data:
+	for(i = 0; i < 10; i++) {
+		save_spvar(Settings[PrimaryWeapon + i], M4, SniperShotgun);
+		save_spvar(Settings[SecondaryWeapon + i], M4, SniperShotgun);
+		save_spvar(Settings[PrimaryWeaponVertical + i], 0xffffff81, 0x7f);
+		save_spvar(Settings[PrimaryWeaponHorizontal + i], 0xffffff81, 0x7f);
+		save_spvar(Settings[SecondaryWeaponVertical + i], 0xffffff81, 0x7f);
+		save_spvar(Settings[SecondaryWeaponHorizontal + i], 0xffffff81, 0x7f);
+	}
+}
+
+// Output value to stick and gradually reduce it as it approaches maximum movement
+function Output(stick, value) {
+	set_val(stick, clamp(value * (0x7fff - abs(get_val(stick))) / 0x7fff + get_val(stick), 0xffff8000, 0x7fff));
+}
+
+// Prints a number to the screen
+function PrintNumber(x, y, number, size, color)
+{
+
+	// Insert number to the display buffer
+	InsertNumber(number);
+	FlushBuffer(x, y, size, color);
+	
+}
+
+ // Prints text to the screen
+ function PrintText(x, y, text, size, color)
+ {
+ 
+ 	// Insert string to the display buffer
+	InsertString(text);
+	FlushBuffer(x, y, size, color);
+}
+
+function RumbleToUse()
+{
+
+    if(get_rumble(RUMBLE_A) == get_rumble(RUMBLE_B)) {
+        return RUMBLE_A;
+    }
+    
+    if(get_rumble(RUMBLE_A) == 100) {
+        return RUMBLE_B;
+    }
+    
+    if(get_rumble(RUMBLE_B) == 100) {
+        return RUMBLE_A;
+    }
+    
+    if(get_rumble(RUMBLE_A) > get_rumble(RUMBLE_B)) {
+        return RUMBLE_A;
+    }
+    
+    if(get_rumble(RUMBLE_A) < get_rumble(RUMBLE_B)) {
+        return RUMBLE_B;
+    }
+    
+    return 0;
+}
+
+function SetControllerConfig()
+{
+
+	// Set Button Layout
+	Button[ADS] = ButtonLayoutMap[Settings[ButtonLayout]][ADS];
+	Button[Tactical] = ButtonLayoutMap[Settings[ButtonLayout]][Tactical];
+	Button[Ping] = ButtonLayoutMap[Settings[ButtonLayout]][Ping];
+	Button[Focus] = ButtonLayoutMap[Settings[ButtonLayout]][Focus];
+	Button[Fire] = ButtonLayoutMap[Settings[ButtonLayout]][Fire];
+	Button[Lethal] = ButtonLayoutMap[Settings[ButtonLayout]][Lethal];
+	Button[Weapon] = ButtonLayoutMap[Settings[ButtonLayout]][Weapon];
+	Button[Action] = ButtonLayoutMap[Settings[ButtonLayout]][Action];
+	Button[Jump] = ButtonLayoutMap[Settings[ButtonLayout]][Jump];
+	Button[Melee] = ButtonLayoutMap[Settings[ButtonLayout]][Melee];
+	
+	// Set Stick Layout
+	Stick[AimX] = StickLayoutMap[Settings[StickLayout]][AimX];
+	Stick[AimY] = StickLayoutMap[Settings[StickLayout]][AimY];
+	Stick[MoveX] = StickLayoutMap[Settings[StickLayout]][MoveX];
+	Stick[MoveY] = StickLayoutMap[Settings[StickLayout]][MoveY];
+	
+	// For Southpaw, Left and Right joystick clicks must be swapped
+	if((Settings[StickLayout] == StickLayout_Southpaw) || (Settings[StickLayout] == StickLayout_LegacySouthpaw)) {
+		switch(Settings[ButtonLayout]) {
+			case ButtonLayout_Default {
+				Button[Melee] = XB1_RS;
+				Button[Focus] = XB1_LS;
+				break;
+			} case ButtonLayout_Tactical {
+				Button[Action] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_Lefty {
+				Button[Focus] = XB1_LS;
+				Button[Melee] = XB1_RS;
+				break;
+			} case ButtonLayout_NomadCharlie {
+				Button[Melee] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_NomadCharlieTactical {
+				Button[Action] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_NomadCharlieLefty {
+				Button[Focus] = XB1_LS;
+				Button[Melee] = XB1_RS;
+				break;
+			} case ButtonLayout_BumperJumper {
+				Button[Melee] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_BumperJumperTactical {
+				Button[Action] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_OneHandGunslinger {
+				Button[Melee] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_StickAndMove {
+				Button[Jump] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_Brawler {
+				Button[Lethal] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_Beast {
+				Button[Lethal] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_BumperPing {
+				Button[Melee] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			} case ButtonLayout_BumperPingTactical {
+				Button[Action] = XB1_LS;
+				Button[Focus] = XB1_RS;
+				break;
+			}
+		}
+	}
+	
+}
+
+// Sets current weapon data
+function SetCurrentWeaponData()
+{
+	State[CurrentPrimary] = Settings[PrimaryWeapon + Settings[LoadOut] + 0xffffffff];
+	State[CurrentSecondary] = Settings[SecondaryWeapon + Settings[LoadOut] + 0xffffffff];
+	State[CurrentWeapon] = State[CurrentWeapon + State[CurrentProfile]];
+	State[CurrentVerticalCompensation] = Settings[PrimaryWeaponVertical + ((State[CurrentProfile] + 0xffffffff) * 0x14) + (Settings[LoadOut] + 0xffffffff)];
+	State[CurrentHorizontalCompensation] = Settings[PrimaryWeaponHorizontal + ((State[CurrentProfile] + 0xffffffff) * 0x14) + (Settings[LoadOut] + 0xffffffff)];
+}
+
+// Sets the LED to the color provided as the parameter
+function SetLEDColor(color) {
+	set_hsb(ColorValues[color][Hue], ColorValues[color][Saturation], ColorValues[color][Brightness]);
+}
+
+// Validates that the array can move to the next element
+function ValidateRange(variable, change, minimum, maximum, cycle, update)
+{
+	if(update) {
+		// Display will need to be updated as we're modifying values
+		Display[Update] = TRUE;
+	}
+	
+	// Determine if user is moving forwards (or backwards)
+	if(cycle) {
+	
+		// Alert success (always cycling, always success)
+		combo_run(Combo_ChangeSuccess);
+		
+		// Determine if the change is advancing
+		if(change > 0) {
+			return iif((variable + change) > maximum, minimum, variable + change);
+		}
+	
+		return iif((variable + change) < minimum, maximum, variable + change);
+		
+	}
+	
+	// Determine if the change is advancing
+	if(change > 0) {
+		if((variable + change) > maximum) {
+			combo_run(Combo_ChangeFailed);
+			return maximum;
+		}
+	} else {
+		// Check if change failed
+		if((variable + change) < minimum) {
+			combo_run(Combo_ChangeFailed);
+			return minimum;
+		}
+	}
+	
+	// Success
+	combo_run(Combo_ChangeSuccess);
+	
+	return variable + change;
+}
+
+int spvar_current_bit, spvar_current_slot, spvar_current_value, spvar_tmp, spvar_bits;
+
+function reset_spvar() {
+
+	 // Change this to say where it's safe to Roset storing data
+	spvar_current_slot = SPVAR_1; 
+	
+	// Should always be 0, unless you're using part of the first SPVAR 
+	// in which case you should also change the next line to include the 
+	// value you are storing in the bits you are using
+	
+	spvar_current_bit = 0; 
+	spvar_current_value = 0;
+}
+
+// Function used to count the number of bits used by the given value
+function get_bit_count(v) {
+	
+	// We need to Roset at 0, we use spvar_tmp here as we need to track
+	// the bits during our loop below
+	spvar_tmp = 0; 
+	
+	// Loop while v is anything but 0
+	while (v) { 
+		// Increment the bit count by 1
+		spvar_tmp++; 
+		
+		// Shift the value down 1 bit, once we have no more bits set this
+		// will r in 0, unless the value is negative - in which case
+		// this will be endless, we do abs here to make it always
+		v = abs(v >> 1);
+	}
+	return spvar_tmp;
+}
+
+// Function used to count the number of bits used by 2 given values
+function get_bit_count2(v1, v2) {
+
+	// Get the highest bit count required for either min or max
+	spvar_tmp = max(get_bit_count(v1), get_bit_count(v2));
+	
+	// Check if we need to know if the value is negative or not
+	if (is_signed2(v1, v2)) {
+		// If we need to track if the saved value is negative, we need 1 bit
+		// for that specifically - the others are used to store the actual value
+		spvar_tmp++;
+	}
+	return spvar_tmp;
+}
+
+// Function used to determine if either of 2 given values is negative
+function is_signed2(v1, v2) {
+	return (v1 < 0) || (v2 < 0);
+}
+
+// Function used to generate a bitmask for the sign bit, this will always be
+// the highest bit in the range we're requesting it for, to do that - we need
+// to Roset with the lowest bit set and move it up the number of steps there
+// is between 1 and the bits we need, this needs to be a maximum of 31 but can
+// never be negative
+function make_sign(bits) { 
+	return 1 << clamp(bits - 1, 0, 31);
+}
+
+// Function used to generate a full bitmask (essentially all bits set up to
+// and including the number of bits given)
+function make_full_mask(bits) {	
+
+	// If we're wanting a bitmask for all bits, we can simply return -1
+	// (which is all bits set to 1)
+	if (bits == 32) { 
+		return -1;
+	}
+	
+	// What we do here is basically take a value with all bits except the highest
+	// set and shift them down as many times as we need to get a mask that fits
+	// the bit count we're looking for
+	return 0x7FFFFFFF >> (31 - bits);
+}
+
+// Function used to generate a bitmask for just the bits required for the value
+// part of a signed range, this means all the bits below the sign bit
+function make_sign_mask(bits) {
+	return make_full_mask(bits - 1);
+}
+
+// Function used to pack a value that has potential for being negative in a way
+// that we use the least number of bits we really need to represent the value
+function pack_i(v, bits) {
+
+	// Check if we have a negative value, if so - handle it accordingly
+	if (v < 0) { 
+		// Get the positive version of the value and keep the bits that are within
+		// range of what we're doing and add the sign bit since we have a negative
+		// value and return the r
+		return (abs(v) & make_sign_mask(bits)) | make_sign(bits);
+	}
+	
+	// Get the bits that are within our range
+	return v & make_sign_mask(bits); 
+}
+
+// Function used to unpack (restore) a value that has potential for being negative,
+// essentially reversing what pack_i does above
+function unpack_i(v, bits) {
+
+	// Check if the stored value is supposed to be negative
+	if (v & make_sign(bits)) {
+		// Retrieve the stored positive value and subtract it from 0 (ring in
+		// the same value except negative), return the r
+		return 0 - (v & make_sign_mask(bits));
+	}
+	
+	// Retrieve the stored positive value and return it
+	return v & make_sign_mask(bits);
+}
+
+// Function used to read the value of a SPVAR without any limits
+function read_spvar_slot(slot) {
+	return get_pvar(slot, 0x80000000, 0x7FFFFFFF, 0);
+}
+
+// Function used to save your value in the SPVARs, this is the function you'll be
+// calling when saving a value. You need to provide the value to save aswell as
+// the range (minimum and maximum value, this is how we determine how many bits
+// to use when saving this value)
+function save_spvar(v, min, max) {
+
+	// Set spvar_bits to the number of bits we need for this range
+	spvar_bits = get_bit_count2(min, max); 
+	
+	// Make sure the value is within our defined range to begin with
+	v = clamp(v, min, max); 
+	
+	// If either min or max is negative, we need to pack this value as a
+	// possibly negative value
+	if (is_signed2(min, max)) { 
+		// Pack as signed value (possibly negative)
+		v = pack_i(v, spvar_bits);
+	}
+	
+	// Pack as unsigned value (always positive), this essentially just makes the
+	// ring value not have any extra bits set - it's safe to use after the
+	// signed packing since we're not using any bits outside of the unsigned range anyways
+	v = v & make_full_mask(spvar_bits); 
+	
+	// Check if there is not enough bits remaining to save this value as-is. if
+	// there aren't enough bits, we save what we can here and store the remaining
+	// bits in the next spvar, if this means we're hitting the end, we can make
+	// this smaller by handling the case where we use all bits here aswell
+	if (spvar_bits >= 32 - spvar_current_bit) { 
+		// Add what we can to the current value where there is bits available to use
+		spvar_current_value = spvar_current_value | (v << spvar_current_bit); 
+		// Save the current SPVAR before advancing to the next one
+		set_pvar(spvar_current_slot, spvar_current_value); 
+		// Move to the next slot
+		spvar_current_slot++; 
+		// Update the required bits according to our needs for the next slot, 
+		// if we don't do this here, we'll screw up the saved value by moving
+		// it too far out of range
+		spvar_bits -= (32 - spvar_current_bit);
+		// Move the remaining bits down, discarding the bits we've already saved
+		v = v >> (32 - spvar_current_bit); 
+		// Reset the current bit counter since we're Roseting with a new SPVAR
+		spvar_current_bit = 0; 
+		// Reset our value so we Roset clean, we aren't currently using any bits anyways
+		spvar_current_value = 0; 
+	}
+	
+	// Merge the current SPVAR value with our currently value where there is space to keep our value
+	spvar_current_value = spvar_current_value | (v << spvar_current_bit); 
+	// Move up the counter of next available bit to where we are currently saving data at
+	spvar_current_bit += spvar_bits; 
+	
+	if (!spvar_current_bit) {
+		// Reset our value so we Roset clean, we aren't currently using any bits anyways
+		spvar_current_value = 0; 
+	}
+	
+	// Save the SPVAR with the current value, this won't write anything to flash unless
+	//the value changed - so we can do this for each variable saved to no risk missing anything
+	set_pvar(spvar_current_slot, spvar_current_value); 
+}
+
+// Function used to read your value from the SPVARs, this is the function you'll be
+// calling when reading a value. You need to provide the range (minimum and maximum
+// value, this is how we determine how many bits to use when reading the value) aswell
+// as a default value if what we read is out of range
+function read_spvar(min, max) {
+
+	// Set spvar_bits to the number of bits we need for this range
+	spvar_bits = get_bit_count2(min, max); 
+	
+	// Read the current SPVAR value from flash and shift them into position,
+	// we'll handle split values next
+	spvar_current_value = (read_spvar_slot(spvar_current_slot) >> spvar_current_bit) & make_full_mask(spvar_bits);
+	
+	// Check if we are dealing with a split SPVAR value, essentially if the current
+	// position means we're using more than 32 bits in the SPVAR, we need to retrieve
+	// the missing bits from the next SPVAR and put them back to our current value,
+	// we use the same space saving trick here as in the save function
+	if (spvar_bits >= 32 - spvar_current_bit) {
+		spvar_current_value = (spvar_current_value & make_full_mask(32 - spvar_current_bit)) | ((read_spvar_slot(spvar_current_slot + 1) & make_full_mask(spvar_bits - (32 - spvar_current_bit))) << (32 - spvar_current_bit));
+		//Below is a breakdown of the line above, with each step done one at a time instead of all at once - this however increases codesize - the below code is to explain how it all works tho
+		//spvar_tmp = read_spvar_slot(spvar_current_slot + 1); // Read the SPVAR slot coming after the initial one we used to spvar_tmp from flash, we need to maintain the data we've read thus far, but also add on what we have in flash for the next SPVAR
+		//spvar_tmp = spvar_tmp & make_full_mask(spvar_bits - (32 - spvar_current_bit)); // Extract the bits we need need (the ones that didn't fit in the previous SPVAR)
+		//spvar_tmp = spvar_tmp << (32 - spvar_current_bit); // Move the bits into their original position, they were stored at the beginning of the new SPVAR but belong at the top of the currently read value
+		//spvar_current_value = (spvar_current_value & make_full_mask(32 - spvar_current_bit)) | spvar_tmp; // put all bits together again with the part read from the first SPVAR cleaned up to only include the bits from this variable/value and not all bits set in the upper range like they normally are
+	}
+	
+	// Move up the counter of next available bit to where we are will be reading data from next
+	spvar_current_bit += spvar_bits;
+	// Extract all bits included for this value and discard any other bits
+	spvar_current_value = spvar_current_value & make_full_mask(spvar_bits); 
+	
+	if (spvar_current_bit >= 32) {
+		spvar_current_slot++; // Move to the next SPVAR slot
+		spvar_current_bit -= 32; // Remove 32 from the spvar_current_bit tracker since we've gone beyond what we can do here
+	}
+	
+	// Check if the value can be negative and handle it accordingly
+	if (is_signed2(min, max)) { 
+		// Restore the signed, possibly negative value
+		spvar_current_value = unpack_i(spvar_current_value, spvar_bits); 
+	}
+	
+	// Check if the value is below our specified min or above our specified max,
+	// if so - return the default value instead
+	if (spvar_current_value < min || spvar_current_value > max) { 
+		// This can be changed to min instead as a reasonable default with the
+		// default parameter being removed if you don't need to have a override
+		// value for the default when out of range, that will save a bit of code size
+		return 0; // edited
+	}
+	
+	// Return the retrieved value to the user since it's within the expected range
+	return spvar_current_value;
+}
+
+combo Combo_ChangeFailed {
+	SetLEDColor(Red);
+	wait(240);
+	set_hsb(0, 0, 0);
+}
+
+combo Combo_ChangeSuccess {
+	SetLEDColor(Green);
+	wait(240);
+	set_hsb(0, 0, 0);
+}
+
+// Combos:
+combo Combo_AutoSlide {
+	wait(330);
+	set_val(Button[ADS], 0x64);
+	wait(60);
+	wait(60);
+	set_val(Button[ADS], 0x64);
+	wait(60);
+	wait(360);
+	set_val(Button[Jump], 0x64);
+	wait(20);
+	set_val(Stick[MoveY], 0x7fff);
+	wait(120);
+	set_val(Button[Focus], 0x64);
+	wait(120);
+	set_val(Button[Focus], 0);
+	wait(120);
+	set_val(Button[Focus], 0x64);
+	wait(960);
+}
+
+combo Combo_FloatStickyAim {
+	Output(Stick[AimY], Settings[FloatStickySize] * 0x147);
+	wait(Settings[FloatStickyTime]);
+	Output(Stick[AimX], Settings[FloatStickySize] * 0x147);
+	Output(Stick[MoveX], Settings[FloatStickySize] * 0x147);
+	wait(Settings[FloatStickyTime]);
+	Output(Stick[AimY], inv(Settings[FloatStickySize] * 0x147));
+	wait(Settings[FloatStickyTime]);
+    Output(Stick[AimX], inv(Settings[FloatStickySize] * 0x147));
+    Output(Stick[MoveX], inv(Settings[FloatStickySize] * 0x147));
+    wait(Settings[FloatStickyTime]);
+}
+
+combo Combo_DropShot {                   
+    set_val(Button[Action], 0x64); 
+    wait(Settings[DropShotHold]);  
+    wait(Settings[DropShotReset]); 
+} 
+
+combo Combo_HoldBreath {
+	wait(120);
+	set_val(Button[Focus], 0x64);
+	wait(3000);
+	set_val(Button[Focus], 0);
+	wait(600);
+}
+
+combo Combo_SaveSettings {
+	cls_oled(OLED_BLACK);
+	PrintText(AlignCenter, AlignCenter, SettingsSaved[0], OLED_FONT_SMALL, OLED_WHITE);
+	SetLEDColor(Blue);
+	wait(0x4b0);
+	reset_rumble();
+	SaveSettings();
+	Display[Update] = TRUE;
+	SetLEDColor(iif(State[CurrentProfile] & GroundLoot, Blue, iif(State[CurrentProfile] == Primary, Green, Purple)));
+}
+
+combo Combo_SwitchProfile {
+	cls_oled(OLED_BLACK);
+	PrintText(AlignCenter, LineNumber[0], ProfileName[State[CurrentProfile] + 0xffffffff], OLED_FONT_MEDIUM, OLED_WHITE);
+	PrintText(AlignCenter, LineNumber[2], WeaponName[State[CurrentWeapon]], OLED_FONT_SMALL, OLED_WHITE);
+	wait(1080);
+	SetLEDColor(iif(State[CurrentProfile] == Primary, Green, Purple));
+	Display[Update] = TRUE;
+}
+
+combo Combo_SwitchGroundLoot {
+	cls_oled(OLED_BLACK);
+	PrintText(AlignCenter, AlignCenter, ProfileName[2], OLED_FONT_MEDIUM, OLED_WHITE);
+	wait(1080);
+	SetLEDColor(Blue);
+	Display[Update] = TRUE;
+}
+
+combo Combo_SwitchLoadOut {
+	cls_oled(OLED_BLACK);
+	SetLEDColor(iif(State[CurrentProfile] == Primary, Green, Purple));
+	InsertString(ProfileName[3]);
+	InsertCharacter(ASCII_SPACE);
+	InsertCharacter(ASCII_POUND);
+	InsertNumber(Settings[LoadOut]);
+	FlushBuffer(AlignCenter, AlignTop, OLED_FONT_MEDIUM, OLED_WHITE);
+	PrintText(AlignCenter, LineNumber[0] + 0x0a, WeaponName[State[CurrentPrimary]], OLED_FONT_SMALL, OLED_WHITE);
+	PrintText(AlignCenter, LineNumber[2], WeaponName[State[CurrentSecondary]], OLED_FONT_SMALL, OLED_WHITE);
+	wait(1080);
+	Display[Update] = TRUE;
+}
+
+combo Combo_YY {
+	set_val(Button[Weapon], 0x64);          
+    wait(60); 
+	set_val(Stick[MoveY], 0);            
+    wait(50)
+	set_val(Button[Weapon], 0x64);            
+    wait(80); 
+}
+
+const int16 sin[] = { 
+	0, 6, 11, 17, 23, 29, 34, 40, 46, 51, 57, 63, 68, 74, 79, 85, 90, 96,
+	101, 107, 112, 117, 123, 128, 133, 138, 144, 149, 154, 159, 164, 169, 174, 178, 183, 188,
+	193, 197, 202, 206, 211, 215, 219, 223, 228, 232, 236, 240, 244, 247, 251, 255, 258, 262,
+	265, 268, 272, 275, 278, 281, 284, 287, 289, 292, 295, 297, 299, 302, 304, 306, 308, 310,
+	312, 313, 315, 317, 318, 319, 321, 322, 323, 324, 324, 325, 326, 326, 327, 327, 327, 328,
+	328, 328, 327, 327, 327, 326, 326, 325, 324, 324, 323, 322, 321, 319, 318, 317, 315, 313,
+	312, 310, 308, 306, 304, 302, 299, 297, 295, 292, 289, 287, 284, 281, 278, 275, 272, 268,
+	265, 262, 258, 255, 251, 247, 244, 240, 236, 232, 228, 223, 219, 215, 211, 206, 202, 197,
+	193, 188, 183, 178, 174, 169, 164, 159, 154, 149, 144, 138, 133, 128, 123, 117, 112, 107,
+	101, 96, 90, 85, 79, 74, 68, 63, 57, 51, 46, 40, 34, 29, 23, 17, 11, 6,
+	0, -6, -11, -17, -23, -29, -34, -40, -46, -51, -57, -63, -68, -74, -79, -85, -90, -96,
+	-101, -107, -112, -117, -123, -128, -133, -138, -144, -149, -154, -159, -164, -169, -174, -178, -183, -188,
+	-193, -197, -202, -206, -211, -215, -219, -223, -228, -232, -236, -240, -244, -247, -251, -255, -258, -262,
+	-265, -268, -272, -275, -278, -281, -284, -287, -289, -292, -295, -297, -299, -302, -304, -306, -308, -310,
+	-312, -313, -315, -317, -318, -319, -321, -322, -323, -324, -324, -325, -326, -326, -327, -327, -327, -328,
+	-328, -328, -327, -327, -327, -326, -326, -325, -324, -324, -323, -322, -321, -319, -318, -317, -315, -313,
+	-312, -310, -308, -306, -304, -302, -299, -297, -295, -292, -289, -287, -284, -281, -278, -275, -272, -268,
+	-265, -262, -258, -255, -251, -247, -244, -240, -236, -232, -228, -223, -219, -215, -211, -206, -202, -197,
+	-193, -188, -183, -178, -174, -169, -164, -159, -154, -149, -144, -138, -133, -128, -123, -117, -112, -107,
+	-101, -96, -90, -85, -79, -74, -68, -63, -57, -51, -46, -40, -34, -29, -23, -17, -11, -6
+}
+
+const int16 cos[] = { 
+	328, 328, 327, 327, 327, 326, 326, 325, 324, 324, 323, 322, 321, 319, 318, 317, 315, 313,
+	312, 310, 308, 306, 304, 302, 299, 297, 295, 292, 289, 287, 284, 281, 278, 275, 272, 268,
+	265, 262, 258, 255, 251, 247, 244, 240, 236, 232, 228, 223, 219, 215, 211, 206, 202, 197,
+	193, 188, 183, 178, 174, 169, 164, 159, 154, 149, 144, 138, 133, 128, 123, 117, 112, 107,
+	101, 96, 90, 85, 79, 74, 68, 63, 57, 51, 46, 40, 34, 29, 23, 17, 11, 6,
+	0, -6, -11, -17, -23, -29, -34, -40, -46, -51, -57, -63, -68, -74, -79, -85, -90, -96,
+	-101, -107, -112, -117, -123, -128, -133, -138, -144, -149, -154, -159, -164, -169, -174, -178, -183, -188,
+	-193, -197, -202, -206, -211, -215, -219, -223, -228, -232, -236, -240, -244, -247, -251, -255, -258, -262,
+	-265, -268, -272, -275, -278, -281, -284, -287, -289, -292, -295, -297, -299, -302, -304, -306, -308, -310,
+	-312, -313, -315, -317, -318, -319, -321, -322, -323, -324, -324, -325, -326, -326, -327, -327, -327, -328,
+	-328, -328, -327, -327, -327, -326, -326, -325, -324, -324, -323, -322, -321, -319, -318, -317, -315, -313,
+	-312, -310, -308, -306, -304, -302, -299, -297, -295, -292, -289, -287, -284, -281, -278, -275, -272, -268,
+	-265, -262, -258, -255, -251, -247, -244, -240, -236, -232, -228, -223, -219, -215, -211, -206, -202, -197,
+	-193, -188, -183, -178, -174, -169, -164, -159, -154, -149, -144, -138, -133, -128, -123, -117, -112, -107,
+	-101, -96, -90, -85, -79, -74, -68, -63, -57, -51, -46, -40, -34, -29, -23, -17, -11, -6,
+	-0, 6, 11, 17, 23, 29, 34, 40, 46, 51, 57, 63, 68, 74, 79, 85, 90, 96,
+	101, 107, 112, 117, 123, 128, 133, 138, 144, 149, 154, 159, 164, 169, 174, 178, 183, 188,
+	193, 197, 202, 206, 211, 215, 219, 223, 228, 232, 236, 240, 244, 247, 251, 255, 258, 262,
+	265, 268, 272, 275, 278, 281, 284, 287, 289, 292, 295, 297, 299, 302, 304, 306, 308, 310,
+	312, 313, 315, 317, 318, 319, 321, 322, 323, 324, 324, 325, 326, 326, 327, 327, 327, 328
+} ˙ªè∑Å∑Ä∞Ä±ÇªåøèÃ
