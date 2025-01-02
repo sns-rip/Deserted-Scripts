@@ -4,7 +4,7 @@
 ## 🔐 | Requirements:
 > - DualSense Wireless Controller
 > - Cronus Zen
->- Cronus Zen Software (Downloaded From The Official Website)
+> - Cronus Zen Software (Downloaded From The Official Website)
 
 ## 📖 | Steps:
 > 1. Connect Your Cronus Zen To Your PS5 Via USB ( Use The Top Port Of The Zen )
@@ -14,4 +14,4 @@
 > 5. Wait For The Button Spam To Occur, This Might Take 5 - 15 Seconds
 > 6. Once The Spam Has Finished, You Are Ready To Use Your Cronus Zen
 
-
+-# *Last Updated On: 6:35 | 02/01/2025*
