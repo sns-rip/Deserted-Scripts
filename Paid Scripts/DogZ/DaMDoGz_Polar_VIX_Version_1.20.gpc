@@ -1,0 +1,823 @@
+/*                ██████╗  █████╗ ███╗   ███╗██████╗  ██████╗  ██████╗ ███████╗    ██████╗  ██████╗ ██╗      █████╗ ██████╗     ██╗██╗  ██╗  
+                  ██╔══██╗██╔══██╗████╗ ████║██╔══██╗██╔═══██╗██╔════╝ ╚══███╔╝    ██╔══██╗██╔═══██╗██║     ██╔══██╗██╔══██╗    ██║╚██╗██╔╝  
+                  ██║  ██║███████║██╔████╔██║██║  ██║██║   ██║██║  ███╗  ███╔╝     ██████╔╝██║   ██║██║     ███████║██████╔╝    ██║ ╚███╔╝   
+                  ██║  ██║██╔══██║██║╚██╔╝██║██║  ██║██║   ██║██║   ██║ ███╔╝      ██╔═══╝ ██║   ██║██║     ██╔══██║██╔══██╗    ██║ ██╔██╗   
+                  ██████╔╝██║  ██║██║ ╚═╝ ██║██████╔╝╚██████╔╝╚██████╔╝███████╗    ██║     ╚██████╔╝███████╗██║  ██║██║  ██║    ██║██╔╝ ██╗  
+                  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚═╝  ╚═╝  
+                                        ██╗   ██╗███████╗██████╗ ███████╗██╗ ██████╗ ███╗   ██╗     ██╗   ██████╗  ██████╗ 
+                                        ██║   ██║██╔════╝██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║    ███║   ╚════██╗██╔═████╗
+                                        ██║   ██║█████╗  ██████╔╝███████╗██║██║   ██║██╔██╗ ██║    ╚██║    █████╔╝██║██╔██║
+                                        ╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║██║██║   ██║██║╚██╗██║     ██║   ██╔═══╝ ████╔╝██║
+                                         ╚████╔╝ ███████╗██║  ██║███████║██║╚██████╔╝██║ ╚████║     ██║██╗███████╗╚██████╔╝
+                                          ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝     ╚═╝╚═╝╚══════╝ ╚═════╝                                                                                                                    
+									            🅳🅴🆅🅴🅻🅾🅿🅴🆁🆂 : 𝔻𝕠𝔾𝕫𝕋𝕙𝕖𝔽𝕚𝔾𝕙𝕋𝕖ℝ & 𝕄𝔼.(𝔻𝕠𝕟'𝕥 𝔸𝕥 𝕄𝕖) & 𝕊𝕨𝕚𝕫𝕫𝕪
+╔═══════════════════════════════════════════════╗
+              🅼🅾🅳 🅼🅴🅽🆄 🆂🆈🆂🆃🅴🅼              
+╚═══════════════════════════════════════════════╝
+╔═══════════════════════════════════════════════╗								  
+║ * Enter Menu = L2/LT + OPTIONS/MENU           ║
+║ * Swap Menus = CROSS/A (Mod Toggles/Values)   ║
+║ * Exit Menu = TRIANGLE/Y                      ║
+║ * Next Mod/Scroll Right    = RIGHT DPAD       ║
+║ * Previous Mod/Scroll Left = LEFT DPAD        ║
+║                                               ║
+║ * Adjust Mod/Value  [+ Increase] = UP         ║
+║ * Adjust Mod/Value  [- Decrease] = DOWN       ║
+║         (HOLD TO ADJUST FASTER)               ║
+║  											    ║
+║  * AUTOSAVES SETTINGS WHEN YOU EXIT MENU *    ║
+║        * AUTO TIMEOUT WHEN IDOL *             ║
+╚═══════════════════════════════════════════════╝
+╔═══════════════════════════════════════════════╗
+           𝕀ℕ 𝔾𝔸𝕄𝔼 𝔹𝕌𝕋𝕋𝕆ℕ𝕊 𝔸ℕ𝔻 𝕊𝕋𝕀ℂ𝕂𝕊           
+╚═══════════════════════════════════════════════╝
+*/
+define Fire  = PS4_R2;   // Fire Button In Game  [Default = R2/RT]
+define Ads   = PS4_L2;   // Ads Button In Game   [Default = L2/LT]
+define AimPX = POLAR_RX; // Aim Stick Horizontal [Default = RIGHT ANALOG STICK] (POLAR_RX or POLAR_LX)
+define AimPY = POLAR_RY; // Aim Stick Vertical   [Default = RIGHT ANALOG STICK] (POLAR_RY or POLAR_LY)
+define AimAX = ANALOG_RX;// Aim Stick Horizontal [Default = RIGHT ANALOG STICK] (ANALOG_RX or ANALOG_LX)
+define AimAY = ANALOG_RY;// Aim Stick Vertical   [Default = RIGHT ANALOG STICK] (ANALOG_RY or ANALOG_LY)
+
+/*
+╔═══════════════════════════════════════════════╗
+              𝕊ℂℝ𝕀ℙ𝕋/𝕄𝔼ℕ𝕌 𝕊𝔼𝕋𝕋𝕀ℕ𝔾𝕊           
+╚═══════════════════════════════════════════════╝
+*/
+int ModSwitch;
+int DoGzDiminish = On; 	// Aim Assist  [On - Off]
+int AntiRecoil = On;    // Anti Recoil [On - Off]
+int HeadAssist = On;    // Head Shot Assist [On - Off] (HipFire Only) 
+int QuickPeek = On;     // Quick Peek (RB6 / PUBG ETC)
+int ModDigit;
+int AdsPower = 12;  	// Radius/Power On Ads Only [2 - 50]
+int FirePower = 17;		// Radius/Power On Ads & Fire or Fire Only [2 - 50]
+int FiringPower = 14;	// Radius/Power After Holding Fire For 1 Second [2 - 50]
+int AdsSpeed = 20;		// Angle/Speed On Ads Only [1 - 165]
+int FireSpeed = 50;     // Angle/Speed On Ads & Fire or Fire Only [1 - 165]
+int FiringSpeed = 30;   // Angle/Speed After Holding Fire For 1 Second [1 - 165]
+int FiringTime = 1000;  // Firing Time To Change Settings (Default Fire Time 1 Second) [1000ms = 1Second]
+int recoilY1Start = 46; // Vertical Axis Start Power
+int recoilY1End = 34;   // Vertical Recoil End Power
+int recoilTY1 = 380;    // Vertical Time Travel Time [Time to Smoothly Move From Start Value To End Value] *10 (Default 380 * 10 = 3800 [3.8 Seconds])
+int recoilX1Start = -3; // Horizontal Axis Start Power
+int recoilX1End = 3;    // Horizontal Recoil End Power
+int recoilTX1 = 200;    // Horizontal Time Travel Time [Time to Smoothly Move From Start Value To End Value] *10 (Default 200 * 10 = 2000 [2 Seconds])           
+int HeadMax = 80;       // Max Value & Cuttoff Value
+int HeadStep = 10;      // Increment to Max Amount
+int PeekTime = 100;     // Peek Time (Length of Time You Peek For)                       
+
+init {
+	
+	Load();
+    combo_run(Boot);
+    Colour = 255;
+    assignValue(recoilY1Start,recoilY1End,recoilTY1,recoilX1Start,recoilX1End,recoilTX1);
+}
+
+main {
+	
+	if (DoGzDiminish) {
+		
+		if (get_ival(Ads) || get_ival(Fire)) {
+			
+			if (get_ival(Fire)) {
+			
+				Radius = FirePower;
+				Angle = FireSpeed;
+			
+			 	if (get_ival(Fire) && get_ptime(Fire) > FiringTime) {
+			
+					Radius = FiringPower;
+					Angle = FiringSpeed;
+				} 
+			} else {
+
+				Radius = AdsPower;
+				Angle = AdsSpeed;
+			}
+
+			DoGzDiminisher();
+	    }      
+	}
+	
+	if (HeadAssist) {
+	    
+	    if (!get_ival(Ads) && get_ival(Fire)) {
+	    
+	    	if (abs(get_ival(AimPY)) < HeadMax * 327) { 
+	    		
+	    		Head += HeadStep;
+	    		combo_run(HeadAssist);
+	    	}	
+	    }
+	    
+	    if (!get_ival(Fire)) Head = 0;
+	    	
+	    if (Head >= HeadMax) combo_stop(HeadAssist);
+	}
+	
+	if (QuickPeek) {
+	
+		if (get_ival(Ads)) {
+		
+			if (!combo_running(PeekRight) && event_release(PS4_L3) && get_ptime(PS4_L3) <= 170) {
+				
+				Shunt = PS4_L3;
+				combo_run(PeekLeft);
+								
+			} else if (!combo_running(PeekLeft) && event_release(PS4_R3) && get_ptime(PS4_R3) <= 170) {
+				
+				Shunt = PS4_R3;
+				combo_run(PeekRight);				
+			}
+			
+			if (combo_running(PeekLeft) && event_release(PS4_R3)) combo_stop(PeekLeft);
+			if (combo_running(PeekRight) && event_release(PS4_L3)) combo_stop(PeekRight);			
+		}
+	}
+	
+	if (AntiRecoil) {
+	    
+	    if (get_ival(Ads) && get_ival(Fire)) {
+	    
+	    	if (event_press(Ads) || event_press(Fire)) {
+	    		
+	    		assignValue(recoilY1Start,recoilY1End,recoilTY1,recoilX1Start,recoilX1End,recoilTX1);	
+	    	}
+	    	
+	    	recoil();
+	    	powerY(recoilYStart,recoilYEnd,recoilTY);
+	    	powerX(recoilXStart,recoilXEnd,recoilTX);
+	    }
+	}	    
+	
+    if (!MainMenu && get_ival(MenuEnterHold) && event_press(MenuEnterPress)) {
+
+        Shunt = MenuEnterPress;
+        MenuToggle(On,Off,On,On,On);
+        combo_run(Rumble);
+        combo_stop(Saved);
+    }
+
+    if (MainMenu) {
+
+        combo_stop(Boot);
+        MenuTimeout += get_rtime();
+
+        if (get_ival(Up) || get_ival(Down) || get_ival(Left) || get_ival(Right) || event_press(ChangeMenuPress)) MenuTimeout = Off;
+
+            if (MenuTimeout >= TimeoutLimitM || event_press(MenuExitPress)) {
+            
+                if (event_press(MenuExitPress)) Shunt = MenuExitPress;
+                
+                MenuToggle(Off,Off,Off,Off,Off);
+                combo_run(Rumble);
+                Save();
+            }
+
+            if (event_press(ChangeMenuPress)) {
+
+                MenuValues = !MenuValues;
+                MenuSwitch = !MenuSwitch;
+                ModIndex = On;
+                Update = On;
+            }
+
+        if (MenuValues) ModDigit[ModIndex] = PrintMod(ModDigit[ModIndex],ModDigitVal[ModIndex - 1][0],ModDigitVal[ModIndex - 1][1],ModDigitVal[ModIndex - 1][2],IndexMinValues,IndexMaxValues,ModValue[ModIndex - 1],ModValueHelp[ModIndex - 1]);
+
+        if (MenuSwitch) ModSwitch[ModIndex] = PrintMod(ModSwitch[ModIndex],Off,On,1,IndexMinSwitches,IndexMaxSwitches,ModToggle[ModIndex - 1],ModToggleHelp[ModIndex - 1]);  
+		
+		BlockButton(Down); BlockButton(Up); BlockButton(Left); BlockButton(Right); BlockButton(ChangeMenuPress);
+	}
+	
+	LedFlow();
+	
+    if (Shunt) {
+        
+        if (event_release(Shunt)) Shunt = Off;
+        
+        else set_val(Shunt,Off);
+    }
+}
+
+combo HeadAssist{
+
+	if (AxisInverted) set_val(AimPY,((Head * 327) + get_val(AimPY)));
+	else set_val(AimPY,(inv(Head * 327) + get_val(AimPY)));
+}
+
+combo PeekLeft {
+	
+	set_val(PS4_L3,100);
+	wait(PeekTime);
+	set_val(PS4_R3,100);
+	wait(PeekTime);	
+}
+
+combo PeekRight {
+	
+	set_val(PS4_R3,100);
+	wait(PeekTime);
+	set_val(PS4_L3,100);
+	wait(PeekTime);	
+}
+
+combo Rumble {
+    
+    set_rumble(RUMBLE_B,20);
+    wait(250);
+    reset_rumble();
+}
+
+combo Boot {
+        
+	wait(10);
+	cls_oled(0);
+	image_oled(0,0,1,1,Logo[0]);
+    wait(20);
+    wait(3000);
+	image_oled(0,0,1,1,MenuAABorderPage[0]);
+	String(MiscString[0],wSmall,tLine1,fSmall,nCenter);
+	String(MiscString[1],wSmall,tLine2,fSmall,nCenter); 
+	wait(10);
+    wait(20000);
+    cls_oled(0);
+}
+
+combo Saved {
+
+	wait(10);
+    image_oled(0,0,1,1,MenuAABorderPage[0]);
+    String(MiscString[2],wMedium,5,fMedium,nCenter);
+    String(MiscString[3],wMedium,24,fMedium,nCenter);
+    String(MiscString[4],wMedium,44,fMedium,nCenter);
+    wait(20);
+    wait(3000);
+    cls_oled(0);
+}
+
+function LedFlow () {
+    
+    Rgb += get_rtime();
+    
+    if (Rgb >= LedSpeed) {
+        
+        set_rgb(Colour / LedBrightness,Colour[1] / LedBrightness,Colour[2] / LedBrightness);
+        Colour[LedDec] -= 1; 
+        Colour[LedInc] += 1;
+
+        if (!Colour[LedDec]) { 
+            
+            LedInc = (LedInc + 1) % 3; 
+            LedDec = (LedDec + 1) % 3; 
+        }
+        Rgb = 0;    
+    }
+}
+
+function powerY(startVal,endVal,totalTime) {
+    	   
+    countY++;
+    stepsY = abs(endVal - startVal);
+    applyY = totalTime / stepsY;
+
+    if (applyY < 1) applyY = 1;
+
+    if (countY >= applyY) {
+        
+        if (startVal < endVal) powerY = clamp(powerY++,startVal,endVal);
+        else if (startVal > endVal) powerY = clamp(powerY--,endVal,startVal);
+        
+        countY = 0;
+    }
+}
+
+function powerX(startVal,endVal,totalTime) {
+    	   
+    countX++;
+    stepsX = abs(endVal - startVal);
+    applyX = totalTime / stepsX;
+
+    if (applyX < 1) applyX = 1;
+
+    if (countX >= applyX) {
+        
+        if (startVal < endVal) powerX = clamp(powerX + 1,startVal,endVal);
+        else if (startVal > endVal) powerX = clamp(powerX - 1,endVal,startVal);
+        
+        countX = 0;
+    }
+}
+
+function assignValue(startY,endY,timeY,startX,endX,timeX) {
+	
+	recoilYStart = startY;
+	recoilYEnd = endY;
+	recoilTY = timeY;
+	recoilXStart = startX;
+	recoilXEnd = endX;
+	recoilTX =timeX;
+	powerY = recoilYStart;
+	powerX = recoilXStart;
+}
+
+function recoil() {	
+	
+	if (AxisInverted) recoilApply(AimAY,inv(powerY));
+	else recoilApply(AimAY,powerY);
+	recoilApply(AimAX,powerX);
+}
+
+function recoilApply(s,v) {
+	
+	set_val(s,clamp((v * 10000/100) * (10000 - abs(get_val(s))) / 10000 + get_val(s), -10000, 10000));
+}
+
+function DoGzDiminisher() {
+	
+	aimAssistRadius = ((Radius + 2) >> 1 * (32767 + (Radius + 2) >> 1 - isqrt(pow(abs(get_val(AimPX)), 2) + pow(abs(get_val(AimPY)), 2)))) / 32767;
+	angle = (angle + Angle) % 360;
+	cosAngle = ((cos(angle) * (aimAssistRadius * 327))/(23170) << 1);
+	sinAngle = ((sin(angle) * (aimAssistRadius * 327))/(23170) << 1);
+	set_val(AimPX,clamp(get_val(AimPX) + cosAngle,-32767,32767));
+	set_val(AimPY,clamp(get_val(AimPY) + sinAngle,-32767,32767));
+}
+
+function correctAngle(angle){
+  
+  	if (angle < 0) angle = 360 + (angle % 360);
+  	angle = (angle + 90) % 360;
+  	return angle;
+}
+
+function sin(angle){
+  
+  	return lerp_16(pollarArr[(correctAngle(angle - 1))], pollarArr[(correctAngle(angle + 1))], 0x8000);
+}
+
+function cos(angle){
+  
+  	return lerp_16(pollarArr[((correctAngle(angle - 1) + 90) % 360)],  pollarArr[((correctAngle(angle + 1) + 90) % 360)], 0x8000);
+}
+
+function lerp_16(a, b, t) { 
+	
+	return fix_to_int(lerp(int_to_fix(a), int_to_fix(b), t)); 
+}
+
+function int_to_fix(a) { 
+
+	return a * 0x10000; 
+}
+
+function fix_to_int(a) { 
+
+	if (a >= 0) return (a + 0x10000 >> 1) / 0x10000; return (a - 0x10000 >> 1) / 0x10000; 
+}
+
+function fix_mul(v1, v2) { 
+
+	return ((v1 >> 8) * (v2 >> 8)); 
+}
+
+function lerp(a, b, f) { 
+
+	return fix_mul((0x10000 - f), a) + fix_mul(f, b); 
+}
+
+function BlockButton(Button) { 
+
+	if (!get_ival(Button)) return; 
+	set_val(Button,Off);
+} 
+  
+function MenuToggle(Main,Vals,Indx,Print,Toggle) { 
+
+	cls_oled(0); 
+	MainMenu    = Main; 
+	MenuValues  = Vals;
+	ModIndex    = Indx;
+	Update      = Print;
+	MenuSwitch  = Toggle;
+	MenuTimeout = Off;
+}
+ 
+function PrintMod(ModVal,ModValMin,ModValMax,ModValInc,IndexMin,IndexMax,ModValLbl,ModHlp) { 
+
+    if (Update) { 
+ 		
+ 		rect_oled(2,2,127,61,1,0); 
+        Grid(); 
+		String(ModValLbl,wSmall,mvLine1,fSmall,nCenter);
+		String(ModHlp,wSmall,mvLine3,fSmall,nCenter);
+		
+		if (MenuValues) FindDigit(ModVal,DigitValue(ModVal),mvLine2);
+        
+		if (MenuSwitch) String(ModState[ModVal],wMedium,mvLine2,fMedium,nCenter);               
+        
+        Update = Off; 
+    } 
+
+    if (event_press(Up) || get_ival (Up) && get_ptime (Up) >= 450) {
+ 
+        Update = On;
+        ModVal += ModValInc;
+
+        if (ModVal > ModValMax) return ModValMin;
+    } 
+ 
+    if (event_press(Down) || get_ival (Down) && get_ptime (Down) >= 450) { 
+
+        Update = On;
+        ModVal -= ModValInc;
+
+        if (ModVal < ModValMin) return ModValMax;
+    }
+
+	if (event_press(Right)) {
+
+		Update = On;
+		ModIndex += 1;
+ 
+		if (ModIndex > IndexMax) ModIndex = IndexMin;
+	}
+  
+	if (event_press(Left)) {
+		
+		Update = On;
+		ModIndex -= 1; 
+ 
+		if (ModIndex < IndexMin) ModIndex = IndexMax;
+	} 
+	return ModVal;
+} 
+    
+function Grid() { 
+  
+	line_oled(126,20,2,20,2,1);
+	rect_oled(1,1,127,63,0,1); 
+	line_oled(126,46,2,46,2,1);
+}
+
+function String(label,width,line,font,offset) {
+	
+	if (offset) line = (64 - line) / 2;
+	print(CenterPosition(StringLength(label),width),line,font,pWhite,label);
+}
+
+function StringLength(CharCount) { 
+    
+    StringLength = 0;
+    
+    do { 
+        
+        CharCount++;
+        StringLength++;
+    } 
+    
+    while (duint8(CharCount));
+    
+    return StringLength;
+ } 
+
+function CenterPosition(Char,Font) {
+
+    return (128 / 2) - ((Char * Font) / 2);
+}
+
+function FindDigit(Val,Digit,Line) {
+    
+    BufferIndex = 1;  
+    DigitIndex = 10000;
+    
+    if (Val < 0) {
+         
+         putc_oled(BufferIndex,45);
+         BufferIndex += 1;
+         Val = abs(Val);
+    }
+    
+    for (CharIndex = 5;CharIndex >= 1;CharIndex--) {
+        
+        if (Digit >= CharIndex) {
+            
+            putc_oled(BufferIndex,(Val / DigitIndex) + 48);
+            Val %= DigitIndex;
+            BufferIndex ++; 
+       }
+        
+        DigitIndex /= 10;
+    } 
+    
+    puts_oled(CenterPosition(BufferIndex - 1,11),Line,1,BufferIndex - 1,1);
+} 
+
+function DigitValue(Num) {
+   
+   LogVal = 0;
+   
+   do {
+      
+      Num /= 10;
+      LogVal++;
+   } 
+   
+   while (Num);
+   
+   return LogVal;
+}
+
+function Load(){ 
+    
+    ResetSpvar();
+    
+    if (ReadSpvar(0,1,0)) {    
+        
+        for (SpvarIndex = IndexMinValues; SpvarIndex <= IndexMaxValues; SpvarIndex++) {
+            
+            ModDigit[SpvarIndex] = ReadSpvar(ModDigitVal[SpvarIndex - 1][0],ModDigitVal[SpvarIndex - 1][1],ModDigit[SpvarIndex]);
+        }
+        
+        for (SpvarIndex = IndexMinSwitches; SpvarIndex <= IndexMaxSwitches; SpvarIndex++) {
+            
+            ModSwitch[SpvarIndex] = ReadSpvar(ModSwitchVal[SpvarIndex - 1][0],ModSwitchVal[SpvarIndex - 1][1],ModSwitch[SpvarIndex]);
+        }
+	}
+} 	
+	
+function Save(){ 
+
+	ResetSpvar();
+    SaveSpvar(1,0,1,FALSE);
+    
+    for (SpvarIndex = IndexMinValues; SpvarIndex <= IndexMaxValues; SpvarIndex++) {
+        
+        SaveSpvar(ModDigit[SpvarIndex],ModDigitVal[SpvarIndex - 1][0],ModDigitVal[SpvarIndex - 1][1],FALSE);
+    }
+    
+    for (SpvarIndex = IndexMinSwitches; SpvarIndex <= IndexMaxSwitches; SpvarIndex++) {
+        
+        SaveSpvar(ModSwitch[SpvarIndex],ModSwitchVal[SpvarIndex - 1][0],ModSwitchVal[SpvarIndex - 1][1],FALSE);
+    }
+    	
+	SaveSpvar(ModSwitch[SpvarIndex],ModSwitchVal[SpvarIndex - 1][0],ModSwitchVal[SpvarIndex - 1][1],TRUE);
+	combo_run(Saved);
+} 
+
+function ResetSpvar() {
+	
+	CurrentSlot = SPVAR_1;
+	CurrentBit = 0;
+	CurrentValue = 0;
+}
+
+function GetBitCount(Value) {
+
+	if (Value < 0) {
+		
+		return GetBitCount(abs(Value + 1));
+	}
+	
+	SpvarTemp = 0;
+	
+	do {
+		
+		SpvarTemp++;
+		Value = Value >> 1;
+		
+	} while (Value);
+	
+	return SpvarTemp;
+}
+
+function GetBitCount2(Min,Max) {	
+	
+	SpvarTemp = max(GetBitCount(Min),GetBitCount(Max));
+	
+	if (IsSigned(Min,Max)) {
+		
+		SpvarTemp++;
+	}
+	
+	return SpvarTemp;
+}
+
+function IsSigned(Min,Max) { 
+
+	return Min < 0 || Max < 0; 
+}
+
+function MakeFullMask(Bits) {	
+	
+	if (Bits == MaxFWBits) {
+		
+		return FullBitmask;
+	}
+	
+	return (FullBitmask & (~(1 << (MaxFWBits - 1)))) >> (MaxFWBits - Bits - 1);
+}
+
+function MakeSign(Bits) { 
+	
+	return 1 << clamp(Bits - 1,0,MaxFWBits - 1); 
+}
+
+function MakeSignMask(Bits) { 
+
+	return ~MakeSign(Bits); 
+}
+
+function PackU(Value,Bits) { 
+
+	return Value & MakeFullMask(Bits); 
+}
+
+function Pack(Value,Bits) {
+	
+	if (Value < 0) {
+		
+		return (abs(Value) & MakeSignMask(Bits)) | MakeSign(Bits);	
+	}
+	
+	return Value & MakeSignMask(Bits);
+}
+
+function Unpack(Value,Bits) {
+	
+	if (Value & MakeSign(Bits)) {
+		
+		return 0 - (Value & MakeSignMask(Bits));
+	}
+	
+	return Value & MakeSignMask(Bits);
+}
+
+function ReadSpvarSlot(Slot) { 
+
+	return get_pvar(Slot,0-(FullBitmask & (1 << (MaxBits - 1))),0-((0-(FullBitmask & (1 << (MaxBits - 1)))) + 1),0); 
+}
+
+function SaveSpvar(Value,Min,Max,Save) {
+
+	SpvarBits = GetBitCount2(Min,Max);
+	
+	if (IsSigned(Min,Max)) {
+	
+		Value = Pack(Value,SpvarBits);
+	}
+	
+	Value = PackU(Value,SpvarBits);
+	
+	if (SpvarBits > MaxBits - CurrentBit) {
+		
+		CurrentValue = CurrentValue | (Value << CurrentBit);
+		set_pvar(CurrentSlot,CurrentValue);	
+		CurrentSlot++;
+		SpvarBits -= (MaxBits - CurrentBit);
+		Value = Value >> (MaxBits - CurrentBit);
+		CurrentBit = 0;
+		CurrentValue = 0;
+	}
+	
+	CurrentValue = CurrentValue | (Value << CurrentBit);
+	CurrentBit += SpvarBits;
+	
+	if (CurrentBit >= MaxBits) {
+	
+		CurrentBit -= MaxBits;
+		set_pvar(CurrentSlot,CurrentValue);
+		CurrentSlot++;
+		
+		if (!CurrentBit) {
+			
+			CurrentValue = 0;
+		}
+	}
+	
+	if (Save) {
+	
+		set_pvar(CurrentSlot,CurrentValue);
+	}	
+}
+
+function ReadSpvar(Min,Max,default) {
+
+	CurrentValue = ReadSpvarSlot(CurrentSlot);
+	SpvarBits = GetBitCount2(Min,Max);
+	CurrentValue = PackU(CurrentValue >> CurrentBit, SpvarBits);
+	
+	if (SpvarBits > MaxBits - CurrentBit) {
+	
+		CurrentSlot++;
+		SpvarTemp = ReadSpvarSlot(CurrentSlot);
+		SpvarTemp = PackU(SpvarTemp, SpvarBits - (MaxBits - CurrentBit));
+		SpvarTemp = SpvarTemp << (MaxBits - CurrentBit);
+		CurrentValue = PackU(CurrentValue, MaxBits - CurrentBit);
+		CurrentValue = CurrentValue | SpvarTemp;
+		CurrentBit = CurrentBit - MaxBits;
+	}	
+	
+	CurrentBit += SpvarBits;
+	
+	if (CurrentBit >= MaxBits) {
+	
+		CurrentBit -= MaxBits;
+		CurrentSlot++;
+	}	
+	
+	CurrentValue = PackU(CurrentValue,SpvarBits);
+	
+	if (IsSigned(Min,Max)) {
+		
+		CurrentValue = Unpack(CurrentValue,SpvarBits);
+	}
+	
+	if (CurrentValue < Min || CurrentValue > Max) {
+	
+		return default;
+	}
+	
+	return CurrentValue;
+}
+
+define MenuEnterHold = PS4_L2;
+define MenuEnterPress = PS4_OPTIONS;
+define MenuExitPress = PS4_CIRCLE;
+define ChangeMenuPress = PS4_CROSS;
+define Up = PS4_UP;
+define Down = PS4_DOWN;
+define Left = PS4_LEFT;
+define Right = PS4_RIGHT;
+define On = TRUE;
+define Off = FALSE;
+define TimeoutLimit  = 1;
+define TimeoutLimitM = 40000;
+define IndexMinActivator = 0;
+define IndexMaxActivator= 2;
+define IndexMinSwitches = 1;
+define IndexMaxSwitches = 4;
+define IndexMinValues   = 1;
+define IndexMaxValues   = 16;
+define pBlack = 0, pWhite = 1, wSmall = 7, wMedium = 11, wLarge = 17, fSmall = 0, fMedium = 1, fLarge = 2, hSmall = 10, hMedium = 18, hLarge = 26;
+define mLine1 = 7, tLine1 = 18, tLine2 = 33, nCenter = 0, yCenter = 1, qtLine1 = 6,qtLine2 = 26,qtLine3 = 47, mvLine1 = 7, mvLine2 = 26, mvLine3 = 52;
+define MaxBits = 32;
+define MaxFWBits = 32;
+define FullBitmask = -1;
+define LedBrightness = 5; 	// 1-50 1[Bright] - 50[Dim]
+define LedSpeed = 50; 		// Adjust every xxx milliseconds
+define AxisInverted = Off;// [ Off - On ]
+
+int recoilYStart,recoilYEnd,recoilTY,powerY,applyY,countY,stepsY,recoilXStart,recoilXEnd,recoilTX,applyX,countX,stepsX,powerX;
+int SpvarIndex,CurrentBit,CurrentSlot,CurrentValue,SpvarTemp,SpvarBits;
+int BufferIndex,DigitIndex,CharIndex,LogVal,StringLength;
+int Update,MenuTimeout,MainMenu,ModIndex,MenuValues,MenuSwitch,Shunt;
+int aimAssistRadius,cosAngle,sinAngle,angle;
+int Head,Radius,Angle;
+int LedDec,Rgb,LedInc = 1,Colour[3];
+
+const string MiscString[] = { "DamDoGz Polar VIX" , "Version 1.10" , "SETTINGS" , "SAVED" , "TO THE ZEN" };
+const string ModState[] = { "Disabled" , "Enabled" };
+const string ModValue[] = { "Ads Power" , "Fire Power" , "Firing Power" , "Ads Speed" , "Fire Speed" , "Firing Speed" , "Firing Time" , "Vertical Power" , "Vertical Power" , "Vertical Time" , "Horizontal Power" , "Horizontal Power" , "Horizontal Time" , "Max Value" , "Increment Value" , "Peek Time" };
+const string ModValueHelp[] = { "Holding Ads Only" , "Anytime Fire Held" , "Time Fire Held" , "Holding Ads Only" , "Anytime Fire Held" , "Time Fire Held" , "Time Holding Fire" , "Start Value" , "End Value" , "Travel Time" , "Start Value" , "End Value" , "Travel Time" , "Headshot Assist" , "Headshot Assist" , "Quick Peek" };
+const string ModToggle[] = { "DamDoGz Polar VIX" , "DoGz Anti-Recoil" , "Headshot Assist" , "Quick Peek" };
+const string ModToggleHelp[] = { "Aim Assist Mod" , "Progression AR" , "Auto Pull To Head" , "While Adsing Peek" };
+
+const int16 ModDigitVal[][] = { 
+	{ 2   , 50   , 1  },
+	{ 2   , 50   , 1  },
+	{ 2   , 50   , 1  },
+	{ 1   , 165  , 1  },
+	{ 1   , 165  , 1  },
+	{ 1   , 165  , 1  },
+	{ 500 , 3000 , 10 },
+	{ 1   , 99   , 1  },
+	{ 1   , 99   , 1  },
+    { 10  , 800  , 1  },
+    { -99 , 99   , 1  },
+    { -99 , 99   , 1  },
+    { 10  , 800  , 1  },
+    { 1   , 99   , 1  },
+    { 1   , 40   , 1  },
+    { 30  , 500  , 10 }
+    
+};
+
+const int16 ModSwitchVal[][] = { 
+	{ 0 , 4 }
+};
+
+const int16 pollarArr[] =
+{ 
+	23170,  23167,  23156,  23139,  23114,  23082,  23044,  22998,  22945,  22885,  22818,  22745,  22664,  22577,  22482,  22381,  22273,  22158,  22036,  21908,  21773,  21632,  21483,  21329,  21167,  21000,  20825,  20645,  20458,  20265,  20066,  19861,  19650,  19432,  19209,  18980,  18745,  18505,  18259,  18007,  17750,  17487,  17219,  16946,  16667,  16384,  16096,  15802,  15504,  15201,  14894,  14582,  14265,  13944,  13619,  13290,  12957,  12620,  12278,  11934,  11585,  11233,  10878,  10519,  10157,  9792,  9424,  9053,  8680,  8304,  7925,  7544,  7160,  6774,  6387,  5997,  5605,  5212,  4817,  4421,  4024,  3625,  3225,  2824,  2422,  2019,  1616,  1213,  809,  404,  00,  -404,  -809,  -1213,  -1616,  -2019,  -2422,  -2824,  -3225,  -3625,  -4024,  -4421,  -4817,  -5212,  -5605,  -5997,  -6387,  -6774,  -7160,  -7544,  -7925,  -8304,  -8680,  -9053,  -9424,  -9792,  -10157,  -10519,  -10878,  -11233,  -11585,  -11934,  -12278,  -12620,  -12957,  -13290,  -13619,  -13944,  -14265,  -14582,  -14894,  -15201,  -15504,  -15802,  -16096,  -16384,  -16667,  -16946,  -17219,  -17487,  -17750,  -18007,  -18259,  -18505,  -18745,  -18980,  -19209,  -19432,  -19650,  -19861,  -20066,  -20265,  -20458,  -20645,  -20825,  -21000,  -21167,  -21329,  -21483,  -21632,  -21773,  -21908,  -22036,  -22158,  -22273,  -22381,  -22482,  -22577,  -22664,  -22745,  -22818,  -22885,  -22945,  -22998,  -23044,  -23082,  -23114,  -23139,  -23156,  -23167,  -23170,  -23167,  -23156,  -23139,  -23114,  -23082,  -23044,  -22998,  -22945,  -22885,  -22818,  -22745,  -22664,  -22577,  -22482,  -22381,  -22273,  -22158,  -22036,  -21908,  -21773,  -21632,  -21483,  -21329,  -21167,  -21000,  -20825,  -20645,  -20458,  -20265,  -20066,  -19861,  -19650,  -19432,  -19209,  -18980,  -18745,  -18505,  -18259,  -18007,  -17750,  -17487,  -17219,  -16946,  -16667,  -16384,  -16096,  -15802,  -15504,  -15201,  -14894,  -14582,  -14265,  -13944,  -13619,  -13290,  -12957,  -12620,  -12278,  -11934,  -11585,  -11233,  -10878,  -10519,  -10157,  -9792,  -9424,  -9053,  -8680,  -8304,  -7925,  -7544,  -7160,  -6774,  -6387,  -5997,  -5605,  -5212,  -4817,  -4421,  -4024,  -3625,  -3225,  -2824,  -2422,  -2019,  -1616,  -1213,  -809,  -404,  00,  404,  809,  1213,  1616,  2019,  2422,  2824,  3225,  3625,  4024,  4421,  4817,  5212,  5605,  5997,  6387,  6774,  7160,  7544,  7925,  8304,  8680,  9053,  9424,  9792,  10157,  10519,  10878,  11233,  11585,  11934,  12278,  12620,  12957,  13290,  13619,  13944,  14265,  14582,  14894,  15201,  15504,  15802,  16096,  16384,  16667,  16946,  17219,  17487,  17750,  18007,  18259,  18505,  18745,  18980,  19209,  19432,  19650,  19861,  20066,  20265,  20458,  20645,  20825,  21000,  21167,  21329,  21483,  21632,  21773,  21908,  22036,  22158,  22273,  22381,  22482,  22577,  22664,  22745,  22818,  22885,  22945,  22998,  23044,  23082,  23114,  23139,  23156,  23167,  23170 
+};
+
+const image Logo = 
+{
+	95, 63, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xF0, 0xEF, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x07, 0xF3, 0xC3, 0x1C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE3, 0x0F, 0xE7, 0xB0, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xCF, 0x3D, 0xCF, 0xF0, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xFF, 0x73, 0xBF, 0xE0, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xEE, 0xFC, 0x78, 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xC7, 0x9E, 0xE6, 0xE0, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x87, 0x1F, 0xFF, 0xC0, 0x78, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x07, 0x3D, 0xFF, 0x80, 0xF3, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x38, 0x0F, 0x3D, 0xE3, 0x03, 0xCF, 0xF8, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF8, 0x0E, 0x70, 0x00, 0x0F, 0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x03, 0xFC, 0x1E, 0x00, 0x00, 0x1C, 0xF8, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x0F, 0xFC, 0x1C, 0x00, 0x00, 0x39, 0xC0, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x7C, 0x20, 0x03, 0x00, 0x27, 0x80, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x08, 0x7E, 0x00, 0x1F, 0x80, 0x0E, 0x01, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7E, 0x01, 0xFF, 0xE0, 0x1C, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3C, 0x1F, 0xFF, 0xF8, 0x1C, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x37, 0xFF, 0xFF, 0xFF, 0xBF, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE0, 0x1F, 0xFF, 0xFF, 0xFF, 0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC6, 0x3F, 0xFD, 0xFF, 0xFF, 0x7E, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x07, 0xCE, 0x7F, 0xFB, 0xCF, 0xFE, 0x7B, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x0F, 0xDC, 0xFF, 0xE3, 0x1F, 0xFC, 0x7F, 0xFC, 0x00, 0x00, 0x00, 0x00, 0x1F, 0xF1, 0xFF, 0xC6, 0x1F, 0xF8, 0xFF, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x73, 0xE3, 0xFF, 0x0C, 0x3F, 0xF1, 0xF3, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE7, 0xC7, 0xFE, 0x08, 0x7F, 0xE0, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x8F, 0xBC, 0x30, 0xF7, 0xC0, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x1F, 0x1C, 0x61, 0x8F, 0x07, 0xFC, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFC, 0x1F, 0x18, 0xC6, 0x3E, 0x0F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x73, 0xF8, 0x3E, 0x1B, 0xCC, 0x7C, 0x1F, 0x80, 0x00, 0x00, 0x00, 0x00, 0xE3, 0xF8, 0x7C, 0x3F, 0xF0, 0xF8, 0x20, 0x18, 0x00, 0x00, 0x00, 0x03, 0x80, 0x70, 0xF8, 0x7F, 0xE1, 0xF0, 0x00, 0x30, 0x00, 0x00, 0x00, 0x07, 0x00, 0xE1, 0xF8, 0xE1, 0xC7, 0xE0, 0x00, 0x70, 0x00, 0x00, 0x00, 0x0F, 0x01, 0xC1, 0xF9, 0xC3, 0x9F, 0x83, 0xC0, 0xE0, 0x00, 0x00, 0x00, 0x0E, 0x07, 0x83, 0xFF, 0x03, 0xFF, 0x07, 0xF9, 0xC0, 0x00, 0x00, 0x00, 0x1E, 0x1E, 0x07, 0xFC, 0x07, 0xFE, 0x0F, 0xFF, 0x80, 0x00, 0x00, 0x00, 0x1F, 0xFC, 0x07, 0xF0, 0x07, 0xF8, 0x07, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xF0, 0x0F, 0x80, 0x03, 0xF0, 0x00, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x88, 0x1F, 0x00, 0x03, 0xE0, 0x00, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7C, 0x1E, 0x00, 0x07, 0x80, 0x00, 0x70, 0x00, 0x00, 0x00, 0x00, 0x03, 0xFC, 0x3C, 0x00, 0x0E, 0x0F, 0xC0, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x07, 0xFC, 0x38, 0x38, 0x1C, 0x3F, 0xC1, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x38, 0x39, 0xFC, 0x70, 0x7F, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x38, 0x70, 0x7F, 0xFF, 0xE1, 0xEF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x71, 0xE0, 0x7F, 0xFF, 0x87, 0xB7, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F, 0x80, 0x7F, 0xFE, 0x3F, 0x6E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x7C, 0x7F, 0xF8, 0x39, 0xFC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xF9, 0xFE, 0x7F, 0xE6, 0x79, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0xFF, 0x7F, 0xBE, 0x7B, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x1E, 0x7C, 0x3E, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3C, 0x78, 0x30, 0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x70, 0xF0, 0x00, 0x1F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xE3, 0xC0, 0x00, 0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC7, 0x00, 0x00, 0x73, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x9E, 0x00, 0x01, 0xE3, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x78, 0x00, 0x03, 0xDF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0xF0, 0x00, 0x03, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0xC0, 0x00, 0x07, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x80, 0x00, 0x03, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
+
+const image MenuAABorderPage = 
+{
+	128, 64, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0x00, 0x0F, 0xFF
+}; ����������������

@@ -1,0 +1,4265 @@
+/*
+           ██████╗  ██████╗  ██████╗ ███████╗    ██████╗  ██████╗ ██╗      █████╗ ██████╗     ███████╗███████╗███████╗███████╗ ██████╗████████╗███████╗
+           ██╔══██╗██╔═══██╗██╔════╝ ╚══███╔╝    ██╔══██╗██╔═══██╗██║     ██╔══██╗██╔══██╗    ██╔════╝██╔════╝██╔════╝██╔════╝██╔════╝╚══██╔══╝██╔════╝
+           ██║  ██║██║   ██║██║  ███╗  ███╔╝     ██████╔╝██║   ██║██║     ███████║██████╔╝    █████╗  █████╗  █████╗  █████╗  ██║        ██║   ███████╗
+           ██║  ██║██║   ██║██║   ██║ ███╔╝      ██╔═══╝ ██║   ██║██║     ██╔══██║██╔══██╗    ██╔══╝  ██╔══╝  ██╔══╝  ██╔══╝  ██║        ██║   ╚════██║
+           ██████╔╝╚██████╔╝╚██████╔╝███████╗    ██║     ╚██████╔╝███████╗██║  ██║██║  ██║    ███████╗██║     ██║     ███████╗╚██████╗   ██║   ███████║
+           ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝    ╚═╝      ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚══════╝╚═╝     ╚═╝     ╚══════╝ ╚═════╝   ╚═╝   ╚══════╝
+                                       ██╗   ██╗███████╗██████╗ ███████╗██╗ ██████╗ ███╗   ██╗   ██████╗     ██████╗  ██████╗ 
+                                       ██║   ██║██╔════╝██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║   ╚════██╗   ██╔═████╗██╔═████╗
+                                       ██║   ██║█████╗  ██████╔╝███████╗██║██║   ██║██╔██╗ ██║    █████╔╝   ██║██╔██║██║██╔██║
+                                       ╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║██║██║   ██║██║╚██╗██║    ╚═══██╗   ████╔╝██║████╔╝██║
+                                        ╚████╔╝ ███████╗██║  ██║███████║██║╚██████╔╝██║ ╚████║   ██████╔╝██╗╚██████╔╝╚██████╔╝
+                                         ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═════╝ ╚═╝ ╚═════╝  ╚═════╝ 																													 
+                                                 ███████╗ ██████╗ ██████╗ ████████╗███╗   ██╗██╗████████╗███████╗
+                                                 ██╔════╝██╔═══██╗██╔══██╗╚══██╔══╝████╗  ██║██║╚══██╔══╝██╔════╝
+                                                 █████╗  ██║   ██║██████╔╝   ██║   ██╔██╗ ██║██║   ██║   █████╗  
+                                                 ██╔══╝  ██║   ██║██╔══██╗   ██║   ██║╚██╗██║██║   ██║   ██╔══╝  
+                                                 ██║     ╚██████╔╝██║  ██║   ██║   ██║ ╚████║██║   ██║   ███████╗
+                                                 ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═══╝╚═╝   ╚═╝   ╚══════╝
+
+                             🅲🆁🅴🅰🆃🅴🅳 🅰🅽🅳 🅳🅴🆅🅴🅻🅾🅿🅴🅳 🅱🆈 : 𝔻𝕠𝔾𝕫𝕋𝕙𝕖𝔽𝕚𝔾𝕙𝕋𝕖ℝ
+                             
+                             🅲🆁🅴🅳🅸🆃🆂 🅵🅾🆁 🅳🅴🆅🅴🅻🅾🅿🅴🆁🆂 : 𝕄𝔼.(𝔻𝕠𝕟'𝕥 𝔸𝕥 𝕄𝕖) - 𝕊𝕨𝕚𝕫𝕫𝕪 - 𝕋𝕒𝕪𝕝𝕠𝕣𝔻𝕣𝕚𝕗𝕥𝟚𝟙 - ℂ𝔼𝕆ℝ𝕀ℕ
+                    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+                    ██ ██ █ ▄▄█ ▄▄█ ▄▄▀████ ▄▄▀█ ▄▄█ ▄▄█ ▄▄█ ▄▄▀█ ▄▄█ ▄▄▀█▀▄▀█ ▄▄██
+                    ██ ██ █▄▄▀█ ▄▄█ ▀▀▄████ ▀▀▄█ ▄▄█ ▄██ ▄▄█ ▀▀▄█ ▄▄█ ██ █ █▀█ ▄▄██
+                    ██▄▀▀▄█▄▄▄█▄▄▄█▄█▄▄████ ██ █▄▄▄█▄███▄▄▄█▄█▄▄█▄▄▄█▄██▄██▄██▄▄▄██
+                    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                    
+                    ╔═════════════════════════════════════════════╗
+                            SCRIPT MODS INCLUDED VERSION 3.00
+                    ╚═════════════════════════════════════════════╝                    
+                    1.  New Speed Menu Designed to Find What You Want Faster
+                    2.  DoGz Polar Effects Aim Assist Version 2.00 ^^^ 43 Effects See Below ^^^
+                    3.  DoGz Polar XII Aim Assist
+                    4.  DoGz The Reducer Aim Assist
+                    5.  DoGz Legacy Aim Assist
+                    6.  DoGz The Decider Aim Assist
+                    7.  DoGz The Echo Aim Assist
+                    8.  Batts Sticky Aim Assist
+                    9.  Ceorins Rotational Aim Assist 		(Left Axis Legacy Style)
+                    10. Taylors Polar Recoil V3         	*** INCLUDES QUICK ADD/SUBTRACT VALUE [RECOIL ON THE FLY ADJUSTER] ***
+                    11. DoGz Sixth Sense Anti-Recoil    	*** INCLUDES QUICK ADD/SUBTRACT VALUE [RECOIL ON THE FLY ADJUSTER] ***
+                    12. Aim Abuse X2 [Adaptive/Legacy]
+                    13. DoGz Progression Head Shot
+                    15. Rapid Fire
+                    16. Drop Shot {Crouch Shot}
+                    17. Jump Shot
+                    18. Strafe Shot
+                    19. Perfect Accuracy [100% Accuarcy]
+                    20. Pump > Smg
+                    21. AR > SMG
+                    22. Bunny Hop
+                    23. Instant Pickaxe
+                    24. Pump Wall 
+                    25. Pump Ramp  
+                    26. Block Shot
+                    27. Pop Shot 				(While Holding Any Build Button Time Your Tap To Shoot The Attacker And Keep Building)
+                    26. Build Protector 		(Hold Build Piece Fore Delay Time To Activate) No More Stealing Walls Etc... I Hope 8 ).. 😂
+                    28. Wall Take 
+                    29. Wall Take Build Piece
+                    30. Auto Ping
+                    31. Custom Sensitivity
+                    32. Quick Edit Assist  		*** REQUIRES CONFIRM ON RELEASE ON IN GAME ***  (CONFIRM ON BOTH IN GAME == IF USING QUICK EDIT ASSIST & FAST RESET)
+                    33. Fast Reset         		*** REQUIRES CONFIRM ON RESET ON IN GAME   ***  (CONFIRM ON BOTH IN GAME == IF USING QUICK EDIT ASSIST & FAST RESET)
+                    34. Build Tracker      		(Isolate Aim Assist & Other Mods In Build Mode)   
+                    35. Ramp Floor Wall      
+                    36. Floor Pyramid
+                    37. Hair Triggers
+                    38. PlayStation On Xbox Fix [TOUCHPAD] 
+                    39. Block Rumble  	(From Game)            
+                    40. Don't At Me's Rainbow Flow (LED CYCLE)      
+                    41. LED Mode Notifier                   
+                    ╔═════════════════════════════════════════════╗
+                               PATCH NOTES VERSION 2.10
+                    ╚═════════════════════════════════════════════╝                   
+                    1.  Added Mod Jump Shot 
+                    2.  Added Mod Strafe Shot
+                    3️.  Added Mod Wall Take 
+                    4.  Added Mod Wall Take Build Piece     
+                    5.  Added Mod Pump Wall 		   
+                    6.  Added Mod Pump Ramp           
+                    7.  Added Mod Block Shot          
+                    8.  Added Mod Ramp Floor Wall      
+                    9.  Added Mod Floor Pyramid       
+                    10. Added Mod PlayStation On Xbox Fix [TOUCHPAD] 
+                    11. Added Mod Pump Smg            
+                    12. Added Mod Adaptive Aim Abuse      
+                    13. Added Mod Hair Triggers
+                    14. Added Mod Block Rumble
+                    15. Added New Toggles & Activators For Certain Mods
+                    16. Added Anti Recoil Speed Adjustment
+                    17. Added New Functionality To Shot Mods And Fire Mod [Now Release Of Fire Can Disable Mod]                             
+                    18. Rewrote Script To Allow For All New Changes                    
+                    ╔═════════════════════════════════════════════╗
+                               PATCH NOTES VERSION 3.00
+                    ╚═════════════════════════════════════════════╝                   
+                    1.  Added Mod DoGz Polar XII Aim Assist
+                    2.  Added Mod DoGz The Reducer Aim Assist
+                    3️.  Added Mod DoGz Legacy Aim Assist
+                    4.  Added Mod DoGz The Decider Aim Assist
+                    5.  Added Mod DoGz The Echo Aim Assist    
+                    6.  Added Mod Batts Sticky Aim Assist
+                    7.  Added Mod Ceorins Rotational Aim Assist (Left Axis)
+                    8.  Added Mod Taylors Polar Recoil V3
+                    9.  Added Mod Extra Mode For Aim Abuse [Adaptive/Legacy]      
+                    10. Added Mod DoGz Progression Head Shot      
+                    11. Created + Added Mod AR > SMG 
+                    12. Added Mod Bunny Hop            
+                    13. Created + Added Mod Pop Shot      
+                    14. Added Mod Auto Ping
+                    15. Added Mod Custom Sensitivity
+                    16. Removed Anti Recoil Inverted Axis (You Now Set The True Value)
+                    17. Added Zen LED Notifier For Build Mode + Combat Mode
+                    18. Redesigned + Rewrote Zen Menu
+                    19. Added Buttons To Build Tracker To Try And Identify Any Issues
+                    20. Rewrote Script to Allow For All Upgrades
+                    21. Fixed Issue With Aim Sticking On The Enemies Head 😂
+                    22. Rewrote Compiler Layout For Easier User Navigation
+                    ╔═══════════════════════════════════════════════╗ 
+                                  🅼🅾🅳 🅼🅴🅽🆄 🆂🆈🆂🆃🅴🅼              
+                    ╚═══════════════════════════════════════════════╝ 
+                    ╔═══════════════════════════════════════════════╗ ╔═════════════════════════════════════════════╗	    
+                    ║  NEW SPEED MENU LAYOUT UPGRADED READ BELOW!   ║        🆂🅿🅴🅴🅳 🆃🅾🅶🅶🅻🅴🆂 [🅳🅴🅵🅰🆄🅻🆃]       	
+                    ║ * Enter Menu = L2/LT + OPTIONS/MENU           ║ ╚═════════════════════════════════════════════╝ 
+                    ║ * Next Menu  = CROSS/A (Mod Values/Settings)  ║ ╔═════════════════════════════════════════════╗     
+                    ║ * Back to Main Mod = CIRCLE/B                 ║ ║      [RAPID FIRE] = (R2/RT + RIGHT DPAD)    ║     
+                    ║ * Exit Menu = TRIANGLE/Y                      ║ ║       [CROUCH SHOT] = (R2/RT + CROUCH)      ║ 	
+                    ║ * Next Mod/Scroll Right    = RIGHT DPAD       ║ ║         [JUMP SHOT] = (L2/LT + JUMP)        ║
+                    ║ * Previous Mod/Scroll Left = LEFT DPAD        ║ ║       [STRAFE SHOT] = (L2/LT + DOWN DPAD)   ║    
+                    ║                                               ║ ║  [PERFECT ACCURACY] = (L2/LT + SHARE/VIEW)  ║       
+                    ║ * Adjust Mod/Value  [+ Increase] = UP         ║ ║       [ANTI_RECOIL] = (L2/LT + LEFT DPAD)   ║     
+                    ║ * Adjust Mod/Value  [- Decrease] = DOWN       ║ ║     [AIM ABUSE] = (SQUARE/X + RIGHT DPAD)   ║ 
+                    ║         (HOLD TO ADJUST FASTER)               ║ ║    [GLOBAL MODS] = (SQUARE/X + LEFT DPAD)   ║     
+                    ║  											    ║ ║        [AR>SMG] = (L2/LT + PS/XBOX)         ║
+					║  * AUTOSAVES SETTINGS WHEN YOU EXIT MENU *    ║ ╚═════════════════════════════════════════════╝     
+					║        * AUTO TIMEOUT WHEN IDOL *             ║*NOTE* --> GLOBAL MODS ENABLE/DISABLES ALL MODS AT ONCE... 
+                    ╚═══════════════════════════════════════════════╝ 	[PumpWall + PumpRamp + BlockShot + PumpSmg + WallTake + WallTakeBuild + AutoPing + BunnyHop]
+                    ╔═══════════════════════════════════════════════╗ ╔═════════════════════════════════════════════╗ 																										
+					  🅰🅽🆃🅸🆁🅴🅲🅾🅸🅻 🅾🅽 🆃🅷🅴 🅵🅻🆈 🅰🅳🅹🆄🆂🆃🅴🆁       🅼🅾🅳 🅰🅲🆃🅸🆅🅰🆃🅴 🆃🅾🅶🅶🅻🅴🆂[🅳🅴🅵🅰🆄🅻🆃] 																		
+					╚═══════════════════════════════════════════════╝ ╚═════════════════════════════════════════════╝																	
+					╔═══════════════════════════════════════════════╗ ╔═════════════════════════════════════════════╗ 																	
+					║ NEW ANTI-RECOIL SPEED ADJUSTMENT READ BELOW!  ║ ║      ══ COMBAT MODE MODES [BLUE LED] ══     ║																	
+					║ 		                                        ║ ║     [PERFECT ACCURACY] (L2/LT + R3/RS)      ║ 
+					║               * HOLD SQUARE/X +               ║ ║   [WALL TAKE] (HOLDING R2/RT + TAP L1/LB)   ║ 
+					║      INCREASE VALUE OF RECOIL = TAP UP        ║ ║[WALL TAKE PIECE] (HOLDING R2/RT + TAP R1/RB)║                    
+					║      DECREASE VALUE OF RECOIL = TAP DOWN      ║ ║         [PUMP WALL] (L2/LT + R1/RB)         ║                    									
+					║                                               ║ ║         [PUMP RAMP] (L2/LT + L1/LB)         ║                    									
+					║ *THIS WILL ADD/SUBTRACT FROM ALL MENU VALUES* ║ ║    [BLOCK SHOT] (SQUARE/X + TOUCHPAD/VIEW)  ║                   
+ 					╚═══════════════════════════════════════════════╝ ║[PUMP SMG] TAP NEXT WEAPON THEN HOLD FIRE... ║
+					*NOTE* --> ADD IS 1 BY DEFAULT                    ║ 		TAP PREVIOUS WEAPON TO CANCEL       ║
+					*NOTE* --> SUBTRACT IS 1 BY DEFAULT 			  ║ [AR SMG] TAP RELOAD THEN HOLD FIRE...       ║
+																	  ║TAP NEXT/PREVIOUS WEAPON OR PICKAXE TO CANCEL║
+																	  ║                                             ║
+																	  ║        ══ BUILD MODE MODS [RED LED] ══      ║
+					                                                  ║ [POP SHOT](HOLDING BUILD BUTTON + TAP LEFT) ║
+ 																	  ║ [BUILD PROTECTOR] HOLD BUTTON FOR TIME SET  ║
+																	  ║       [RAMP FLOOR WALL] (SQUARE/X) BM       ║
+																	  ║ [FLOOR N PYRAMID] (DOUBLE TAP FLOOR + HOLD) ║                   							
+																	  ╚═════════════════════════════════════════════╝                              																	            																	             
+					╔════════════════════════════════════════════════════════════════════════════════╗                  
+                    ║    ╔═══╗ ╔═══╗ ╔═══╗╔═══╗╔═══╗╔════╗    ╔═══╗╔═══╗╔════╗╔══╗╔═══╗╔═╗ ╔╗╔═══╗   ║                  
+                    ║    ║╔══╝ ║╔══╝ ║╔══╝║╔══╝║╔═╗║║╔╗╔╗║    ║╔═╗║║╔═╗║║╔╗╔╗║╚╣╠╝║╔═╗║║║╚╗║║║╔═╗║   ║
+                    ║    ║╚══╗ ║╚══╗ ║╚══╗║╚══╗║║ ╚╝╚╝║║╚╝    ║║ ║║║╚═╝║╚╝║║╚╝ ║║ ║║ ║║║╔╗╚╝║║╚══╗   ║
+                    ║    ║╔══╝ ║╔══╝ ║╔══╝║╔══╝║║ ╔╗  ║║      ║║ ║║║╔══╝  ║║   ║║ ║║ ║║║║╚╗║║╚══╗║   ║
+                    ║    ║╚══╗╔╝╚╗  ╔╝╚╗  ║╚══╗║╚═╝║ ╔╝╚╗     ║╚═╝║║║    ╔╝╚╗ ╔╣╠╗║╚═╝║║║ ║║║║╚═╝║   ║
+                    ║    ╚═══╝╚══╝  ╚══╝  ╚═══╝╚═══╝ ╚══╝     ╚═══╝╚╝    ╚══╝ ╚══╝╚═══╝╚╝ ╚═╝╚═══╝   ║
+                    ║                                                                                ║
+                    ║     AIM ASSIST EFFECTS TO CHOOSE & TEST!!  0 to 42 (Enter ID Linked to Name)   ║
+                    ╚════════════════════════════════════════════════════════════════════════════════╝                                                                                                                                                            
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   0. ║       Circle       ║  8. ║     TrappedEye     ║ 16. ║ CurvilinearDiamond ║  24. ║       Barrels      ║  32. ║      FullStack     ║  40. ║       Spring       ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   1. ║     Concentric     ║  9. ║      Baseball      ║ 17. ║       Diamond      ║  25. ║      FatCross      ║  33. ║       Teasure      ║  41. ║      NinjaStar     ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   2. ║     Concentric2    ║ 10. ║      RugbyBall     ║ 18. ║        Star        ║  26. ║      ThinCross     ║  34. ║       Galaxy       ║  42. ║      Labyrinth     ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   3. ║     Concentric3    ║ 11. ║   ConcentricOval   ║ 19. ║       Rainbow      ║  27. ║       Orbiter      ║  35. ║       Coiled       ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   4. ║       Portal       ║ 12. ║     Beachball      ║ 20. ║       Smiley       ║  28. ║   RoundedFatCross  ║  36. ║    RockyMountain   ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   5. ║       Bullet       ║ 13. ║     NestedOvals    ║ 21. ║        Wings       ║  29. ║    RoundedCross    ║  37. ║       Killbox      ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   6. ║        Eye         ║ 14. ║       React        ║ 22. ║       Pyramid      ║  30. ║     Loop2Loop      ║  38. ║       Scanner      ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   7. ║      TightEye      ║ 15. ║      TearDrop      ║ 23. ║     TwinDiamonds   ║  31. ║    CrossSection    ║  39. ║    Rollercoaster   ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▄ ██ ▄▄▀██ ▄▄▀█▄ ▄██ ▄▄ █▄▄ ▄▄████ ▄▄▀██ ▄▄▄ ██ ▀██ ██ ▄▄▄█▄ ▄██ ▄▄ ██
+██▄▄▄▀▀██ █████ ▀▀▄██ ███ ▀▀ ███ ██████ █████ ███ ██ █ █ ██ ▄▄███ ███ █▀▀██
+██ ▀▀▀ ██ ▀▀▄██ ██ █▀ ▀██ ██████ ██████ ▀▀▄██ ▀▀▀ ██ ██▄ ██ ████▀ ▀██ ▀▀▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+define Z_101 = 0x168,Z_102 = 0XB4,Z_103 = 0X147,Z_104 = 0X7FFF,Z_105 = 0X8000,Z_106 = 0XFFFF,Z_107 = 0X10000,Z_108 = 0X5A8C,Z_109 = 0X5A82,Z_110 = 0X9C40,Z_111 = 0X80,Z_112 = 0X2710,Z_113 = 0X3E8,Z_114 = 0X7D,Z_115 = 0XFF,Z_116 = 0X10E,Z_117 = 0X167,Z_27 = 0x1B,Z_28 = 0x1C,Z_29 = 0x1D,Z_30 = 0x1E,Z_31 = 0x1F,Z_32 = 0x20,Z_33 = 0x21,Z_34 = 0x22,Z_35 = 0x23,Z_36 = 0x24,Z_37 = 0x25,Z_38 = 0x26,Z_39 = 0x27,Z_40 = 0x28,Z_41 = 0x29,Z_42 = 0x2A,Z_43 = 0x2B,Z_44 = 0x2C,Z_45 = 0x2D,Z_46 = 0x2E,Z_47 = 0x2F,Z_48 = 0x30,Z_49 = 0x31,Z_50 = 0x32,Z_51 = 0x33,Z_52 = 0x34,Z_53 = 0x35,Z_54 = 0x36,Z_55 = 0x37,Z_56 = 0x38,Z_57 = 0x39,Z_58 = 0x3A,Z_59 = 0x3B,Z_60 = 0x3C,Z_61 = 0x3D,Z_62 = 0x3E,Z_63 = 0x3F,Z_64 = 0x40,Z_65 = 0x41,Z_66 = 0x42,Z_67 = 0x43,Z_68 = 0x44,Z_69 = 0x45,Z_70 = 0x46,Z_71 = 0x47,Z_72 = 0x48,Z_73 = 0x49,Z_74 = 0x4A,Z_75 = 0x4B,Z_76 = 0x4C,Z_77 = 0x4D,Z_78 = 0x4E,Z_79 = 0x4F,Z_80 = 0x50,Z_81 = 0x51,Z_82 = 0x52,Z_83 = 0x53,Z_84 = 0x54,Z_85 = 0x55,Z_86 = 0x56,Z_87 = 0x57,Z_88 = 0x58,Z_89 = 0x59,Z_90 = 0x5A,Z_91 = 0x5B,Z_92 = 0x5C,Z_93 = 0x5D,Z_94 = 0x5E,Z_95 = 0x5F,Z_96 = 0x60,Z_97 = 0x61,Z_98 = 0x62,Z_99 = 0x63,Z_100 = 0x64,Z_0 = 0x0,Z_1 = 0x1,Z_2 = 0x2,Z_3 = 0x3,Z_4 = 0x4,Z_5 = 0x5,Z_6 = 0x6,Z_7 = 0x7,Z_8 = 0x8,Z_9 = 0x9,Z_10 = 0xA,Z_11 = 0xB,Z_12 = 0xC,Z_13 = 0xD,Z_14 = 0xE,Z_15 = 0xF,Z_16 = 0x10,Z_17 = 0x11,Z_18 = 0x12,Z_19 = 0x13,Z_20 = 0x14,Z_21 = 0x15,Z_22 = 0x16,Z_23 = 0x17,Z_24 = 0x18,Z_25 = 0x19,Z_26 = 0x1A;   
+define V_6 = Z_0,V_7 = Z_1,V_8 = Z_2,V_9 = Z_3,V_10 = Z_4,V_11 = Z_5,V_12 = Z_6,V_13 = Z_7,V_14 = Z_8,V_15 = Z_9,V_16 = Z_10,V_17 = Z_11,V_18 = Z_12,V_19 = Z_13,V_20 = Z_14,V_21 = Z_15,V_22 = Z_16,V_23 = Z_17,V_24 = Z_18,V_25 = Z_19,V_26 = Z_20,V_27 = Z_21,V_28 = Z_22,V_29 = Z_23,V_30 = Z_24,V_31 = Z_25,V_32 = Z_26,V_33 = Z_27,V_34 = Z_28,V_35 = Z_29,V_36 = Z_30,V_37 = Z_31,V_38 = Z_32,V_39 = Z_33,V_40 = Z_34,V_41 = Z_35,V_42 = Z_36,V_43 = Z_37,V_44 = Z_38,V_45 = Z_39,V_46 = Z_40,V_47 = Z_41,V_48 = Z_42;
+define V_0 = PS4_UP;
+define V_1 = PS4_DOWN;
+define V_2 = PS4_LEFT;
+define V_3 = PS4_RIGHT;
+define V_4 = Z_1;
+define V_5 = Z_0;
+define On  = TRUE;
+define Off = FALSE
+define DoGzDamPolar = Z_0,DoGzReducer = Z_1;
+define FireOnly = Z_0,AdsFire = Z_1,AnyFire = Z_2;
+define Toggled = Z_0,Release = Z_1;
+define Press = Z_0,Hold = Z_1,Delayed = Z_2;
+define RecoilSet = Z_0,Progression = Z_1; 
+define Adaptive = Z_0, Legacy = Z_1;      
+define LegacyAR = Z_0, RumbleAR = Z_1;   
+/*
+██╗   ██╗███████╗███████╗██████╗     ███████╗███████╗████████╗██╗   ██╗██████╗     ██████╗ ███████╗██╗      ██████╗ ██╗    ██╗    ██╗
+██║   ██║██╔════╝██╔════╝██╔══██╗    ██╔════╝██╔════╝╚══██╔══╝██║   ██║██╔══██╗    ██╔══██╗██╔════╝██║     ██╔═══██╗██║    ██║    ██║
+██║   ██║███████╗█████╗  ██████╔╝    ███████╗█████╗     ██║   ██║   ██║██████╔╝    ██████╔╝█████╗  ██║     ██║   ██║██║ █╗ ██║    ██║
+██║   ██║╚════██║██╔══╝  ██╔══██╗    ╚════██║██╔══╝     ██║   ██║   ██║██╔═══╝     ██╔══██╗██╔══╝  ██║     ██║   ██║██║███╗██║    ╚═╝
+╚██████╔╝███████║███████╗██║  ██║    ███████║███████╗   ██║   ╚██████╔╝██║         ██████╔╝███████╗███████╗╚██████╔╝╚███╔███╔╝    ██╗
+ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝    ╚══════╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝         ╚═════╝ ╚══════╝╚══════╝ ╚═════╝  ╚══╝╚══╝     ╚═╝
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+███▄ ▄██ ▀██ ████ ▄▄ █ ▄▄▀██ ▄▀▄ ██ ▄▄▄████ ▄▄▀██ ██ █▄▄ ▄▄█▄▄ ▄▄██ ▄▄▄ ██ ▀██ ██ ▄▄▄ ██
+████ ███ █ █ ████ █▀▀█ ▀▀ ██ █ █ ██ ▄▄▄████ ▄▄▀██ ██ ███ █████ ████ ███ ██ █ █ ██▄▄▄▀▀██
+███▀ ▀██ ██▄ ████ ▀▀▄█ ██ ██ ███ ██ ▀▀▀████ ▀▀ ██▄▀▀▄███ █████ ████ ▀▀▀ ██ ██▄ ██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+define V_65 = PS4_R2;       // Fire    
+define V_66 = PS4_L2;       // Ads     
+define V_67 = PS4_R1;       // Next Weapon
+define V_68 = PS4_L1;       // Previous Weapon
+define V_69 = PS4_TRIANGLE; // Pickaxe 
+define V_70 = PS4_SQUARE;   // Reload  
+define V_71 = PS4_R3;       // Crouch  
+define V_72 = PS4_CROSS;    // Jump    
+define V_73 = PS4_RIGHT;    // Ping    
+define V_74 = PS4_R2;       // Select  
+define V_75 = PS4_L3;       // Edit    
+define V_76 = PS4_R3;       // Reset   
+define V_77 = PS4_CIRCLE;   // Build   
+define V_78 = PS4_R2;       // Wall    
+define V_79 = PS4_R1;       // Floor   
+define V_80 = PS4_L2;       // Ramp    
+define V_81 = PS4_L1;       // Roof    
+define V_82 = PS4_SQUARE;   // Trap    
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█▄ ▄██ ▀██ ████ ▄▄ █ ▄▄▀██ ▄▀▄ ██ ▄▄▄████ ▄▄▄ █▄▄ ▄▄█▄ ▄██ ▄▄▀██ █▀▄████ ▄▄▀██ ▄▄▄ ██ ▀██ ██ ▄▄▄█▄ ▄██ ▄▄ ██
+██ ███ █ █ ████ █▀▀█ ▀▀ ██ █ █ ██ ▄▄▄████▄▄▄▀▀███ ████ ███ █████ ▄▀█████ █████ ███ ██ █ █ ██ ▄▄███ ███ █▀▀██
+█▀ ▀██ ██▄ ████ ▀▀▄█ ██ ██ ███ ██ ▀▀▀████ ▀▀▀ ███ ███▀ ▀██ ▀▀▄██ ██ ████ ▀▀▄██ ▀▀▀ ██ ██▄ ██ ████▀ ▀██ ▀▀▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+define V_83 = PS4_RY;       // Vertical Aim Axis In Game
+define V_84 = PS4_RX;       // Horizontal Aim Axis In Game
+define V_85 = PS4_LX;       // Horizontal Strafe Axis In Game
+define V_86 = PS4_LY;       // Vertical Walk Axis In Game
+
+define V_87 = POLAR_RY;		// Polar Vertical Aim Axis In Game
+define V_88 = POLAR_RX;		// Polar Horizontal Aim Axis In Game
+define V_89 = POLAR_LX;     // Polar Horizontal Strafe Axis In Game
+define V_90 = POLAR_LY;     // Polar Vertical Walk Axis In Game
+
+define V_91 = POLAR_RS;     // Polar Stick In Use [LS/RS]
+define V_92 = POLAR_LS;     // Polar Stick In Use [LS/RS]
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▄██ ▄▄▀█▄ ▄█▄▄ ▄▄████ ▄▀▄ ██ ▄▄▄ ██ ▄▄▀███ ▄▄▀██ ▄▄▀█▄▄ ▄▄█▄ ▄██ ███ █ ▄▄▀█▄▄ ▄▄██ ▄▄▄ ██ ▄▄▀██
+██ ▄▄▄██ ██ ██ ████ ██████ █ █ ██ ███ ██ ██ ███ ▀▀ ██ ██████ ████ ████ █ ██ ▀▀ ███ ████ ███ ██ ▀▀▄██
+██ ▀▀▀██ ▀▀ █▀ ▀███ ██████ ███ ██ ▀▀▀ ██ ▀▀ ███ ██ ██ ▀▀▄███ ███▀ ▀███▄▀▄██ ██ ███ ████ ▀▀▀ ██ ██ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+define V_93 = PS4_L3;		// Edit Assist Button
+define V_94 = PS4_TOUCH;	// Fast Reset Button
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▀▄ ██ ▄▄▄ ██ ▄▄▀████ ▄▄▄ ██ ▄▄ ██ ▄▄▄██ ▄▄▄██ ▄▄▀███▄▄ ▄▄██ ▄▄▄ ██ ▄▄ ██ ▄▄ ██ █████ ▄▄▄██ ▄▄▄ ██
+██ █ █ ██ ███ ██ ██ ████▄▄▄▀▀██ ▀▀ ██ ▄▄▄██ ▄▄▄██ ██ █████ ████ ███ ██ █▀▀██ █▀▀██ █████ ▄▄▄██▄▄▄▀▀██
+██ ███ ██ ▀▀▀ ██ ▀▀ ████ ▀▀▀ ██ █████ ▀▀▀██ ▀▀▀██ ▀▀ █████ ████ ▀▀▀ ██ ▀▀▄██ ▀▀▄██ ▀▀ ██ ▀▀▀██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+SPEED TOGGLES ENABLES/DISABLES MODS QUICKLY WHEN IN GAME (RATHER THAN GOING INTO THE MENU) When Enable In Menu System */
+define V_95 = PS4_L2;		// ANTI RECOIL SPEED TOGGLE BUTTONS 		  
+define V_96 = PS4_UP;
+
+define V_97 = PS4_R2;       // RAPID FIRE SPEED TOGGLE BUTTONS
+define V_98 = PS4_RIGHT;
+
+define V_99  = PS4_R2;      // DROP SHOT SPEED TOGGLE BUTTONS (Crouch Shot)
+define V_100 = PS4_R3;
+define V_101 = Off;         // BLOCK EVENT PRESS (STOP CONTROLLER BEING PRESSED IN GAME) 
+
+define V_102 = PS4_L2;      // JUMP SHOT SPEED TOGGLE BUTTONS (Jump Shot)
+define V_103 = PS4_CROSS;
+define V_104 = Off;         // BLOCK EVENT PRESS (STOP CONTROLLER BEING PRESSED IN GAME) 
+
+define V_105 = PS4_L2;      // STRAFE SHOT SPEED TOGGLE BUTTONS (Strafe Shot)
+define V_106 = PS4_DOWN;
+
+define V_107 = PS4_L2;      // PERFECT ACCURACY SPEED TOGGLE BUTTONS
+define V_108 = PS4_SHARE;
+
+define V_109 = PS4_SQUARE;  // AIM ABUSE SPEED TOGGLE BUTTONS
+define V_110 = PS4_RIGHT;
+
+define V_111 = PS4_L2;	    // AR>SMG SPEED TOGGLE BUTTONS
+define V_112 = PS4_PS;
+
+define V_113 = PS4_SQUARE   // GLOBAL MODS SPEED TOGGLE BUTTONS ([PumpWall + PumpRamp + BlockShot + PumpSmg + WallTake + WallTakeBuild + AutoPing + BunnyHop])
+define V_114 = PS4_LEFT;
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▀▄ ██ ▄▄▄ ██ ▄▄▀███ ▄▄▀██ ▄▄▀█▄▄ ▄▄█▄ ▄██ ███ █ ▄▄▀█▄▄ ▄▄██ ▄▄▄ ██ ▄▄▀██ ▄▄▄ ██ 
+██ █ █ ██ ███ ██ ██ ███ ▀▀ ██ ██████ ████ ████ █ ██ ▀▀ ███ ████ ███ ██ ▀▀▄██▄▄▄▀▀██
+██ ███ ██ ▀▀▀ ██ ▀▀ ███ ██ ██ ▀▀▄███ ███▀ ▀███▄▀▄██ ██ ███ ████ ▀▀▀ ██ ██ ██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+ACTIVATOR WILL RUN THE MOD WHEN ENABLED */
+define V_115 = PS4_L2; 		// PERFECT ACCURACY ACTIVATOR BUTTONS	 
+define V_116 = PS4_R3;
+
+define V_117 = PS4_R2;  	// WALL TAKE
+define V_118 = PS4_L1;  
+
+define V_119 = PS4_R2;  	// WALL TAKE BUILD ACTIVATOR BUTTONS  	
+define V_120 = PS4_R1;      	
+define V_121 = PS4_L1;    	// BUILD PIECE TO PLACE
+
+define V_122 = PS4_L2;  	// PUMP WALL ACTIVATOR BUTTONS  
+define V_123 = PS4_R1;  
+							             		     
+define V_124 = PS4_L2;  	// PUMP RAMP ACTIVATOR BUTTONS   
+define V_125 = PS4_TOUCH; 
+
+define V_126 = PS4_SQUARE;  // BLOCK SHOT ACTIVATOR BUTTONS 
+define V_127 = PS4_TOUCH; 
+
+define V_128 = PS4_SQUARE;  // RAMP FLOOR WALL ACTIVATOR BUTTON
+define V_129 = Off;         // BLOCK EVENT PRESS (STOP CONTROLLER BEING PRESSED IN GAME)
+
+define V_130 = PS4_LEFT;    // BUTTON TO TAP WHILE HOLDING BUILDING PIECE  (MUST BE TIMED BY YOU JUST AS THE WALL BREAKS)
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▀██ ▄▄▄██ ▄▄▀██ ▄▄▄ █▄ ▄██ ███████ ▄▄▄ ██ ▀██ ███▄▄ ▄▄██ ██ ██ ▄▄▄████ ▄▄▄██ █████ ███ ████ ▄▄▀██ ██ █▄▄ ▄▄█▄▄ ▄▄██ ▄▄▄ ██ ▀██ ██ ▄▄▄ ██
+██ ▀▀▄██ ▄▄▄██ █████ ███ ██ ███ ███████ ███ ██ █ █ █████ ████ ▄▄ ██ ▄▄▄████ ▄▄███ █████▄▀▀▀▄████ ▄▄▀██ ██ ███ █████ ████ ███ ██ █ █ ██▄▄▄▀▀██
+██ ██ ██ ▀▀▀██ ▀▀▄██ ▀▀▀ █▀ ▀██ ▀▀ ████ ▀▀▀ ██ ██▄ █████ ████ ██ ██ ▀▀▀████ █████ ▀▀ ████ ██████ ▀▀ ██▄▀▀▄███ █████ ████ ▀▀▀ ██ ██▄ ██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+define V_131 = PS4_SQUARE;	// RECOIL ADJUSTMENT BUTTONS [HOLD +]  
+define V_132 = PS4_UP;	    // TAP + RecoilValueAdd [DEFAULT 1]
+define V_133 = PS4_DOWN;    // TAP - RecoilValueSub [DEFUALT 1]
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▀▄ ██ ▄▄▄██ ▀██ ██ ██ ████ ▄▄▄ ██ ███ ██ ▄▄▄ █▄▄ ▄▄██ ▄▄▄██ ▄▀▄ ████ ▄▄▀██ ██ █▄▄ ▄▄█▄▄ ▄▄██ ▄▄▄ ██ ▀██ ██ ▄▄▄ ██
+██ █ █ ██ ▄▄▄██ █ █ ██ ██ ████▄▄▄▀▀██▄▀▀▀▄██▄▄▄▀▀███ ████ ▄▄▄██ █ █ ████ ▄▄▀██ ██ ███ █████ ████ ███ ██ █ █ ██▄▄▄▀▀██
+██ ███ ██ ▀▀▀██ ██▄ ██▄▀▀▄████ ▀▀▀ ████ ████ ▀▀▀ ███ ████ ▀▀▀██ ███ ████ ▀▀ ██▄▀▀▄███ █████ ████ ▀▀▀ ██ ██▄ ██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/		
+define V_134 = PS4_L2;		// HOLD + TAP MenuEnterPress To ENTER MENU 			{DEFAULT L2/LT + OPTIONS/MENU}		
+define V_135 = PS4_OPTIONS; // WHILE HOLDING MenuEnterHold, TAP TO ENTER MENU 	{DEFAULT L2/LT + OPTIONS/MENU}  
+define V_136 = PS4_TRIANGLE;// EXIT MENU COMPLETELY								{DEFAULT TRIANGLE/Y}	
+define V_137 = PS4_CROSS; 	// ENTER MOD VALUES									{DEFAULT CROSS/A}
+define V_138 = PS4_CIRCLE;	/* BACK TO MOD LIST									{DEFAULT CIRCLE/B} 
+					╔════════════════════════════════════════════════════════════════════════════════╗
+                    ║    ╔═══╗ ╔═══╗ ╔═══╗╔═══╗╔═══╗╔════╗    ╔═══╗╔═══╗╔════╗╔══╗╔═══╗╔═╗ ╔╗╔═══╗   ║
+                    ║    ║╔══╝ ║╔══╝ ║╔══╝║╔══╝║╔═╗║║╔╗╔╗║    ║╔═╗║║╔═╗║║╔╗╔╗║╚╣╠╝║╔═╗║║║╚╗║║║╔═╗║   ║
+                    ║    ║╚══╗ ║╚══╗ ║╚══╗║╚══╗║║ ╚╝╚╝║║╚╝    ║║ ║║║╚═╝║╚╝║║╚╝ ║║ ║║ ║║║╔╗╚╝║║╚══╗   ║
+                    ║    ║╔══╝ ║╔══╝ ║╔══╝║╔══╝║║ ╔╗  ║║      ║║ ║║║╔══╝  ║║   ║║ ║║ ║║║║╚╗║║╚══╗║   ║
+                    ║    ║╚══╗╔╝╚╗  ╔╝╚╗  ║╚══╗║╚═╝║ ╔╝╚╗     ║╚═╝║║║    ╔╝╚╗ ╔╣╠╗║╚═╝║║║ ║║║║╚═╝║   ║
+                    ║    ╚═══╝╚══╝  ╚══╝  ╚═══╝╚═══╝ ╚══╝     ╚═══╝╚╝    ╚══╝ ╚══╝╚═══╝╚╝ ╚═╝╚═══╝   ║
+                    ║                                                                                ║
+                    ║         AIM ASSIST EFFECTS TO CHOOSE & TEST!!  0 to 42 (Enter ID or Name)      ║
+                    ╚════════════════════════════════════════════════════════════════════════════════╝                                                                                                                                                            
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   0. ║       Circle       ║  8. ║     TrappedEye     ║ 16. ║ CurvilinearDiamond ║  24. ║       Barrels      ║  32. ║      FullStack     ║  40. ║       Spring       ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   1. ║     Concentric     ║  9. ║      Baseball      ║ 17. ║       Diamond      ║  25. ║      FatCross      ║  33. ║       Teasure      ║  41. ║      NinjaStar     ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   2. ║     Concentric2    ║ 10. ║      RugbyBall     ║ 18. ║        Star        ║  26. ║      ThinCross     ║  34. ║       Galaxy       ║  42. ║      Labyrinth     ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   3. ║     Concentric3    ║ 11. ║   ConcentricOval   ║ 19. ║       Rainbow      ║  27. ║       Orbiter      ║  35. ║       Coiled       ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   4. ║       Portal       ║ 12. ║     Beachball      ║ 20. ║       Smiley       ║  28. ║   RoundedFatCross  ║  36. ║    RockyMountain   ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   5. ║       Bullet       ║ 13. ║     NestedOvals    ║ 21. ║        Wings       ║  29. ║    RoundedCross    ║  37. ║       Killbox      ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   6. ║        Eye         ║ 14. ║       React        ║ 22. ║       Pyramid      ║  30. ║     Loop2Loop      ║  38. ║       Scanner      ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝
+      ╔════════════════════╗     ╔════════════════════╗     ╔════════════════════╗      ╔════════════════════╗      ╔════════════════════╗
+   7. ║      TightEye      ║ 15. ║      TearDrop      ║ 23. ║     TwinDiamonds   ║  31. ║    CrossSection    ║  39. ║    Rollercoaster   ║
+      ╚════════════════════╝     ╚════════════════════╝     ╚════════════════════╝      ╚════════════════════╝      ╚════════════════════╝									
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▀▄ ██ ▄▄▄ ██ ▄▄▀███ ▄▄▀██ ▀██ ██ ▄▄▀████ ▄▀▄ ██ ▄▄▄██ ▀██ ██ ██ ████ ▄▄▄ ██ ▄▄▄█▄▄ ▄▄█▄▄ ▄▄█▄ ▄██ ▀██ ██ ▄▄ ██ ▄▄▄ ██
+██ █ █ ██ ███ ██ ██ ███ ▀▀ ██ █ █ ██ ██ ████ █ █ ██ ▄▄▄██ █ █ ██ ██ ████▄▄▄▀▀██ ▄▄▄███ █████ ████ ███ █ █ ██ █▀▀██▄▄▄▀▀██
+██ ███ ██ ▀▀▀ ██ ▀▀ ███ ██ ██ ██▄ ██ ▀▀ ████ ███ ██ ▀▀▀██ ██▄ ██▄▀▀▄████ ▀▀▀ ██ ▀▀▀███ █████ ███▀ ▀██ ██▄ ██ ▀▀▄██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+╔══════════════════════════════════════════════════╗
+║      AIM ASSIST ONE: DoGz Polar Effects V2       ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_139 = On;			// [Off - On] - DoGz Polar Effects V2 - Aim Assist    
+define V_140 = 41;    		// Effect Selection																																	
+define V_141 = 20;          // Power On Ads	 [While Pressing Only Ads] [NinjaStar + Labyrinth Power / 10]
+define V_142 = 15;		    // Speed On Ads	 [While Pressing Only Ads] [NinjaStar + Labyrinth N/A]
+define V_143 = 20;          // Power On Fire [While Pressing Only Fire or Ads + Fire][NinjaStar + Labyrinth N/A]
+define V_144 = 38;     	    // Speed On Fire [While Pressing Only Fire or Ads + Fire] [NinjaStar + Labyrinth N/A]
+define V_145 = On;          // Power Boost On Fire On or Off
+define V_146 = On;          // Speed Boost On Fire On or Off
+define V_147 = On;          // Hip Fire Assist On or Off
+/*
+╔══════════════════════════════════════════════════╗
+║      AIM ASSIST TWO: DoGz Zen Polar VIII         ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_148 = On;			// [Off - On] - DoGz Polar Version XIII - Aim Assist        	    
+define V_149 = On;      	// Orientation On {Clockwise <=> AntiClockwise} or Off {Standard Clockwise}
+define V_150 = On;          // Polar Coil On    	
+define V_151 = 11;          // Power Of Radius  
+define V_152 = 11;          // Speed Of Angle	[Angle 5 / Counter 150 (2 360's PolarOrientation On (NO Increment Used (PolarCoil Off))]   
+define V_153 = 150; 	    // Rotate Counter [Before PolarOrientation Inverts]     
+define V_154 = 6;           // Increment Value [Max n Min + Radius (Default = Min 5 Max 17)]       
+define V_155 = 10;          // Speed Of Increment
+define V_156 = 15; 	        // Value To Change Aim Assist [Below ZenPolarRelease Zen Polar {STAGE 1} Will Run && Above One Of {STAGE 2} Methods Will Run]  
+define V_157 = DoGzDamPolar;// [1]DoGzDamPolar or [2]DoGzReducer // DAM POLAR/DoGz Reducer {STAGE 2 of 2}  
+//Stage 2 If Using DoGzDamPolar
+define V_158 = 15;		    // Power Of Radius On Ads Only // DamPolar    
+define V_159 = 18;          // Speed Of Angle On Ads Only     
+define V_160 = 18;		    // Power Of Radius On Fire    
+define V_161 = 30;          // Speed Of Angle On Fire     
+//Stage 2 If Using DoGzReducer
+define V_162 = 19;		    // Power Of Reducer Combo // DoGzReducer      
+define V_163 = 10;		    // Speed Of Reducer Combo [10/20/30]    
+/*
+╔══════════════════════════════════════════════════╗
+║      AIM ASSIST THREE: DoGz The Reducer          ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_164 = Off;			// [Off - On] - DoGz The Reducer - Aim Assist     	 	
+define V_165 = 20;    		// Power Y Axis The Reducer Aim Assist
+define V_166 = 20;    		// Power X Axis The Reducer Aim Assist
+define V_167 = 10;    		// Time The Reducer Aim Assist {Operates on Ads Or Fire Alone}
+define V_168 = On;	  		// Hip Fire The Reducer Aim Assist 	[(On) or (Off)] = {Operates on [Ads Alone (Off)] Or [Ads or Fire Alone (On)]}
+/*
+╔══════════════════════════════════════════════════╗
+║      AIM ASSIST FOUR: Batts Sticky Aim           ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_169 = Off;			// [Off - On] - Batts Sticky Assist - Aim Assist 				    
+define V_170 = 20; 		    // Power Batt's Sticky Aim Assist
+define V_171 = 20;  		// Time Batt's Sticky Aim Assist    
+define V_172 = On;      	// Hip Fire Batt's Sticky Aim Assist	    
+/*
+╔══════════════════════════════════════════════════╗
+║      AIM ASSIST FIVE: Legacy Assist              ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_173 = Off;			// [Off - On] - Legacy Assist - Aim Assist    	 	   
+define V_174 = 20;     		// Power Y Axis Legacy Aim Assist   
+define V_175 = 20;     		// Power X Axis Legacy Aim Assist   
+define V_176 = 20;      	// Time Legacy Aim Assist	   
+define V_177 = 20;   		// Release Limit Legacy Aim Assist    
+define V_178  = On;      	// Hip Fire The Reducer Aim Assist 	[(On) or (Off)] = {Operates on [Ads Alone (Off)] Or [Ads or Fire Alone (On)]}	   
+/*
+╔══════════════════════════════════════════════════╗
+║      AIM ASSIST SIX: DoGz The Decider            ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_179 = Off;			// [Off - On] - DoGz The Decider - Aim Assist  	  	 	   
+define V_180 = 13;		  	// Power/Strength of Aim Assist		
+define V_181 = 4;       	// Must be able to increment 3 times at least within strength value ( Increment * 4 = 20 [5 * 4] = OK) <== Default Example as ( 7 * 3 = 21 )		
+define V_182 = 7;         	// Deazone in game		
+define V_183 = On;         	// Reduces power on input (Stick movement)		
+define V_184 = On;	  		// Hip Fire The Decider Aim Assist 	[(On) or (Off)] = {Operates on [Ads Alone (Off)] Or [Ads or Fire Alone (On)]}	
+/*
+╔══════════════════════════════════════════════════╗
+║      AIM ASSIST SEVEN: DoGz The Echo             ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_185 = Off;   		// [Off - On] - DoGz The Echo - Aim Assist     		    
+define V_186 = 1; 		  	// Base Power		
+define V_187 = 1;         	// Increment Of Step		
+define V_188 = 20;       	// Combo Speed		
+define V_189 = 200;       	// Ms Time Before Step Change		
+define V_190 = On;    		// Hip Fire DoGz The Echo Aim Assist	[(On) or (Off)] = {Operates on [Ads Alone (Off)] Or [Ads or Fire Alone (On)]}		
+/*
+╔══════════════════════════════════════════════════╗
+║      AIM ASSIST EIGHT: Ceorins Rotational Assist ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_191 = On; 			// [Off - On] - Ceorin Rotational Assist - Aim Assist [Left Stick (Movement)]       
+define V_192 = 25;          // Speed = Ceorin Rotational Assist (LX)      
+define V_193 = 20;          // Power = Ceorin Rotational Assist (LX)    
+define V_194 = On;			// Hip Fire = Ceorin Rotational Assist (LX)
+/*
+╔══════════════════════════════════════════════════╗
+║      ANTI-RECOIL ONE: DoGz Sixth Sense           ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_195 = On;          // [Off - On] - DoGz Sixth Sense - Anti-Recoil										
+define V_196 = Progression; // Method = ( RecoilSet  or  Progression ) {Progression Will Remain On Last Value or Recoil Set Will Repeat The Loop}  
+define V_197 = 39; 		    // Vertical Value 1	
+define V_198 = 40; 		    // Vertical Value 2	
+define V_199 = 41; 		    // Vertical Value 3
+define V_200 = 40; 		    // Vertical Value 4	
+define V_201 = 38; 	        // Vertical Value 5 	
+define V_202 = 37; 	        // Vertical Value 6 	
+define V_203 = 100;	        // Vertical Time 1 [Milliseconds] 1000 ms = 1 Second
+define V_204 = 200; 	    // Vertical Time 2 [Milliseconds]    
+define V_205 = 300; 	    // Vertical Time 3 [Milliseconds]
+define V_206 = 250; 	    // Vertical Time 4 [Milliseconds]    
+define V_207 = 500; 	    // Vertical Time 5 [Milliseconds]    
+define V_208 = 350; 	    // Vertical Time 6 [Milliseconds]    
+/*
+╔══════════════════════════════════════════════════╗
+║      ANTI-RECOIL TWO: Taylors Polar Recoil V3    ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_209 = Off;      	// [Off - On] - Taylor's Polar Recoil V3 - Anti-Recoil
+define V_210 = LegacyAR; 	// [ [0]LegacyAR - [1]RumbleAR ]  
+define V_211 = 39; 		    // [ Min -99 - Max 99 ] (Base Value)
+define V_212 = 45; 		    // [ Min -99 - Max 99 ] (Boost Power When First Held For Time Below)
+define V_213 =  8; 		    // [ Min   0 - Max 50 ] (Time Of Boost 8 * 100 == 800ms)
+define V_214 = 10; 		    // [ Min   0 - Max 30 ]
+/*
+╔══════════════════════════════════════════════════╗
+║      AIM ABUSE X2: Adaptive / Legacy             ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_215 = Off;    	   	// [Off - On] - Aim Abuse          
+define V_216 = Adaptive;    // [Adaptive - Legacy]         [Adaptive = Variable output based on the Aim stick input]      
+define V_217 = 120;         // For Adaptive Follow Limit - Press Time ADAPTIVE LIMIT [50 - 150]  (LEGACY WHATEVER YOU SEE FIT)   	
+define V_218 = 20;          // For Adaptive Follow Limit - Release Time ADAPTIVE LIMIT [10 - 60] (LEGACY WHATEVER YOU SEE FIT) 	
+/*
+╔══════════════════════════════════════════════════╗
+║      HEAD SHOT ASSIST: DoGz Progression Assist   ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_219 = Off;			// [Off - On] - DoGz Progression Headshot Assist              
+define V_220 = 10;          // [1 - 30] = Step Increment Increasing Until Its Reached HeadMax  		
+define V_221 = 80;        	// [1 - 70] = Max Head Assist Value  		
+define V_222 = On;      	// [(On) or (Off)] = Operate on Fire Only [If FALSE It Will Only Run On ADS & FIRE]	
+/*
+╔══════════════════════════════════════════════════╗
+║      FIRE MOD: Legacy Rapid Fire                 ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_223 = Off;    		// [Off - On] - Rapid Fire Mod	   
+define V_224 = 30;   	    // Time press is held   
+define V_225 = 30;   	    // Time before next press   
+define V_226 = AnyFire;     // [^ FireOnly - AdsFire - AnyFire ^] - Rapid Fire Activator Method   	
+define V_227 = Toggled;     // [^ Release - Toggled ^] - Rapid Fire Deactvate Method [Release = Releasing Fire Will Auto Switch Off -- Toggled = Requires Toggling]   
+/*
+╔══════════════════════════════════════════════════╗
+║      SHOT MOD ONE: Crouch Shot                   ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_228 = Off;         // [Off - On] - Drop Shot Mod
+define V_229 = 70;  	    // Time before next crouch
+define V_230 = AnyFire;     // [^ FireOnly - AdsFire - AnyFire ^] - Drop Shot Activator Method
+define V_231 = Release;     // [^ Release - Toggled ^] - Drop Shot Deactvate Method [Release = Releasing Fire Will Auto Switch Off -- Toggled = Requires Toggling]
+/*
+╔══════════════════════════════════════════════════╗
+║      SHOT MOD TWO: Jump Shot                     ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_232 = Off;    	    // [Off - On] - Jump Shot Mod
+define V_233 = 200;  	    // Time = [ {Press = Not Used} - {Hold = Time Between Jumps} - {Delayed = Time After Shot} ]  
+define V_234 = Delayed;     // [^ Press - Hold - Delayed ^] - Jump Shot Activator Method
+define V_235 = Release;     // [^ Release - Toggled ^] - Jump Shot Deactvate Method [Release = Releasing Fire Will Auto Switch Off -- Toggled = Requires Toggling]
+/*
+╔══════════════════════════════════════════════════╗
+║      SHOT MOD THREE: Strafe Shot                 ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_236 = Off;    		// [Off - On] - Strafe Shot Mod	
+define V_237 = 1500;  	    // Time before direction inverted 
+define V_238 = AnyFire;     // [^ FireOnly - AdsFire - AnyFire ^] - Strafe Shot Activator Method
+define V_239 = Release;     // [^ Release - Toggled ^] - Strafe Shot Deactvate Method [Release = Releasing Fire Will Auto Switch Off -- Toggled = Requires Toggling]
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD ONE: Perfect Accuaracy           ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_240 = Off;     	// [Off - On] - 100% Accuracy Mod
+define V_241 = 350;  	    // Time Between Accuracy Shot																					 
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD TWO: Pump > SMG                  ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_242 = Off;    		// [Off - On] - Pump Shot Swap to Smg
+define V_243 = 30;          // Pump Smg Delay Time																					 
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD THREE: AR > SMG                  ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_244 = Off;     	// [Off - On] - Ar/Smg - Ar/Smg
+define V_245 = 1600;		// Fire Time (To Empty Clip) 1600 SMG Twin Mag																					 
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD FOUR: Bunny Hop                  ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_246 = Off;         // [Off - On] - Bunny Hop Mod
+define V_247 = 570;		    // Bunny Hop - [Ms] Delay between Jumps	
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD FIVE: Instant Pickaxe            ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_248 = Off;         // [Off - On] - Instant Pickaxe
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD SIX: Pump Wall                   ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_249 = Off;	 		// [Off - On] - Pump Shot Build Wall
+define V_250 = 50;          // Pump Wall Press and Delay Time																					 
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD SEVEN: Pump Ramp                 ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_251 = Off;	 		// [Off - On] - Pump Shot Build Ramp
+define V_252 = 30;          // Pump Ramp Press and Delay Time																					 
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD EIGHT: Block Shot                ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_253 = Off;	 	    // [Off - On] - Block Shot
+define V_254 = 50;          // Block Shot Press And Delay Time																					 
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD NINE: Pop Shot                   ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_255 = Off;    		// [Off - On] - Pop Shot 
+define V_256 = 60;          // Build Button Time 
+define V_257 = 150;		    // Delay B4 Pop Start
+define V_258 = 150;         // Ads B4 Fire Time
+define V_259 = 150;         // Fire Time
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD TEN: Wall Take                   ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_260 = Off;	 		// [Off - On] - Wall Take	
+define V_261 = 40;          // Wall Take Press and Delay Time
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD ELEVEN: Wall Take Build          ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_262 = Off;	 	    // [Off - On] - Wall Take Build Piece
+define V_263 = 40;          // Wall Take Build Press and Delay Time
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD TWELVE: Auto Ping                ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_264 = Off;         // [Off / On] - Auto-Ping 	
+define V_265 = 500;         // Auto-Ping Delay Time
+/*
+╔══════════════════════════════════════════════════╗
+║      GLOBAL MOD THIRTEEN: Sensitivity Control    ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_266 = Off;         // [Off - On] - Custom Sensitivity Control	
+define V_267 = 100;		    // Sense When No Triggers Are Pressed [Min 1 - Max 327]
+define V_268 = 72;			// Sense When Ads Trigger is Pressed [Min 1 - Max 327]
+define V_269 = 65;			// Sense When Fire Trigger is Pressed [Min 1 - Max 327] 
+/*
+╔══════════════════════════════════════════════════╗
+║      BUILD MOD ONE: Build Tracking               ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_270 = Off;     	// [Off - On] - Isolate Aim Assist & Other Mods In Build Mode
+define V_271 = 2000; 	    // Auto De-Sync After 2 Seconds Of being Idol [Pickaxe == Manual Re-Sync]
+/*
+╔══════════════════════════════════════════════════╗
+║      BUILD MOD TWO: Ramp Floor Wall              ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_272 = Off;    	    // [Off - On] - Ramp Floor Roof
+/*
+╔══════════════════════════════════════════════════╗
+║      BUILD MOD THREE: Floor n Pyramid's          ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_273 = Off;    		// [Off - On] - Floor n Pyramid
+/*
+╔══════════════════════════════════════════════════╗
+║      BUILD MOD FOUR: Build Protection            ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_274 = Off;    		// [Off - On] - Hold Build Piece Protection
+define V_275 = 1000;        // Hold The Button For 1 Second (Default) Before Mod Activates 
+define V_276 = 30;			// Spam Build Button At This Speed 30ms (Default)
+/*
+╔══════════════════════════════════════════════════╗
+║      EDIT MOD ONE: EDIT ASSIST                   ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_277 = Off; 	 	// [Off - On] - Quick Edit Assist
+/*
+╔══════════════════════════════════════════════════╗
+║      EDIT MOD TWO: FAST RESET                    ║
+╚══════════════════════════════════════════════════╝
+*/
+define V_278 = Off;		 	// [Off - On] - Fast Reset														 												
+/*
+╔══════════════════════════════════════════════════╗
+║      MISCELLANEOUS MOD ONE: Hair Triggers        ║
+╚══════════════════════════════════════════════════╝
+*/														
+define V_279 = On;   	    // [Off - On] - Instant Triggers (Sets L2/LT + R2/RT to 100 Instantly) (!!R2/RT Not Active When Dynamic Fire In Use)											
+/*
+╔══════════════════════════════════════════════════╗
+║      MISCELLANEOUS MOD TWO: Playstation On Xbox  ║
+╚══════════════════════════════════════════════════╝
+*/														
+define V_280 = Off;    	    // [Off - On] - Touchpad Fix On PC or Xbox 													
+/*
+╔══════════════════════════════════════════════════╗
+║      MISCELLANEOUS MOD THREE: BLOCK RUMBLE       ║
+╚══════════════════════════════════════════════════╝
+*/ 										
+define V_281 = On;          // [Off - On] - Block Controller Rumble
+/*
+╔══════════════════════════════════════════════════╗
+║      MISCELLANEOUS MOD FOUR: ME. Zen Rainbow Flow║
+╚══════════════════════════════════════════════════╝
+*/
+define V_282 = On;  	    /* [Off - On] - Don't At Me's Rainbow Flow (LED CYCLE)
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▄ ██ ▄▄ ██ ▄▄▄██ ▄▄▄██ ▄▄▀███▄▄ ▄▄██ ▄▄▄ ██ ▄▄ ██ ▄▄ ██ █████ ▄▄▄████ ▄▄▀██ ▄▄▄██ ▄▄▄█ ▄▄▀██ ██ ██ ████▄▄ ▄▄████ ▄▄▄ █▄▄ ▄▄█ ▄▄▀█▄▄ ▄▄██ ▄▄▄██
+██▄▄▄▀▀██ ▀▀ ██ ▄▄▄██ ▄▄▄██ ██ █████ ████ ███ ██ █▀▀██ █▀▀██ █████ ▄▄▄████ ██ ██ ▄▄▄██ ▄▄██ ▀▀ ██ ██ ██ ██████ ██████▄▄▄▀▀███ ███ ▀▀ ███ ████ ▄▄▄██
+██ ▀▀▀ ██ █████ ▀▀▀██ ▀▀▀██ ▀▀ █████ ████ ▀▀▀ ██ ▀▀▄██ ▀▀▄██ ▀▀ ██ ▀▀▀████ ▀▀ ██ ▀▀▀██ ████ ██ ██▄▀▀▄██ ▀▀ ███ ██████ ▀▀▀ ███ ███ ██ ███ ████ ▀▀▀██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+int V_283 = On  	// Anti-Recoil   - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+int V_284 = Off;    // Rapid Fire    - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+int V_285 = Off;    // Drop Shot     - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+int V_286 = Off;    // Jump Shot     - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+int V_287 = Off;    // Strafe Shot   - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+int V_288 = On;     // 100% Accuracy - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+int V_289 = On;     // Aim Abuse     - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+int V_290 = On;     // Ar Smg        - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+int V_291 = On;     // Global Mod    - [Off - On] Toggle Default State {Leave On If Unsure What It Is}
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▀██ ▄▄▀██ ▄▄▀█▄ ▄█▄▄ ▄▄█▄ ▄██ ▄▄▄ ██ ▀██ █ ▄▄▀██ ███████ ▄▄▄ ██ ▄▄▀██ ▄▄▀█▄ ▄██ ▄▄ █▄▄ ▄▄████ ▄▄▄ ██ ▄▄▄█▄▄ ▄▄█▄▄ ▄▄█▄ ▄██ ▀██ ██ ▄▄ ██ ▄▄▄ ██
+█ ▀▀ ██ ██ ██ ██ ██ ████ ████ ███ ███ ██ █ █ █ ▀▀ ██ ███████▄▄▄▀▀██ █████ ▀▀▄██ ███ ▀▀ ███ ██████▄▄▄▀▀██ ▄▄▄███ █████ ████ ███ █ █ ██ █▀▀██▄▄▄▀▀██
+█ ██ ██ ▀▀ ██ ▀▀ █▀ ▀███ ███▀ ▀██ ▀▀▀ ██ ██▄ █ ██ ██ ▀▀ ████ ▀▀▀ ██ ▀▀▄██ ██ █▀ ▀██ ██████ ██████ ▀▀▀ ██ ▀▀▀███ █████ ███▀ ▀██ ██▄ ██ ▀▀▄██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+define V_292 = 200; // Floor + Pyramid Double Tap Time(ms) 	
+define V_293 = On;  // Aim Abuse Requires Ads + Fire  [Note Ads Must Be More Than The Below Limit On Both Settings]		
+define V_294 = 90;  // Aim Abuse Ads Value To Run Mod	
+define V_295 = 1;   // On The Fly Recoil Adjuster Increment Value {Add}	
+define V_296 = 1;   // On The Fly Recoil Adjuster Decrement Value {Subtract}	
+int V_297 = 0;      // On The Fly Recoil Adjuster 
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█▄ ▄██ ▀██ █▄ ▄█▄▄ ▄▄█▄ ▄█ ▄▄▀██ ████▄ ▄██ ▄▄▄ █ ▄▄▀█▄▄ ▄▄█▄ ▄██ ▄▄▄ ██ ▀██ ██
+██ ███ █ █ ██ ████ ████ ██ ▀▀ ██ █████ ███▀▀▀▄▄█ ▀▀ ███ ████ ███ ███ ██ █ █ ██
+█▀ ▀██ ██▄ █▀ ▀███ ███▀ ▀█ ██ ██ ▀▀ █▀ ▀██ ▀▀▀ █ ██ ███ ███▀ ▀██ ▀▀▀ ██ ██▄ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+init {
+	
+	V_388 = Z_1;
+    V_389 = 150;
+    combo_run(F_77);
+    V_439[Z_0] = F_3[Z_48];
+    V_479[Z_0] = F_3[Z_49];
+    F_46();
+}
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▀▄ █ ▄▄▀█▄ ▄██ ▀██ ██
+██ █ █ █ ▀▀ ██ ███ █ █ ██
+██ ███ █ ██ █▀ ▀██ ██▄ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ 
+*/  
+main {
+
+    if (V_477) {
+    
+    	block_rumble();
+    }
+
+	if (V_476) {
+		
+		if (get_console() == Z_2 || get_console() == Z_5) {
+			
+			if (get_controller() == Z_4 || get_controller() == Z_7) { 
+	
+				swap(Z_27,Z_1);
+			}
+		}
+    }
+	
+	if (V_468) {
+	    
+	    if (get_ival(V_66)) {
+	    		
+	    	sensitivity(V_84,V_580 / Z_2,V_580);
+			sensitivity(V_83,V_580 / Z_2,V_580);
+			
+		} else if (get_ival(V_65)) {
+			
+	    	sensitivity(V_84,V_581 / Z_2,V_581);
+			sensitivity(V_83,V_581 / Z_2,V_581);
+			
+		} else {
+			
+	    	sensitivity(V_84,V_579 / Z_2,V_579);
+			sensitivity(V_83,V_579 / Z_2,V_579);		
+		}
+	}
+		
+   	if (V_475) { 
+   		
+   		deadzone(Z_7,Z_4,Z_100,Z_100);
+   	}
+   	
+   	V_403 = isqrt(abs(get_ival(V_84)) * abs(get_ival(V_84)) + abs(get_ival(V_83)) * abs(get_ival(V_83)));
+   	
+	if (V_473) {
+	 	
+	 	if (get_ival(V_93)) {
+			
+			V_93();
+			V_378 = V_4;
+		}
+
+		if (event_release(V_93)) {
+			
+			V_379 = V_5;
+			V_378 = V_5;
+		}
+	}
+
+    if (V_474) {
+    	
+    	if (!get_ival(V_66) && !get_ival(V_126) && event_press(V_94)) { 
+        
+        	V_373 = V_94;
+        	combo_run(V_94);
+        }
+    }
+
+	if (!V_369 && V_469) {
+            
+    	if (event_press(V_77)) {
+                
+        	V_381 = !V_381;
+        }
+        
+        if (V_381) {
+            
+            V_382 += get_rtime();
+            
+            if (event_press(V_69) || V_382 == V_582) {
+                
+                V_381 = V_5;
+                V_382 = V_5;
+ 			}
+            
+            if (get_ival(V_81) || get_ival(V_79) || get_ival(V_80) || get_ival(V_78) || get_ival(V_82) || get_ival(V_93) || get_ival(V_75) || combo_running(V_470) || combo_running(V_471)) V_382 = V_5;
+	    
+	        if (!V_378) {
+        	
+        	    if (V_470) {
+                	
+                	if (event_press(V_128)) {
+			    	
+			    		if (V_129) {
+			    			
+			    			V_373 = V_128;
+			    		}
+			    		combo_run(V_470);
+			    	}
+			    }
+			    
+			    if (V_471) {
+			    
+			    	if (event_press(V_79) && get_brtime(V_79) <= V_292) {
+			    	
+			    		V_383 = V_4;
+			    		combo_run(V_471);
+			    	}
+			    	
+			    	if (V_383 && get_ival(V_79)) {
+			    	
+			    		combo_run(V_471);
+			   		
+			   		} else {
+			   			
+			   			V_383 = V_5;
+			   		}
+			   	}
+			}
+	    } 
+	}
+	
+	if (!V_381 && !V_378) {
+    
+	    if (!V_369 && V_460) {
+	        
+	        if (event_press(V_69)) 
+	        	
+	        	V_380 = V_4;
+	        
+	        if (V_380) {
+	        	
+	        	if (event_press(V_77) || event_press(V_66) || event_press(V_67) || event_press(V_68)) 
+	            	
+	            	V_380 = V_5;
+	                    
+	            if (event_release(V_65))
+	            	
+	            	combo_run(V_69);
+	        }
+	    }
+        
+        if (V_440) {
+        
+        	if (V_480 <= Z_40) {
+        
+        		if (!get_ival(V_66) && event_press(V_65) ||  !get_ival(V_65) && event_press(V_66)) {
+			
+					if (V_480 == Z_19 || V_480 == Z_20 || V_480 == Z_21 || V_480 == Z_22) V_399 = V_343;
+				}
+        
+        		if (get_ival(V_66) || V_487 && get_ival(V_65)) {
+        		
+        			if (get_ival(V_65)) {
+        		
+        				if (V_485) V_404 = V_483;  
+        				if (V_486) V_405 = V_484; 
+        		
+        			} else {
+        		
+        				V_404 = V_481;
+        				V_405 = V_482;
+        			}
+    
+    				V_406 = clamp(((V_404 * (V_335 + V_404 - isqrt(pow(get_ival(V_88),V_337) + pow(get_ival(V_87),V_337)))) / V_335),V_5,V_404);
+        		
+        			F_113(V_480);
+        			F_112(V_399,((V_406) * V_332));
+        		}
+        	
+        	} else if (V_480 == Z_41 || V_480 == Z_42) {
+        		
+        		if (get_ival(V_66) || V_487 && get_ival(V_65)) {
+            		
+            		if (V_480 == Z_41) {
+        		
+        				if (V_481 >= Z_10) V_397 = V_481 / Z_10;
+        			
+        				else V_397 = Z_10 / Z_10;
+        			
+        				V_398 = Z_50;
+        			}
+            	
+            		if (V_480 == Z_42) {
+        		
+        				if (V_481 >= Z_10) V_397 = V_481 / Z_10;
+        			
+        				else V_397 = Z_10 / Z_10;
+        			
+        				V_398 = Z_2;
+        			}
+            		
+            		F_114();
+            	}
+            
+            	if (!get_ival(V_66) && !get_ival(V_65)) {
+            
+            		V_401 = Z_0;
+            		V_402 = Z_0;
+            	}
+        	}       	
+        }
+
+		if (V_441) {
+		    
+			if ((get_ival(V_66) || get_ival(V_65)) && V_403 < V_495) {
+	            
+	        	if (V_488) {
+	                
+	        		if (V_424 < V_492) {
+	                    	
+	                	V_423 += V_491;
+	                    
+	                    if (V_423 > Z_117) { 
+	                    		
+	                    	V_423 = Z_0;
+	                    }
+	                    V_424++;
+	                }
+	                    
+	                if (V_424 >= V_492) {
+	                    
+	                    V_423 -= V_491;
+	                    
+	                    if (V_423 < Z_0) { 
+	                    
+	                    	V_423 = Z_117;
+	                    }	
+	                    V_424++;
+	                }
+	                    
+	                if (V_424 == V_492 * Z_2) { 
+	                    
+	                    V_424 = Z_0;
+	                }	
+	            
+	            } else {
+	                
+	            	V_423 += V_491;
+	                
+	                if (V_423 > Z_117) { 
+	                		
+	                	V_423 = Z_0;
+	                }
+	            }
+	                	    
+	            set_polar(V_91,V_423,(V_403 * V_332 / Z_3) + (V_490 * V_332) + V_425);
+	                
+	            if (V_489) {
+	                
+	                if (V_426) {
+	                		
+	                	V_425 += V_494;
+	                	
+	                } else {
+	                	
+	                	V_425 -= V_494;
+                    }
+                        
+	                if (V_425 > V_493 * V_332) {
+	                		
+	                	V_426 = !V_426;
+	                }
+	                
+	                if (V_425 < inv(V_493) * V_332) {
+	                		
+	                	V_426 = !V_426;
+	                }
+	            }
+		    }
+		    
+		    if ((get_ival(V_66) || get_ival(V_65)) && V_403 >= V_495) {
+                    
+                if (V_496 == Z_0) {    
+		            	
+		            if (get_ival(V_65)) {
+                            
+                     	V_429 = V_499;
+                        V_430  = V_500;
+                    	
+                    } else {
+                                
+                     	V_429 = V_497;
+                        V_430  = V_498;
+                    }
+		            	
+		            V_431 += V_430;
+                    V_431 = V_431 % Z_101;
+                    V_428 = F_0[V_431 % Z_101];
+                    V_427 = F_0[(V_431 + Z_116) % Z_101];
+                    V_427 = (V_427 * V_429) / Z_100;
+                    V_428 = (V_428 * V_429) / Z_100;
+		            
+                    F_100(V_84,V_427);
+                    F_100(V_83,V_428); 
+    	            
+    	        } else if (V_496 == Z_1) {
+    	        
+    	        	combo_run(V_50);
+    	        }	
+		    } else {
+		        	
+		        combo_stop(V_50);
+		    }
+		}
+
+		if (V_442) {
+            
+            if (get_ival(V_66) || (V_506 && get_ival(V_65))) {
+                
+                combo_run(F_130);
+                
+            } else {
+                
+                combo_stop(F_130); 
+            }
+        }
+        
+        if (V_446) {
+	        
+			if (get_ival(V_66) || (V_524 && get_ival(V_65))) {
+		    
+		     	F_118();
+		    
+		    } else {
+		    
+		    	V_416 = Z_0;
+		    }
+		}
+		    
+		if (V_445) {
+		    
+	    	if (event_press(V_66)) { 
+	        	
+	        	V_432 = V_4;
+	        	
+	        } else if (V_519 && !get_ival(V_66) && event_press(V_65)) {
+	        	
+	        	V_432 = V_4;
+	        }
+	        
+	        if (get_ival(V_66) || (V_519 && get_ival(V_65))) {
+	        	
+	        	F_115(V_515,V_516);
+	            
+	        } else {
+	        	
+	        	V_433 = Z_0;
+	        	V_434 = V_5;
+	        }
+	    }	
+
+        if (V_443) {
+            
+            if (get_ival(V_66) || (V_509 && get_ival(V_65))) {
+                
+                combo_run(F_131);
+                
+            } else {
+                
+                combo_stop(F_131); 
+            }
+        }
+            
+		if (V_444) {
+            
+        	if (get_ival(V_66) || (V_514 && get_ival(V_65))) {
+                
+            	if (V_403 <= V_513) {
+                
+					combo_run(V_444);
+                
+                } else {
+                
+                    combo_stop(V_444); 
+                }
+            }
+        }
+				
+		if (V_447) {
+		
+			if (get_ival(V_66) || V_527 && get_ival(V_65)) {
+			
+				combo_run(F_129);
+			
+			} else {
+		
+				combo_stop(F_129);
+			}
+		}
+		
+		if (V_289) { 
+		
+            if (V_450) {
+            
+            	if (V_546 == Z_0) {
+            	
+            	    V_384 = V_547 * Z_5 - isqrt(abs(get_ival(V_84)) * abs(get_ival(V_84)) + abs(get_ival(V_83)) * abs(get_ival(V_83)) * Z_5);
+            	    
+                    if (V_293) {
+                    	
+                    	if (get_ival(V_66) >= V_294 && get_ival(V_65)) {
+                    	
+                    		combo_run(F_123);
+                    	
+                    	} else {
+                                
+                        	combo_stop(F_123);
+                    	} 
+                    } else if (get_ival(V_66) >= V_294) {
+                            
+                        combo_run(F_123);
+                            
+                    } else {
+                                
+                        combo_stop(F_123);
+                    }
+                } else if (V_546 == Z_1) {
+                	
+                	if (V_293) {
+                    	
+                    	if (get_ival(V_66) >= V_294 && get_ival(V_65)) {
+                    	
+                    		combo_run(F_122);
+                    	
+                    	} else {
+                                
+                        	combo_stop(F_122);
+                    	} 
+                    } else if (get_ival(V_66) >= V_294) {
+                            
+                        combo_run(F_122);
+                            
+                    } else {
+                                
+                        combo_stop(F_122);
+                    }
+                }
+            }
+        }
+
+	    if (V_451) {
+	        
+	        if (get_ival(V_66) && get_ival(V_65) || V_551 && get_ival(V_65)) {
+	        
+	        	if (abs(get_ival(V_83)) < V_550) { 
+	        		
+	        		V_385 += V_549;
+	        		combo_run(V_451);
+	        	}	
+	        }
+	        
+	        if (!get_ival(V_65)) V_385 = Z_0;
+	        	
+	        if (V_385 >= V_550) combo_stop(V_451);
+	    }
+	    
+		if (V_284) {
+	
+			if (V_452) {
+	
+				if (V_554 == Z_2) {
+	                
+	                if (get_ival(V_65)) {
+	            
+	                    combo_run(V_452);
+	            
+	                } 
+	            } else if (V_554 == Z_1) {
+	            	
+	            	if (get_ival(V_66) && get_ival(V_65)) {
+	            
+	                	combo_run(V_452);    
+	                }
+	           	} else if (V_554 == Z_0) {
+	            	
+	            	if (!get_ival(V_66) && get_ival(V_65)) {
+	            
+	                	combo_run(V_452);    
+	                }            
+	            } else {
+	                
+	                combo_stop(V_452);
+	            }
+	            if (V_555) {
+	            	
+	            	if (event_release(V_65)) {
+	            	
+	            		V_284 = V_5;
+	            	}
+	            }
+	        }
+	    }
+	
+		if (V_285) {
+		
+			if (V_453) {
+				
+				if (V_557 == Z_2) {
+	                
+	                if (get_ival(V_65)) {
+	            
+	                    combo_run(V_453);
+	            
+	                } 
+	            } else if (V_557 == Z_1) {
+	            	
+	            	if (get_ival(V_66) && get_ival(V_65)) {
+	            
+	                	combo_run(V_453);    
+	                }
+	           	} else if (V_557 == Z_0) {
+	            	
+	            	if (!get_ival(V_66) && get_ival(V_65)) {
+	            
+	                	combo_run(V_453);    
+	                }            
+	            } else {
+	                
+	                combo_stop(V_453);
+	            }
+	            if (V_558) {
+	            	
+	            	if (event_release(V_65)) {
+	            	
+	            		V_285 = V_5;
+	            	}
+	        	}
+	        }
+	    }
+
+		if (V_286) {
+		
+			if (V_454) {
+				
+				if (V_560 == Z_0) {
+	                
+	                if (event_press(V_65)) {
+	            
+	                    set_val(V_72,Z_100);
+	            	} 
+	            } else if (V_560 == Z_1) {
+	            	
+	            	if (get_ival(V_65)) {
+	            
+	                	combo_run(V_454);    
+	                
+	                } else {
+	                
+	                	combo_stop(V_453);
+	            
+	            	}
+	            } else if (V_560 == Z_2) {
+	            	
+	            	if (event_press(V_65)) {
+	            
+	                	combo_run(F_121);    
+	                }            
+	            
+	            } 
+	            if (V_561) {
+	            	
+	            	if (event_release(V_65)) {
+	            	
+	            		V_286 = V_5;
+	            	}
+	        	}
+	        }
+	    }
+
+		if (V_287) {
+
+        	if (V_455) {
+        
+                if (abs(get_ival(V_85)) <= Z_35 && abs(get_ival(V_86)) <= Z_35) {
+                
+                	if (V_563 == Z_2) {
+	                    
+	                    if (get_ival(V_65)) {
+	                
+	                        combo_run(V_455);
+	                
+	                    } 
+	                } else if (V_563 == Z_1) {
+	                	
+	                	if (get_ival(V_66) && get_ival(V_65)) {
+	                
+	                    	combo_run(V_455);    
+	                    }
+	               	} else if (V_563 == Z_0) {
+	                	
+	                	if (!get_ival(V_66) && get_ival(V_65)) {
+	                
+	                    	combo_run(V_455);    
+	                    }            
+	                } else {
+	                    
+	                    combo_stop(V_455);
+	                }
+        	    }
+        	    
+        	    if (V_564) {
+	                	
+	                if (event_release(V_65)) {
+	                	
+	                	V_286 = V_5;
+	                }
+	            }
+	        }
+    	}
+
+	    if (V_288) {
+		    
+		    if (V_456) {
+			
+			    if (get_ival(V_115) && get_ival(V_116)) {
+			    
+			    	V_373 = V_116;
+			    	combo_run(V_456);
+			    
+			    } else {
+			    
+			    	combo_stop(V_456);
+			    }
+			}
+		}
+		
+	    if (V_291) {
+	    	
+	    	if (V_461) { 
+	    
+	    		if (get_ival(V_122) && event_press(V_123)) {
+            
+            		V_373 = V_123;
+            		combo_run(V_461);
+            	}
+            }
+        	
+	    	if (V_462) {
+	    
+	    		if (get_ival(V_124) && event_press(V_125)) {
+            
+            		V_373 = V_125;
+            		combo_run(V_462);
+            	}
+            }
+
+			if (V_463) {
+	    
+	    		if (get_ival(V_126) && event_press(V_127)) {
+            
+            		V_373 = V_127;
+            		combo_run(V_463);
+            	}
+            }
+	        
+	        if (V_457) {
+            
+                if (V_411) {
+                    
+                    set_val(V_65,Z_0);
+                }
+                
+                if (event_press(V_65) && !V_380) {
+                    
+                    if (!V_412) {
+                        
+                        V_412 = V_4;
+                        combo_run(V_457);
+                        set_val(V_65,Z_0);
+                	}
+                }
+                
+                if (event_press(V_67)) {
+                    
+                    V_412 = V_5;
+                }
+                
+                if (event_press(V_68)) {
+                    
+                    V_412 = V_4;
+                }
+            }
+        	
+        	if (V_465) {
+				
+				if (get_ival(V_119) && event_press(V_120)) {
+	                
+	                V_373 = V_120;
+	                combo_run(V_465);
+	            }
+			}
+			
+			if (V_466) {
+				
+				if (get_ival(V_117) && event_press(V_118)) {
+	                
+	                V_373 = V_120;
+	                combo_run(V_466);
+	            }
+			}
+			
+			if (V_467) { 
+            
+        		if (get_ival(V_66) && get_ival(V_65) && get_ptime(V_65) >= V_578) {
+                    
+            		combo_run(V_467);
+        		}
+        	}
+        	
+        	if (V_459) {
+	        
+	        	if (get_ival(V_72) && get_ptime(V_72) >= V_568) {
+	        	
+	        		combo_run(V_459) ;
+	        	
+	        	} else {
+	        	
+	        		combo_stop(V_459);
+	        	}	        	
+	        }
+		}
+		
+		if (V_290) {
+        
+            if (V_458 && !V_380) {
+                
+                if (event_press(V_70)) {
+                    
+                    V_422 = V_4;
+                }
+            
+                if (V_422) {
+                	
+                	if (get_ival(V_65)) {
+                            
+                        combo_run(F_128);
+                        
+                    } else {
+                        	
+                        combo_stop(F_128);  
+                    }
+                }
+                        
+                 if (event_press(V_67) || event_press(V_68) || event_press(V_69) || event_release(V_65) ) {
+                    	
+                    V_422 = V_5;
+                }        
+            }
+    	}
+		       
+		if (V_283) {
+	    
+	        if (V_448) {
+	        
+	            if (event_press(V_66) || event_press(V_65)) {
+	            	
+	            	V_390 = V_4;
+	            }
+	            
+	            if (get_ival(V_66) && get_ival(V_65)) {
+	            	
+	            	V_448();
+	            }
+			}
+			
+			if (V_449) {
+				
+				V_435 = get_rumble(F_91());
+    			
+    			if (get_ival(V_65)) {
+    			
+    				V_436 += get_rtime(); 
+    				
+    				if (V_436 < (V_544 * Z_100)) { 
+    					
+    					if (V_541 == Z_1) { 
+    				
+    						if (V_435 > Z_10 && V_435 < Z_90) {
+    							
+    							V_437 = (V_543 + V_435 / Z_4); 
+    				        }
+    					} else { 	
+    						
+    						V_438 = V_543; 
+    					} 	
+					}
+					
+					if (V_436 > (V_544 * Z_100)) { 
+						
+						if (V_541 == Z_1) { 
+    						
+    						if (V_435 > Z_10 && V_435 < Z_90) {
+    							
+    							V_437 = (V_542 + V_435 / Z_4); 
+    						}
+    					} else {
+					
+							V_438 = V_542; 
+						}
+					}
+					
+					if (isqrt(pow(get_ival(V_88),Z_2) + pow(get_ival(V_87),Z_2)) > (V_545 * Z_104/Z_100)) { 
+						
+						if (V_541 == Z_1) { 
+							
+							if (V_435 < Z_10) {
+								
+								F_62(V_87,(((V_297 + V_542) - V_545) * Z_104 / Z_100));
+							
+							} else { 
+								
+								F_62(V_87,(((V_297 + V_437) - V_545) * Z_104 / Z_100));
+							}
+						} else { 
+							
+							F_62(V_87,(((V_297 + V_438) - V_545) * Z_104 / Z_100));
+						} 
+		    		}
+					
+					if (isqrt(pow(get_ival(V_88),Z_2) + pow(get_ival(V_87),Z_2)) < (V_545 * Z_104/Z_100)) { 
+				
+						if (V_541 == Z_1) { 
+					
+							if (V_435 < Z_10) {
+								
+								F_62(V_87,((V_297 + V_542) * Z_104/Z_100) - get_val(V_87));
+					
+							} else { 
+								
+								F_62(V_87,(V_297 + V_437) * Z_104 / Z_100);
+							}
+						} else { 
+							
+							F_62(V_87,((V_297 + V_438) * Z_104/Z_100) - get_val(V_87));
+						}
+					}
+	    		}
+	    		
+	    		if (!get_val(V_65)) { 
+					
+					V_435 = Z_0;
+					V_437 = Z_0;
+					V_436 = Z_0;
+				}
+			} 
+	        
+	        if (!V_369 && get_ival(V_131)) {
+                
+                if (event_press(V_133)) {
+                
+                    V_297 = clamp(V_297 - V_296,-Z_99,Z_99);
+                    combo_restart(F_79);
+                }
+                
+                if (event_press(V_132)) {
+                
+                    V_297 = clamp(V_297 + V_295,-Z_99,Z_99);
+                    combo_restart(F_79);
+                }
+                
+                set_val(V_132,Z_0); set_val(V_133,Z_0);
+            }
+	    }
+	}
+	
+	if (V_381 && V_472) {
+	
+		if (get_ival(V_81) && get_ptime(V_81) >= V_583 && !combo_running(F_124)) {
+	    	
+	    	combo_run(V_81);
+	    
+	    } else {
+	    	
+	    	combo_stop(V_81);
+	    }
+	    
+	    if (get_ival(V_78) && get_ptime(V_78) >= V_583 && !combo_running(F_127)) {
+	    	
+	    	combo_run(V_78);
+	    
+	    } else {
+	    	
+	    	combo_stop(V_78);
+	    }
+	    
+	    if (get_ival(V_80) && get_ptime(V_80) >= V_583 && !combo_running(F_125)) {
+	    	
+	    	combo_run(V_80);
+	    
+	    } else {
+	    	
+	    	combo_stop(V_80);
+	    }
+	    
+	    if (get_ival(V_79) && get_ptime(V_79) >= V_583 && !combo_running(F_126)) {
+	    	
+	    	combo_run(V_79);
+	    
+	    } else {
+	    	
+	    	combo_stop(V_79);
+	    }
+	}
+	
+	if (V_469 && V_381 && V_464 || !V_469 && V_464) {
+	    
+	    if (!get_ival(V_80) && !get_ival(V_81) && !get_ival(V_79) && get_ival(V_78) && event_press(V_130)) {
+	    
+	    	V_373 = V_130;
+	    	V_418 = V_4;
+	    	combo_stop(V_78);
+	    	combo_stop(F_125);
+	    	combo_stop(F_124);
+	    	combo_stop(F_126);
+	    	combo_run(F_127);
+	    }
+	    
+	    if (V_418) set_val(V_78,Z_0);
+	    
+	   	if (!get_ival(V_80) && !get_ival(V_81) && !get_ival(V_78) && get_ival(V_79) && event_press(V_130)) {
+	    
+	    	V_373 = V_130;
+	    	V_421 = V_4;
+	    	combo_stop(V_79);
+	    	combo_stop(F_125);
+	    	combo_stop(F_124);
+	    	combo_stop(F_127);
+	    	combo_run(F_126);
+	    }
+	    
+	    if (V_421) set_val(V_79,Z_0);
+	    
+	   	if (!get_ival(V_80) && !get_ival(V_79) && !get_ival(V_78) && get_ival(V_81) && event_press(V_130)) {
+	    
+	    	V_373 = V_130;
+	    	V_419 = V_4;
+	    	combo_stop(V_81);
+	    	combo_stop(F_125);
+	    	combo_stop(F_127);
+	    	combo_stop(F_126);
+	    	combo_run(F_124);
+	    }
+	    
+	    if (V_419) set_val(V_81,Z_0);
+	    
+	    if (!get_ival(V_81) && !get_ival(V_79) && !get_ival(V_78) && get_ival(V_80) && event_press(V_130)) {
+	    
+	    	V_373 = V_130;
+	    	V_420 = V_4;
+	    	combo_stop(V_80);
+	    	combo_stop(F_127);
+	    	combo_stop(F_124);
+	    	combo_stop(F_126);
+	    	combo_run(F_125);
+	    }
+	    
+	    if (V_420) set_val(V_80,Z_0);   	    	
+	} 
+	
+	if (!V_369 && get_ival(V_134) && event_press(V_135)) {
+
+        V_373 = V_135;
+        F_64(V_4,V_5,V_4,V_4,V_4);
+        combo_run(F_119);
+        combo_stop(F_78);
+        combo_stop(F_79);
+    }
+
+    if (V_369) {
+
+        combo_stop(F_77);
+        V_368 += get_rtime();
+
+        if (get_ival(V_0) || get_ival(V_1) || get_ival(V_2) || get_ival(V_3) || event_press(V_137) || event_press(V_138)) {
+
+            V_368 = V_5;
+        }
+
+            if (V_368 >= V_299 || event_press(V_136)) {
+            
+                if (event_press(V_136)) V_373 = V_136;
+                
+                F_64(V_5,V_5,V_5,V_5,V_5);
+                combo_run(F_119);
+                combo_run(F_78);
+                F_35();
+                V_399 = V_5;
+                V_400 = V_5;
+                V_402 = V_5;
+            }
+
+            if (V_372 && event_press(V_137)) {
+
+				V_366 = V_370;
+				
+				if (F_7[V_366 - Z_1][Z_0]) {
+                
+                	V_371 = V_4;
+                	V_372 = V_5;
+                	V_370 = F_7[V_366 - Z_1][Z_1];
+                	V_367 = V_4;
+                
+                } else {
+                
+                	combo_run(F_120);
+                }    
+            }
+            
+            if (V_371 && event_press(V_138)) {
+            
+            	V_372 = V_4;
+            	V_371 = V_5;
+                V_370 = V_366;
+                V_367 = V_4;
+            }	
+
+        if (V_371) {
+
+        	if (V_370 == Z_49) {
+
+        		V_479[V_370] = F_81(V_479[V_370],F_5[V_370 - Z_1][Z_0],F_5[V_370 - Z_1][Z_1],F_5[V_370 - Z_1][Z_2],F_7[V_366 - Z_1][Z_1],F_7[V_366 - Z_1][Z_2],F_13[V_370 - Z_1],F_23[V_479[V_370]]);    
+        	
+        	} else if (V_370 == Z_81) {
+
+        		V_479[V_370] = F_81(V_479[V_370],F_5[V_370 - Z_1][Z_0],F_5[V_370 - Z_1][Z_1],F_5[V_370 - Z_1][Z_2],F_7[V_366 - Z_1][Z_1],F_7[V_366 - Z_1][Z_2],F_13[V_370 - Z_1],F_25[V_479[V_370]]);    
+        
+        	} else if (V_370 == Z_75 || V_370 == Z_78 || V_370 == Z_84) {
+
+        		V_479[V_370] = F_81(V_479[V_370],F_5[V_370 - Z_1][Z_0],F_5[V_370 - Z_1][Z_1],F_5[V_370 - Z_1][Z_2],F_7[V_366 - Z_1][Z_1],F_7[V_366 - Z_1][Z_2],F_13[V_370 - Z_1],F_16[V_479[V_370]]);    
+        
+        	} else if (V_370 == Z_76 || V_370 == Z_79 || V_370 == Z_82 || V_370 == Z_85) {
+
+        		V_479[V_370] = F_81(V_479[V_370],F_5[V_370 - Z_1][Z_0],F_5[V_370 - Z_1][Z_1],F_5[V_370 - Z_1][Z_2],F_7[V_366 - Z_1][Z_1],F_7[V_366 - Z_1][Z_2],F_13[V_370 - Z_1],F_19[V_479[V_370]]);    
+        
+        	} else {
+        
+            	V_479[V_370] = F_81(V_479[V_370],F_5[V_370 - Z_1][Z_0],F_5[V_370 - Z_1][Z_1],F_5[V_370 - Z_1][Z_2],F_7[V_366 - Z_1][Z_1],F_7[V_366 - Z_1][Z_2],F_13[V_370 - Z_1],F_14[V_370 - Z_1]);
+			}
+		}
+
+        if (V_372) {
+            
+            V_439[V_370] = F_81(V_439[V_370],V_5,V_4,Z_1,V_304,V_439[Z_0],F_11[V_370 - Z_1],F_12[V_370 - Z_1]);
+        }    
+		
+		F_70(V_1); F_70(V_0); F_70(V_2); F_70(V_3); F_70(V_137); F_70(V_138);
+	}
+	
+	if (!V_369) {
+		
+		if (V_452 && get_ival(V_97) && event_press(V_98)) {
+
+    		V_373 = V_98;
+    		V_284 = !V_284;
+    		V_376 = V_4;
+    		F_73(V_284,F_9[Z_0]);
+		}
+		
+		if (V_453 && get_ival(V_99) && event_press(V_100)) {
+			
+			if (V_101) V_373 = V_100;
+    		V_285 = !V_285;
+    		V_376 = V_4;
+    		F_73(V_285,F_9[Z_1]);
+		}
+
+		if (V_454 && get_ival(V_102) && event_press(V_103)) {
+
+    		if (V_104) V_373 = V_103;
+    		V_286 = !V_286;
+    		V_376 = V_4;
+    		F_73(V_286,F_9[Z_2]);
+		}
+		
+		if (V_455 && get_ival(V_105) && event_press(V_106)) {
+
+    		V_373 = V_106;
+    		V_287 = !V_287;
+    		V_376 = V_4;
+    		F_73(V_287,F_9[Z_3]);
+		}
+		
+		if (V_456 && get_ival(V_107) && event_press(V_108)) {
+
+    		V_373 = V_108;
+    		V_288 = !V_288;
+    		V_376 = V_4;
+    		F_73(V_288,F_9[Z_4]);
+		}
+		
+		if (V_448 && get_ival(V_95) && event_press(V_96)) {
+
+    		V_373 = V_96;
+    		V_283 = !V_283;
+    		V_376 = V_4;
+    		F_73(V_283,F_9[Z_5]);
+		}
+		
+		if (V_450 && get_ival(V_109) && event_press(V_110)) {
+
+    		V_373 = V_110;
+    		V_289 = !V_289;
+    		V_376 = V_4;
+    		F_73(V_289,F_9[Z_6]);
+		}
+
+		if (V_461 || V_462 || V_463 || V_457 || V_465 || V_466 || V_467 || V_459) {
+			
+			if (get_ival(V_113) && event_press(V_114)) {
+
+    			V_373 = V_114;
+    			V_291 = !V_291;
+    			V_376 = V_4;
+    			F_73(V_291,F_9[Z_7]);
+    		}
+		}
+		
+    	if (V_458 && !get_ival(V_131) && get_ival(V_111) && event_press(V_112)) {
+        
+        	V_373 = V_112;
+        	V_290 = !V_290;
+        	V_376 = V_4;
+        	F_73(V_290,F_9[Z_8]);
+    	}
+  
+       	if (!V_469 && V_478) F_90();
+       	
+       	if (V_469) {
+       		
+       		if (V_381) {
+       		
+       			set_rgb(Z_115,Z_0,Z_0);
+       	
+       		} else {
+       		
+       			set_rgb(Z_0,Z_0,Z_115);
+       		}
+       	}
+	}
+	
+	if (!V_448 && !V_449 || V_448 && !V_283 || V_449 && !V_283) {
+		
+		V_391 = V_5;
+		V_413 = V_5;
+	}
+    
+    if (V_375) {
+        
+        F_72();
+    }
+
+    if (V_373) {
+        
+        if (event_release(V_373)) {
+            
+            V_373 = V_5;
+        
+        } else {
+            
+            set_val(V_373,V_5);
+        }
+    }
+}
+/* 
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▀██ ▄▄▄ ██ ▄▀▄ ██ ▄▄▀██ ▄▄▄ ██ ▄▄▄ ██
+██ █████ ███ ██ █ █ ██ ▄▄▀██ ███ ██▄▄▄▀▀██
+██ ▀▀▄██ ▀▀▀ ██ ███ ██ ▀▀ ██ ▀▀▀ ██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+combo F_131 {
+   
+    set_val(V_83,F_92(V_83,V_507));
+    wait(V_508);
+    set_val(V_84,F_92(V_84,V_507));
+    set_val(V_85,F_92(V_85,V_507));
+    wait(V_508);
+    set_val(V_83,F_92(V_83,inv(V_507)));
+    wait(V_508);
+    set_val(V_84,F_92(V_84,inv(V_507)));
+    set_val(V_85,F_92(V_85,inv(V_507)));
+    wait(V_508);
+}
+
+combo V_444 {
+   
+    set_val(V_83,inv(V_510) + get_ival(V_83));
+    wait(V_512);
+    set_val(V_84,V_511 + get_ival(V_84));
+    wait(V_512);
+    set_val(V_83,V_510 + get_ival(V_83));
+    wait(V_512);
+    set_val(V_84,inv(V_511) + get_ival(V_84));
+    wait(V_512);
+} 
+
+combo V_50 {
+
+	F_97(V_84,V_501);
+	F_97(V_83,V_501);
+	wait(V_502);
+	F_97(V_84,inv(V_501));
+	F_97(V_83,inv(V_501));
+	wait(V_502);
+}
+
+combo F_117 {
+
+	F_97(V_83,V_417);
+	wait(V_522);
+	F_97(V_84,inv(V_417));
+	wait(V_522);
+	F_97(V_84,V_417);
+	wait(V_522);
+	F_97(V_83,inv(V_417));
+	wait(V_522);
+}
+
+combo F_130 {
+   
+    F_97(V_83,inv(V_503));
+    wait(V_505);
+    F_97(V_84,V_504);
+    wait(V_505);
+    F_97(V_83,V_503);
+    wait(V_505);
+    F_97(V_84,inv(V_504));
+    wait(V_505);
+}
+
+combo F_129 {
+	
+	F_62(V_89,(V_526 * Z_104/Z_100));
+	wait(V_525);
+	F_62(V_89,inv((V_526 * Z_104/Z_100)));
+	wait(V_525);
+	F_62(V_89,(V_526 * Z_104/Z_100));
+	wait(V_525);
+	F_62(V_89,inv((V_526 * Z_104/Z_100)));
+	wait(V_525);
+}
+
+combo F_128 {
+
+    wait(V_567);
+    set_val(V_65,Z_0);
+    set_val(V_67,Z_100);
+    wait(Z_30);    
+    wait(V_567);
+    V_422 = V_5;
+}   
+
+combo V_78 {
+
+    set_val(V_78,Z_100);
+    wait(V_584);
+    set_val(V_78,Z_0);
+    wait(V_584);
+}
+
+combo V_79 {
+
+    set_val(V_79,Z_100);
+    wait(V_584);
+    set_val(V_79,Z_0);
+    wait(V_584);
+}
+
+combo V_80 {
+
+    set_val(V_80,Z_100);
+    wait(V_584);
+    set_val(V_80,Z_0);
+    wait(V_584);
+}
+
+combo V_81 {
+
+    set_val(V_81,Z_100);
+    wait(V_584);
+    set_val(V_81,Z_0);
+    wait(V_584);
+}
+
+combo F_127 {
+	
+	wait(Z_10);
+	set_val(V_77,Z_100);
+	wait(V_572); 		
+	wait(V_573);		
+	set_val(V_66,Z_100);				
+	wait(V_574);       	
+	set_val(V_66,Z_100);
+	set_val(V_65,Z_100);
+	wait(V_575);
+	set_val(V_77,Z_100);
+	wait(V_572);
+	V_418 = V_5;
+}
+
+combo F_126 {
+	
+	wait(Z_10);
+	set_val(V_77,Z_100);
+	wait(V_572); 		
+	wait(V_573);		
+	set_val(V_66,Z_100);				
+	wait(V_574);      	
+	set_val(V_66,Z_100);
+	set_val(V_65,Z_100);
+	wait(V_575);
+	set_val(V_77,Z_100);
+	wait(V_572);
+	V_421 = V_5;
+}
+
+combo F_125 {
+	
+	wait(Z_10);
+	set_val(V_77,Z_100);
+	wait(V_572); 		
+	wait(V_573);		
+	set_val(V_66,Z_100);				
+	wait(V_574);      	
+	set_val(V_66,Z_100);
+	set_val(V_65,Z_100);
+	wait(V_575);
+	set_val(V_77,Z_100);
+	wait(V_572);
+	V_420 = V_5;
+}
+
+combo F_124 {
+	
+	wait(Z_10);
+	set_val(V_77,Z_100);
+	wait(V_572); 		
+	wait(V_573);		
+	set_val(V_66,Z_100);				
+	wait(V_574);       	
+	set_val(V_66,Z_100);
+	set_val(V_65,Z_100);
+	wait(V_575);
+	set_val(V_77,Z_100);
+	wait(V_572);
+	V_419 = V_5;
+}
+
+combo F_123 {
+
+    set_val(V_66,Z_100);
+    wait(V_384);
+    set_val(V_66,Z_0);
+    wait(V_548);
+}
+
+combo F_122 {
+
+    set_val(V_66,Z_100);
+    wait(V_547);
+    set_val(V_66,Z_0);
+    wait(V_548);
+}
+
+combo V_452 {
+
+    set_val(V_65,Z_100);
+    wait(V_552);
+    set_val(V_65,Z_0);
+    wait(V_553);
+}
+
+combo V_453 {
+
+    set_val(V_71,Z_100);
+    wait(Z_50);
+    set_val(V_71,Z_0);
+    wait(Z_20);
+    wait(V_556);
+}
+
+combo F_121 {
+          
+    wait(V_559);
+    set_val(V_72,Z_100);       
+    wait(Z_50);
+}
+
+combo V_455 {
+
+    set_val(V_85,-Z_100);
+    wait(V_562);
+    set_val(V_85,Z_100);
+    wait(V_562);
+}
+
+combo V_454 {
+    
+    set_val(V_72,Z_100);      
+    wait(Z_50);               
+    set_val(V_72,Z_0);       
+    wait(Z_20);
+    wait(V_559);
+}
+
+combo V_459 {
+   
+    wait(Z_30);	
+	set_val(V_72,Z_0);
+    wait(Z_50);
+    wait(V_568);
+}
+
+combo V_456 {
+	
+	set_val(V_65,Z_100);
+	wait(Z_50);
+	wait(V_565);
+}
+
+combo V_69 {
+    
+    set_val(V_69,Z_100);
+    wait(Z_30);
+    V_380 = V_5;
+}
+
+combo V_457 {
+    
+    V_411 = V_4;
+    set_val(V_65,Z_100);
+    wait(V_566);
+    wait(Z_5);
+    set_val(V_66,Z_100);
+    set_val(V_68,Z_100);
+    wait(V_566);
+    V_411 = V_5;
+}
+
+combo V_461 {
+
+    set_val(V_65,Z_100);
+    wait(V_569 + Z_10);
+ 	set_val(V_77,Z_100);
+    wait(V_569);
+    set_val(V_78,Z_100);
+    wait(V_569);
+    set_val(V_77,Z_100);
+    wait(Z_50);
+    wait(Z_30);
+}
+
+combo V_462 {
+
+    set_val(V_65,Z_100);
+    wait(V_570);
+ 	set_val(V_77,Z_100);
+ 	set_val(V_80,Z_0);
+    wait(V_570);
+    set_val(V_80,Z_100);
+    wait(V_570);
+    set_val(V_77,Z_100);
+    wait(Z_50);
+    wait(Z_30);
+}
+
+combo V_465 {
+	
+	wait(Z_10);
+	set_val(V_65,Z_100);
+	wait(V_576);
+	set_val(V_77,Z_100);
+	wait(V_576);
+	set_val(V_78,Z_100);
+	wait(V_576);
+	set_val(V_77,Z_100);
+	wait(Z_20);
+}
+
+combo V_466 {
+	
+	set_val(V_77,Z_100);
+	set_val(V_121,Z_0);
+	wait(V_577);	
+	set_val(V_121,Z_100);
+	set_val(V_78,Z_0);
+	wait(V_577);	
+	set_val(V_121,Z_0);
+	set_val(V_78,Z_100);
+	wait(V_577);	
+	set_val(V_77,Z_100);
+	wait(V_577);
+}
+
+combo V_470 {																													
+	
+	set_val(V_80,Z_100);
+	wait(Z_60);
+	wait(Z_30);
+	set_val(V_79,Z_100);
+	wait(Z_60);
+	wait(Z_30);
+	set_val(V_78,Z_100);
+	wait(Z_60);
+	wait(Z_40);
+}
+
+combo V_471 {
+	
+	wait(Z_20);
+	set_val(V_81,Z_100);
+	wait(Z_50);
+	set_val(V_79,Z_0);
+	
+	if (V_383) {
+		
+		combo_run(V_471);
+	}
+}
+
+combo V_463 {
+
+    set_val(V_65,Z_100);
+    wait(V_571);
+ 	set_val(V_77,Z_100);
+    wait(V_571);
+    set_val(V_78,Z_100);
+    wait(Z_30);
+    set_val(V_79,Z_100);
+    wait(Z_30);
+    set_val(V_78,Z_100);
+    wait(Z_30);
+    set_val(V_79,Z_100);
+    wait(Z_30);    
+    set_val(V_77,Z_100);
+    wait(V_571);
+    wait(Z_30);
+}
+
+combo V_94 {
+
+    set_val(V_93,Z_100);
+    wait(Z_30)
+    set_val(V_76,Z_100);        
+    wait(Z_30);
+}
+
+combo V_467 {
+
+    set_val(V_73,Z_100);
+    wait(Z_40);
+    set_val(V_73,Z_0);
+    wait(Z_40);
+    set_val(V_73,Z_100);
+    wait(Z_40);
+    set_val(V_73,Z_0);
+    wait(Z_40);    
+    wait(3000); 
+}
+
+combo V_451{
+
+	set_val(V_83,inv(V_385) + get_val(V_83));
+}
+
+combo F_119 {
+    
+    set_rumble(V_586,Z_15);
+    wait(250);
+    reset_rumble();
+}
+
+combo F_79 {
+    
+    if (combo_running(F_77))    
+        
+        combo_stop(F_77);
+    
+    if (combo_running(F_78))    
+        
+        combo_stop(F_78);
+        
+	combo_restart(F_119);
+	cls_oled(Z_0);
+	image_oled(Z_0,Z_0,Z_1,Z_1,F_4[Z_0]);
+	F_57(F_8[Z_13],V_308,V_318 - Z_5,V_311,V_322);
+	F_57(F_8[Z_14],V_308,V_321 + Z_3,V_311,V_322);
+	F_53(V_297,F_47(V_297),V_328 - Z_3);
+	wait(Z_10);
+    wait(Z_112);
+    cls_oled(Z_0);	
+}
+
+combo F_77 {
+        
+	cls_oled(Z_0);
+	F_57(F_8[Z_2],V_308,V_318,V_311,V_322);
+	F_57(F_8[Z_3],V_308,V_319,V_311,V_322); 
+	F_57(F_8[Z_11],V_308,V_320,V_311,V_322);
+	F_57(F_8[Z_12],V_308,V_321,V_311,V_322);
+	wait(Z_10);
+    wait(20000);
+    cls_oled(Z_0);
+}
+
+combo F_120 {
+	
+	combo_run(F_119);
+	wait(Z_10);
+    image_oled(Z_0,Z_0,Z_1,Z_1,F_4[Z_0]);
+    print(F_49(V_360(F_8[Z_8]),Z_11),Z_5,Z_1,Z_1,F_8[Z_8]);
+    print(F_49(V_360(F_8[Z_9]),Z_11),Z_24,Z_1,Z_1,F_8[Z_9]);
+    print(F_49(V_360(F_8[Z_10]),Z_11),Z_44,Z_1,Z_1,F_8[Z_10]);
+    wait(Z_20);
+    wait(Z_113);
+    cls_oled(Z_0);
+    V_367 = V_4;
+}
+
+combo F_80 {
+    
+    if (V_377) {
+        
+        set_rgb(Z_0,Z_115,Z_0);
+        set_rumble(V_585,Z_15);
+    
+    } else {
+        
+        set_rgb(Z_115,Z_0,Z_0);
+        set_rumble(V_586,Z_15);
+    }
+    
+    wait(150);
+    set_rgb(Z_0,Z_0,Z_0);
+    wait(250);
+    
+    if (V_377)
+        
+        set_rgb(Z_0,Z_115,Z_0);
+    
+        else
+            
+        set_rgb(Z_115,Z_0,Z_0);
+
+    reset_rumble();
+    reset_leds();
+}
+
+combo F_78 {
+
+	wait(Z_10);
+    image_oled(Z_0,Z_0,Z_1,Z_1,F_4[Z_0]);
+    print(F_49(V_360(F_8[Z_5]),Z_11),Z_5,Z_1,Z_1,F_8[Z_5]);
+    print(F_49(V_360(F_8[Z_6]),Z_11),Z_24,Z_1,Z_1,F_8[Z_6]);
+    print(F_49(V_360(F_8[Z_7]),Z_11),Z_44,Z_1,Z_1,F_8[Z_7]);
+    wait(Z_20);
+    set_rgb(Z_114,Z_0,Z_114);
+    wait(3000);
+    cls_oled(Z_0);
+    reset_leds();
+}
+/* 
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▄██ ██ ██ ▀██ ██ ▄▄▀█▄▄ ▄▄█▄ ▄██ ▄▄▄ ██ ▀██ ██ ▄▄▄ ██
+██ ▄▄███ ██ ██ █ █ ██ ██████ ████ ███ ███ ██ █ █ ██▄▄▄▀▀██
+██ █████▄▀▀▄██ ██▄ ██ ▀▀▄███ ███▀ ▀██ ▀▀▀ ██ ██▄ ██ ▀▀▀ ██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/ 
+function V_93 () {
+
+    V_379 += get_rtime();
+    
+    if (get_ival(V_93)) {
+    	
+    	if (V_379 >= Z_30) V_56(V_74);
+    }
+}
+
+function V_56 (F_71) {
+
+    if (get_ival(F_71)) return;
+    
+    set_val(F_71, Z_100);
+}
+
+function V_448() { 
+                              
+	if (V_390) {
+		
+    	V_396 = V_5;
+    	V_392 = V_5;
+    	V_393 = V_5;
+    	V_395 = Z_50;
+    	V_394 = Z_56;
+	    V_390 = V_5;
+	}
+	
+	if (V_528 == Z_0) {
+	
+	    V_391 = V_479[V_395];
+    
+	    if (V_396 >= V_479[V_394]) {
+	    
+	        if (get_ival(V_66) && get_ival(V_65)) {
+	        	
+	        	if (V_394 == Z_51 && V_396 >= V_479[V_394]) {
+	        		V_395 = Z_49;
+	        		V_394 = Z_55;
+	        	}
+	        }
+	        
+	        V_396 = V_5;
+	        V_395 = clamp(V_395++,Z_50,Z_55);
+	        V_394 = clamp(V_394++,Z_56,Z_61);
+	    }		
+	}
+	
+	if (V_528 == Z_1) {
+	
+		if (!V_393) {
+	
+			if (!V_392)	
+				
+				V_391 = V_479[V_395];
+	
+			if (V_396 >= V_479[V_394]) {
+				
+				V_392 = V_4;
+		
+			if (V_479[V_395] > V_479[V_395 + Z_1]) 
+				
+				V_391 --;
+			
+			if (V_479[V_395] < V_479[V_395 + Z_1]) 
+				
+				V_391 ++;
+				V_396 = V_5;
+		}
+		
+		if (V_391 == V_479[V_395 + Z_1]) {
+			
+			V_392 = V_5;
+			V_395 = clamp(V_395++,Z_50,Z_55);
+	        V_394 = clamp(V_394++,Z_56,Z_61);
+		}
+			else if (V_395 == Z_55) {
+				
+				V_393 = V_4;
+			}
+		}
+	}
+	
+	V_413 = clamp(V_391 + V_297,Z_0,Z_100);
+	
+    F_101(V_87,V_413 * Z_104/Z_100);
+	    
+    V_396 += get_rtime();
+}
+
+function F_118() {
+	
+	V_416 += get_rtime();
+	
+	if (V_416 < V_523) {
+		
+		V_417 = V_520;
+	
+	} else if (V_416 < (V_523 * Z_2)) {
+		
+		V_417 = V_520 + V_521;
+	
+	} else if  (V_416 < (V_523 * Z_3)) {
+		
+		V_417 = V_520 + (V_521 * Z_2);
+	
+	} else if  (V_416 < (V_523 * Z_4)) {
+		
+		V_417 = V_520 + (V_521 * Z_3);
+	
+	} else if  (V_416 < (V_523 * Z_5)) {
+		
+		V_417 = V_520 + (V_521 * Z_4);
+	}
+	
+	if  (V_416 > V_523 * Z_6) {
+		
+		V_416 = Z_0;
+	}
+	
+	combo_run(F_117);
+}
+
+function F_115(V_515,F_116) {
+
+	if (V_432) {
+		
+		V_414 = V_515;
+		V_415 = V_515 * -Z_1;
+		V_516 = F_116;
+		V_432 = V_5;
+	}
+	
+	if (!V_434) {
+	
+		V_415 += V_516;
+		V_414 -= V_516;
+	
+	} else {
+		
+		V_415 -= V_516;
+		V_414 += V_516;
+	}
+	
+	V_433 ++;
+	
+	if (V_433 >= (V_515 / V_516)) {
+		
+		V_434 = !V_434;
+		V_433 = Z_0;
+	}	
+	
+	if (V_403 > V_517) {
+	
+		if (V_518) {
+		
+			F_97(V_83,(V_414 - V_515 / Z_2));
+			F_97(V_84,(V_415 - V_515 / Z_2 * -Z_1));
+		
+		} else {
+		
+			set_val(V_83,(V_414 - V_515 / Z_2) + get_ival(V_83));
+			set_val(V_84,(V_415 - V_515 / Z_2 * -Z_1) + get_ival(V_84));	
+		}
+		
+	} else {
+		
+		if (V_518) {
+				
+			F_97(V_83,(V_414 - V_515 / Z_2));
+			F_97(V_84,(V_415 - V_515 / Z_2 * -Z_1));
+			
+		} else {
+			
+			set_val(V_83,(V_414 - V_515 / Z_2));
+			set_val(V_84,(V_415 - V_515 / Z_2 * -Z_1));
+		}
+	}
+}
+
+function F_114() {
+
+	V_401 += get_rtime();
+			
+	V_400 = (V_400 + V_398);
+			
+	if (!V_402) 
+		
+		F_112(V_400,(V_401 * V_397 / Z_10 * Z_2 * Z_103));
+		
+	if (V_402 == Z_1)  
+		
+		F_112(V_400,(V_401 * V_397 / Z_10 * Z_2 * Z_103));
+	
+	if (V_402 == Z_2)  
+		
+		F_112(V_400,inv(V_401 * V_397 / Z_10 * Z_2 * Z_103));
+
+	if (V_402 == Z_3) {
+		
+		F_112(V_400,inv(V_401 * V_397 / Z_10 * Z_2 * Z_103));
+	
+		if (V_401 > Z_50) {
+		
+			V_401 = V_5;
+			V_402 = V_5;
+		}
+	
+	} else if (V_401 > Z_50) {
+		
+		V_401 = V_5;
+		V_402 ++;
+	}
+}
+
+function F_113(F_48) {
+	
+	if (!F_48 || !V_409) V_399 = ((V_399 + V_405));
+	
+	if (!F_48) {
+		
+		V_409 = V_5; V_410 = V_5; V_407 = V_5; V_408 = V_5; V_362 = V_5;
+	}
+	
+	if (F_48 > Z_0 && F_48 <= Z_3) {
+		
+		V_409 = V_5; V_410 = V_5; V_407 = V_5; V_408 = V_5;	
+		V_362++;
+		
+		if (F_48 == Z_1 && V_362 >= Z_2 || F_48 == Z_2 && V_362 >= Z_3 || F_48 == Z_3 && V_362 >= Z_4) {
+		
+			V_362 = V_5;
+		}
+	}
+	
+	if (F_48 == Z_4) {
+		
+		V_409 = V_5; V_410 = V_5; V_362 = V_5; V_408 = V_5; V_407 = F_3[Z_33];
+	}
+	
+	if (F_48 == Z_5) {
+	
+		V_409 = V_5; V_410 = V_5; V_408 = V_5; V_362 = V_5; V_407 = F_3[Z_34];
+	}
+	
+	if (F_48 == Z_6) {
+	
+		V_409 = V_5; V_410 = V_5; V_362 = V_5; V_407 = V_5; V_408 = F_3[Z_33];
+	}	
+	
+	if (F_48 == Z_7) {
+	
+		V_409 = V_5; V_410 = V_5; V_362 = V_5; V_407 = V_5; V_408 = F_3[Z_34];
+	}
+	
+	if (F_48 > Z_7 && F_48 <= Z_10) {
+		
+		V_409 = V_5; V_410 = V_5; V_362 = V_5; V_407 = V_5;
+		V_408++;
+		
+		if (F_48 == Z_8 && V_408 >= Z_2 || F_48 == Z_9 && V_408 >= Z_3) {
+			
+			V_408 = V_5;
+		
+		} else if (F_48 == Z_10 && V_408 >= Z_3) {
+			
+			V_408 = F_3[Z_33];
+		} 
+	}
+	
+	if (F_48 > Z_10 && F_48 <= Z_13) {
+		
+		V_409 = V_5; V_410 = V_5; V_362 = V_5; V_408 = V_5;
+		V_407++;
+		
+		if (F_48 == Z_11 && V_407 >= Z_2 || F_48 == Z_12 && V_407 >= Z_3) {
+			
+			V_407 = V_5;
+		
+		} else if (F_48 == Z_13 && V_407 >= Z_3) {
+			
+			V_407 = F_3[Z_33];
+		} 
+	}
+	
+	if (F_48 == Z_14) {
+	    
+	    V_409 = V_5; V_410 = V_5;
+	    if (V_399 >= Z_101) V_363 = !V_363;
+	    
+	    if (V_363) { 
+	    	 		
+	    	 V_407 = F_3[Z_34]; V_408 = F_3[Z_33];
+	    	 	
+	    } else { 
+	    	  		
+	    	 V_407 = F_3[Z_33]; V_408 = F_3[Z_34];
+	    }
+	}
+	
+	if (F_48 == Z_15) {
+
+		V_409 = V_5; V_410 = F_3[Z_36]; V_407 = V_5; V_408 = V_5;
+		V_362 = V_5;
+	}
+	
+	if (F_48 == Z_16) {
+
+		V_409 = V_5; V_410 = F_3[Z_37]; V_407 = V_5; V_408 = V_5;
+		V_362 = V_5;
+	}	
+	
+	if (F_48 == Z_17) {
+
+		V_409 = V_5; V_410 = F_3[Z_33]; V_407 = V_5; V_408 = V_5;
+		V_362 = V_5;
+	}
+	
+	if (F_48 == Z_18) {
+	    
+	    V_409 = V_5; V_410 = F_3[Z_33];
+	    if (V_399 >= Z_101) V_363 = !V_363;
+	    
+	    if (V_363) { 
+	    	 		
+	    	 V_407 = F_3[Z_34]; V_408 = F_3[Z_33];
+	    	 	
+	    } else { 
+	    	  		
+	    	 V_407 = F_3[Z_33]; V_408 = F_3[Z_34];
+	    }
+	}
+	
+	if (F_48 == Z_19) {
+	
+		V_409 = F_3[Z_33]; V_410 = V_5; V_362 = V_5; V_408 = V_5; V_407 = V_5;
+		
+		if (V_399 >= V_344) V_363 = V_5;
+		if (V_399 <= V_343) V_363 = F_3[Z_33];
+		
+		if (V_363) {
+		
+			V_399 += V_405 % V_344;
+		
+		} else {
+			
+			V_399 -= V_405 % V_343;
+		}
+	}
+
+	if (F_48 == Z_20) {
+	
+		V_409 = F_3[Z_33]; V_410 = V_5; V_362 = V_5; V_408 = V_5; V_407 = V_5;
+		
+		if (V_399 >= V_343) V_363 = V_5;
+		if (V_399 <= V_342) V_363 = F_3[Z_33];
+		
+		if (V_363) {
+		
+			V_399 += V_405 % V_342;
+		
+		} else {
+			
+			V_399 -= V_405 % V_343;
+		}
+	}
+	
+	if (F_48 == Z_21) {
+	
+		V_409 = F_3[Z_33]; V_410 = F_3[Z_33]; V_362 = V_5; V_408 = V_5; V_407 = V_5;
+		
+		if (V_399 >= V_344) V_363 = V_5;
+		if (V_399 <= V_343) V_363 = F_3[Z_33];
+		
+		if (V_363) {
+		
+			V_399 += V_405 % V_344;
+		
+		} else {
+			
+			V_399 -= V_405 % V_343;
+		}
+	}
+	
+	if (F_48 == Z_22) {
+	
+		V_409 = F_3[Z_33]; V_410 = F_3[Z_33]; V_362 = V_5; V_408 = V_5; V_407 = V_5;
+		
+		if (V_399 >= V_343) V_363 = V_5;
+		if (V_399 <= V_342) V_363 = F_3[Z_33];
+		
+		if (V_363) {
+		
+			V_399 += V_405 % V_342;
+		
+		} else {
+			
+			V_399 -= V_405 % V_343;
+		}
+	}
+	
+	if (F_48 > Z_22 && F_48 <= Z_29) {
+	
+		V_409 = F_3[Z_33]; V_362 = V_5;  V_408 = V_5; V_407 = V_5;
+		V_399 += V_405 % V_344; 
+		V_361++;
+		
+		if (F_48 > Z_22 && F_48 <= Z_26) V_410 = F_3[Z_33];
+		else V_410 = V_5;
+		
+		if (V_361 == Z_1) {
+			
+			if (F_48 == Z_23) { V_365 = F_3[Z_0]; V_364 = V_5; }
+			if (F_48 == Z_24) { V_365 = F_3[Z_1]; V_364 = V_5; }
+			if (F_48 == Z_25) { V_365 = F_3[Z_2]; V_364 = V_5; }
+			if (F_48 == Z_26) { V_365 = F_3[Z_3]; V_364 = V_5; }
+			if (F_48 == Z_27) { V_365 = F_3[Z_4]; V_364 = V_5; }
+			if (F_48 == Z_28) { V_365 = F_3[Z_5]; V_364 = V_5; }
+			if (F_48 == Z_29) { V_365 = F_3[Z_3]; V_364 = V_5; }
+		}
+		
+		if (V_361 == Z_2) {
+			
+			if (F_48 == Z_23) { V_365 = V_5; V_364 = F_3[Z_0]; }
+			if (F_48 == Z_24) { V_365 = V_5; V_364 = F_3[Z_1]; }
+			if (F_48 == Z_25) { V_365 = V_5; V_364 = F_3[Z_2]; }
+			if (F_48 == Z_26) { V_365 = V_5; V_364 = F_3[Z_3]; }
+			if (F_48 == Z_27) { V_365 = V_5; V_364 = F_3[Z_4]; }
+			if (F_48 == Z_28) { V_365 = V_5; V_364 = F_3[Z_5]; }
+			if (F_48 == Z_29) { V_365 = V_5; V_364 = F_3[Z_3]; }			
+		}
+		
+		if (V_361 >= Z_3) V_361 = V_5;		
+	}
+	
+	if (F_48 >= Z_30 && F_48 <= Z_33) {
+	
+		V_409 = F_3[Z_33]; V_362 = V_5;  V_408 = V_5; V_407 = V_5;
+		V_399 += V_405 % V_344; 
+		V_361++;
+		
+		if (F_48 == Z_30) V_410 = V_5;
+		else V_410 = F_3[Z_33];
+		
+		if (V_361 == Z_1) {
+		
+			if (F_48 == Z_30) { V_365 = F_3[Z_6]; V_364 = F_3[Z_7]; }
+			if (F_48 == Z_31) { V_365 = F_3[Z_10]; V_364 = F_3[Z_11]; }
+			if (F_48 == Z_32) { V_365 = F_3[Z_14]; V_364 = F_3[Z_15]; }
+			if (F_48 == Z_33) { V_365 = F_3[Z_18]; V_364 = F_3[Z_19]; }
+			
+		}
+		
+		if (V_361 == Z_2) {
+
+			if (F_48 == Z_30) { V_365 = F_3[Z_7]; V_364 = F_3[Z_6]; }
+			if (F_48 == Z_31) { V_365 = F_3[Z_12]; V_364 = F_3[Z_13]; }
+			if (F_48 == Z_32) { V_365 = F_3[Z_16]; V_364 = F_3[Z_17]; }
+			if (F_48 == Z_33) { V_365 = F_3[Z_20]; V_364 = F_3[Z_21]; }
+		}
+		
+		if (V_361 == Z_3) {
+		
+			if (F_48 == Z_30) { V_365 = F_3[Z_8]; V_364 = F_3[Z_9]; }
+			if (F_48 == Z_31) { V_365 = F_3[Z_13]; V_364 = F_3[Z_12]; }
+			if (F_48 == Z_32) { V_365 = F_3[Z_17]; V_364 = F_3[Z_16]; }
+			if (F_48 == Z_33) { V_365 = F_3[Z_21]; V_364 = F_3[Z_20]; }
+		}
+		
+		if (V_361 == Z_4) {
+
+			if (F_48 == Z_30) { V_365 = F_3[Z_9]; V_364 = F_3[Z_8]; }
+			if (F_48 == Z_31) { V_365 = F_3[Z_11]; V_364 = F_3[Z_10]; }
+			if (F_48 == Z_32) { V_365 = F_3[Z_15]; V_364 = F_3[Z_14]; }
+			if (F_48 == Z_33) { V_365 = F_3[Z_19]; V_364 = F_3[Z_18]; }
+		}			
+		
+		if (V_361 >= Z_5) V_361 = V_5;
+	}
+	
+	if (F_48 >= Z_34 && F_48 <= Z_40) {
+	
+		V_409 = F_3[Z_33]; V_362 = V_5;  V_408 = V_5; V_407 = V_5;
+		V_399 += V_405 % V_344; 
+			
+		if (V_361 < Z_5) {
+			
+			if (F_48 == Z_34) { V_365 += F_3[Z_22]; V_364 += F_3[Z_23]; }
+			if (F_48 == Z_35) { V_365 += F_3[Z_24]; V_364 += V_5; }
+			if (F_48 == Z_36) { V_365 += F_3[Z_25]; V_364 += V_5; }
+			if (F_48 == Z_37) { V_365 += F_3[Z_26]; V_364 += F_3[Z_27]; }
+			if (F_48 == Z_38) { V_365 += F_3[Z_28]; V_364 += F_3[Z_29]; }
+			if (F_48 == Z_39) { V_365 += F_3[Z_30]; V_364 += V_5; }
+			if (F_48 == Z_40) { V_365 += V_5; V_364 += F_3[Z_24]; }
+		}
+		
+		V_361++;
+		
+		if (V_361 >= Z_5) V_361 = V_5;
+	}
+}
+					
+function F_112(V_399,V_406) {
+	
+	V_406 = V_406 >> V_4;
+	set_val(V_88,get_ival(V_88) + inv(clamp(((V_406 * V_427(V_399 + V_364) >> (V_407 + V_362)) / (V_341) << V_4),V_336 + get_ival(V_88),V_335 + get_ival(V_88))));
+	set_val(V_87,get_ival(V_87) + inv(clamp(((V_406 * V_428(V_399 + V_365) >> (V_408 + V_362)) / (V_341) << V_4),V_336 + get_ival(V_87),V_335 + get_ival(V_87))));
+}
+
+function F_111(V_399) {
+  
+	if (V_399 < V_5) {
+  		
+  		V_399 = V_330 + (V_399 % V_330);
+  	}
+  	
+  	V_399 = (V_399 + V_331) % V_330;
+  	
+  	return V_399;
+}
+
+function V_428(V_399) {
+  
+  	if (!V_410 || V_410 == F_3[Z_37]) {
+  	
+  		return F_110(F_1[(F_111(V_399 - V_4))],F_1[(F_111(V_399 + V_4))],inv(V_336));
+  	
+  	} else if (V_410 == F_3[Z_33] || V_410 == F_3[Z_36]) {
+  	
+  		return F_110(F_2[(F_111(V_399 - V_4))],F_2[(F_111(V_399 + V_4))],inv(V_336));
+  	}
+  	
+  	return V_5;
+}
+
+function V_427(V_399) {
+  
+	if (!V_410 || V_410 == Z_4) {
+	
+		return F_110(F_1[((F_111(V_399 - V_4) + V_331) % V_330)],F_1[((F_111(V_399 + V_4) + V_331) % V_330)],inv(V_336));
+  
+  	} else if (V_410 == F_3[Z_33] || V_410 == Z_5) {
+  
+  		return F_110(F_2[((F_111(V_399 - V_4) + V_331) % V_330)],F_2[((F_111(V_399 + V_4) + V_331) % V_330)],inv(V_336));
+  	}
+  	
+  	return V_5;
+}
+
+function F_110(F_103,F_104,F_36) {  
+
+	return F_108(F_102(F_109(F_103),F_109(F_104),F_36)); 
+}
+
+function F_109(F_36) { 
+
+	return F_36 * V_339; 
+}
+
+function F_108(F_36) { 
+
+	if (F_36 >= V_5) {
+	
+		return (F_36 + V_339 >> V_4) / V_339; 
+	}
+	
+	return (F_36 - V_339 >> V_4) / V_339; 
+}
+
+function F_105(F_106,F_107) { 
+
+	return ((F_106 >> V_334) * (F_107 >> V_334)); 
+}
+
+function F_102(F_103,F_104,F_36) { 
+	
+	return F_105((V_339 - F_36),F_103) + F_105(F_36,F_104); 
+}
+
+function F_101(F_95,F_36) {
+  
+	set_val(F_95,clamp(F_36 * (Z_104 - abs(get_val(F_95))) / Z_104 + get_val(F_95), -Z_104, Z_104));
+}
+
+function F_100(F_98,F_99) {
+
+      set_val(F_98,clamp(F_99 * (Z_100 - abs(get_ival(F_98))) / Z_100 + get_ival(F_98),-Z_100,Z_100));
+        
+      return; 
+}
+
+function F_97(F_98,F_99) {
+
+      set_val(F_98,clamp(F_99 * (Z_100 - abs(get_val(F_98))) / Z_100 + get_val(F_98),-Z_100,Z_100));
+        
+      return; 
+}
+
+function F_62(F_95,F_36) {
+  
+	if (F_95 >= V_88) {
+  		
+  		set_val(F_95,clamp(F_36 * (Z_104 - abs(get_val(F_95))) / Z_104 + get_val(F_95), -Z_104, Z_104));
+    	return;
+  	}
+  	
+  	set_val(F_95,clamp(F_36 * (Z_100 - abs(get_val(F_95))) / Z_100 + get_val(F_95), -Z_100, Z_100));
+}
+
+function F_92(F_93,F_94) {
+    
+    if (abs(get_ival(F_93)) <= V_507) 
+        
+        return F_94;
+    
+    return get_ival(F_93); 
+}
+
+function F_91() {
+    
+    if (get_rumble(V_585) == get_rumble(V_586)) {
+        
+        return V_585;
+    }
+    
+    if (get_rumble(V_585) == Z_100) {
+    	
+    	return V_586;
+	}
+	
+	if (get_rumble(V_586) == Z_100) {
+    	
+    	return V_585;
+	}
+    
+    if (get_rumble(V_585) > get_rumble(V_586)) {
+        
+        return V_585;
+    }
+    
+    if (get_rumble(V_585) < get_rumble(V_586)) { 
+    
+        return V_586;
+    }
+    
+    return Z_0;
+}
+
+function F_90() {
+
+    V_387 += get_rtime();
+        
+    if (V_387 == 120) {
+        
+        set_rgb(V_389,V_389[Z_1],V_389[Z_2]);
+        V_389[V_386] -= Z_2; 
+        V_389[V_388] += Z_2;
+
+        if (!V_389[V_386]) { 
+            
+            V_388 = (V_388 + Z_1) % Z_3; 
+            V_386 = (V_386 + Z_1) % Z_3; 
+        }
+        
+        V_387 = Z_0;    
+    }
+}
+
+function F_81(F_82,F_83,F_84,F_85,F_86,F_87,F_88,F_89) { 
+
+    if (V_367) { 
+ 		
+ 		rect_oled(Z_2,Z_2,127,Z_61,Z_1,Z_0); 
+        F_63(); 
+		F_57(F_88,V_308,V_327,V_311,V_322);
+		F_57(F_89,V_308,V_329,V_311,V_322);
+		
+		if (V_371 && V_587 == V_305) {
+		
+			if (V_370 == Z_1) {
+				
+				if (F_82 == Z_2 || F_82 == Z_3 || F_82 == Z_11 || F_82 == Z_13 || F_82 == Z_16 || F_82 == Z_17 || F_82 == Z_23 || F_82 == Z_28 || F_82 == Z_29 || F_82 == Z_31 || F_82 == Z_36 || F_82 == Z_39) {
+				
+					F_57(F_10[F_82],V_308,V_328 + Z_3,V_311,V_322);
+				
+				} else {
+					
+					F_57(F_10[F_82],V_309,V_328,V_312,V_322);
+				}                                                             
+			
+			} else if (V_370 >= Z_6 && V_370 <= Z_10 || V_370 == Z_27 || V_370 == Z_30 || V_370 == Z_35 || V_370 == Z_40 || V_370 == Z_45 || V_370 == Z_48) {
+                                                                              
+				F_57(F_8[F_82],V_309,V_328,V_312,V_322);  
+                                                                              
+			} else if (V_370 == Z_17) { 
+                                                                              
+				F_57(F_17[F_82],V_309,V_328,V_312,V_322);  
+                                                                              
+        	} else if (V_370 == Z_49) { 
+                                                                              
+				F_57(F_20[F_82],V_309,V_328,V_312,V_322);  
+                                                                              
+        	} else if (V_370 == Z_62) { 
+                                                                              
+				F_57(F_21[F_82],V_309,V_328,V_312,V_322);  
+                                                                              
+        	} else if (V_370 == Z_67) { 
+                                                                              
+				F_57(F_22[F_82],V_309,V_328,V_312,V_322);  
+                                                                              
+        	} else if (V_370 == Z_81 ) {                    
+                                                                              
+				F_57(F_24[F_82],V_309,V_328,V_312,V_322);  
+                                                                              
+        	} else if (V_370 == Z_75 || V_370 == Z_78 || V_370 == Z_84) {                    
+                                                                              
+				F_57(F_15[F_82],V_309,V_328,V_312,V_322);  
+                                                                              
+        	} else if (V_370 == Z_76 || V_370 == Z_79 || V_370 == Z_82 || V_370 == Z_85) {                    
+                                                                              
+				F_57(F_18[F_82],V_309,V_328,V_312,V_322);  
+                                                                              
+  			} else {                                                          
+                                                                              
+            	F_53(F_82,F_47(F_82),V_328);
+        	}
+        } if (V_372) F_57(F_8[F_82],V_309,V_328,V_312,V_322);
+		             
+        V_367 = V_5; 
+    } 
+
+    if (event_press(V_0) || get_ival (V_0) && get_ptime (V_0) >= 450) {
+ 
+        V_367 = V_4;
+        F_82 += F_85;
+
+        if (F_82 > F_84) F_82 = F_83;
+        
+        if (V_372) {
+		
+			V_377 = F_82;
+			combo_run(F_80);
+		}
+    } 
+ 
+    if (event_press(V_1) || get_ival (V_1) && get_ptime (V_1) >= 450) { 
+
+        V_367 = V_4;
+        F_82 -= F_85;
+
+        if (F_82 < F_83) F_82 = F_84;
+        
+        if (V_372) {
+		
+			V_377 = F_82;
+			combo_run(F_80);
+		}
+    }
+	
+	if (event_press(V_3)) {
+
+		V_367 = V_4;
+		V_370 += Z_1;
+ 
+		if (V_370 > F_87) V_370 = F_86;
+	}
+  
+	if (event_press(V_2)) {
+		
+		V_367 = V_4;
+		V_370 -= Z_1; 
+ 
+		if (V_370 < F_86) V_370 = F_87;
+	} 
+	
+	return F_82;
+} 
+
+function F_73(F_75,F_76) {
+    
+    if (combo_running(F_77))    
+        
+        combo_stop(F_77);
+    
+    if (combo_running(F_78))    
+        
+        combo_stop(F_78);
+
+    if (combo_running(F_79))
+
+        combo_stop(F_79);
+        
+        V_377 = F_75;
+        V_374 = Z_0;
+        V_375 = V_4;
+        combo_run(F_80);
+    
+    if (V_376) {
+        
+        cls_oled(Z_0);
+        F_57(F_8[Z_4],V_308,V_324,V_311,V_322);
+        rect_oled(Z_0,Z_19,Z_111,Z_23,Z_0,Z_1);    
+        rect_oled(Z_2,Z_21,124,Z_19,Z_0,Z_1);
+        rect_oled(Z_0,Z_40,Z_111,Z_23,Z_0,Z_1);
+        rect_oled(Z_2,Z_42,124,Z_19,Z_0,Z_1);
+        F_57(F_76,V_308,V_325,V_311,V_322);
+  		F_57(F_8[F_75],V_308,V_326,V_311,V_322);    
+               
+        V_376 = V_5;
+    }
+}
+
+function F_72() {
+        
+    V_374 += get_rtime();
+    
+    if (!V_369 && V_374 >= 7000) {
+        
+        cls_oled(Z_0);
+        V_375 = V_5;
+        V_374 = Z_0;
+    }
+}
+
+function F_70(F_71) { 
+
+	if (!get_ival(F_71))
+		
+		return; 
+	
+	set_val(F_71,V_5);
+} 
+  
+function F_64(F_65,F_66,F_67,F_68,F_69) { 
+
+	cls_oled(Z_0); 
+	V_369 = F_65; 
+	V_371 = F_66;
+	V_370 = F_67;
+	V_367 = F_68;
+	V_372 = F_69;
+	V_368 = V_5;
+}
+     
+function F_63() { 
+  
+	line_oled(126,Z_20,Z_2,Z_20,Z_2,Z_1);
+	rect_oled(Z_1,Z_1,127,Z_63,Z_0,Z_1); 
+	line_oled(126,Z_46,Z_2,Z_46,Z_2,Z_1);
+}
+
+function F_57(F_58,F_59,F_60,F_61,F_62) {
+	
+	if (F_62) F_60 = (Z_64 - F_60) / Z_2;
+	print(F_49(V_360(F_58),F_59),F_60,F_61,V_307,F_58);
+}
+
+function V_360(F_56) { 
+    
+    V_360 = Z_0;
+    
+    do { 
+        
+        F_56++;
+        V_360++;
+    } 
+    
+    while (duint8(F_56));
+    
+    return V_360;
+ } 
+
+function F_49(F_54,F_55) {
+
+    return (Z_111 / Z_2) - ((F_54 * F_55) / Z_2);
+}
+
+function F_53(F_51,F_52,F_50) {
+    
+    V_356 = Z_1;  
+    V_357 = Z_112;
+    
+    if (F_51 < Z_0) {
+         
+         putc_oled(V_356,Z_45);
+         V_356 += Z_1;
+         F_51 = abs(F_51);
+    }
+    
+    for (V_358 = Z_5;V_358 >= Z_1;V_358--) {
+        
+        if (F_52 >= V_358) {
+            
+            putc_oled(V_356,(F_51 / V_357) + Z_48);
+            F_51 %= V_357;
+            V_356 ++; 
+       }
+        
+        V_357 /= Z_10;
+    } 
+    
+    puts_oled(F_49(V_356 - Z_1,Z_11),F_50,Z_1,V_356 - Z_1,Z_1);
+} 
+
+function F_47(F_48) {
+   
+   V_359 = Z_0;
+   
+   do {
+      
+      F_48 /= Z_10;
+      V_359++;
+   } 
+   
+   while (F_48);
+   
+   return V_359;
+}
+
+function F_46() { 
+
+	for (V_349 = V_304; V_349 <= V_479[Z_0]; V_349++) {
+		
+		V_479[V_349] = F_5[V_349 - Z_1][Z_3];
+    }
+    
+    for (V_349 = V_304; V_349 <= V_439[Z_0]; V_349++) {
+    
+    	V_439[V_349] = F_6[V_349 - Z_1][Z_2];
+    }
+    
+    F_45();
+    
+    if (F_26(Z_0,Z_1,Z_0)) {    
+        
+        for (V_349 = V_304; V_349 <= V_479[Z_0]; V_349++) {
+            
+            V_479[V_349] = F_26(F_5[V_349 - Z_1][Z_0],F_5[V_349 - Z_1][Z_1],V_479[V_349]);
+        }
+        
+        for (V_349 = V_304; V_349 <= V_439[Z_0]; V_349++) {
+            
+            V_439[V_349] = F_26(F_6[V_349 - Z_1][Z_0],F_6[V_349 - Z_1][Z_1],V_439[V_349]);
+        }
+	}
+} 	
+	
+function F_35(){ 
+
+	F_45();
+    F_37(Z_1,Z_0,Z_1,V_5);
+    
+    for (V_349 = V_304; V_349 <= V_479[Z_0]; V_349++) {
+        
+        F_37(V_479[V_349],F_5[V_349 - Z_1][Z_0],F_5[V_349 - Z_1][Z_1],V_5);
+    }
+    
+    for (V_349 = V_304; V_349 <= V_439[Z_0]; V_349++) {
+        
+        F_37(V_439[V_349],F_6[V_349 - Z_1][Z_0],F_6[V_349 - Z_1][Z_1],V_5);
+    }
+    	
+	F_37(V_439[V_349],F_6[V_349 - Z_1][Z_0],F_6[V_349 - Z_1][Z_1],V_4);
+} 
+
+function F_45() {
+	
+	V_351 = SPVAR_1;
+	V_350 = Z_0;
+	V_352 = Z_0;
+}
+
+function F_44(F_36) {
+
+	if (F_36 < Z_0) {
+		
+		return F_44(abs(F_36 + Z_1));
+	}
+	
+	V_353 = Z_0;
+	
+	do {
+		
+		V_353++;
+		F_36 = F_36 >> Z_1;
+		
+	} while (F_36);
+	
+	return V_353;
+}
+
+function F_33(F_27,F_28) {	
+	
+	V_353 = max(F_44(F_27),F_44(F_28));
+	
+	if (F_29(F_27,F_28)) {
+		
+		V_353++;
+	}
+	
+	return V_353;
+}
+
+function F_29(F_27,F_28) { 
+
+	return F_27 < Z_0 || F_28 < Z_0; 
+}
+
+function F_43(F_40) {	
+	
+	if (F_40 == V_346) {
+		
+		return V_348;
+	}
+	
+	return (V_348 & (~(Z_1 << (V_346 - Z_1)))) >> (V_346 - F_40 - Z_1);
+}
+
+function F_41(F_40) { 
+	
+	return Z_1 << clamp(F_40 - Z_1,Z_0,V_346 - Z_1); 
+}
+
+function F_39(F_40) { 
+
+	return ~F_41(F_40); 
+}
+
+function F_31(F_36,F_40) { 
+
+	return F_36 & F_43(F_40); 
+}
+
+function F_42(F_36,F_40) {
+	
+	if (F_36 < Z_0) {
+		
+		return (abs(F_36) & F_39(F_40)) | F_41(F_40);	
+	}
+	
+	return F_36 & F_39(F_40);
+}
+
+function F_30(F_36,F_40) {
+	
+	if (F_36 & F_41(F_40)) {
+		
+		return Z_0 - (F_36 & F_39(F_40));
+	}
+	
+	return F_36 & F_39(F_40);
+}
+
+function F_32(F_38) { 
+
+	return get_pvar(F_38,Z_0-(V_348 & (Z_1 << (V_345 - Z_1))),Z_0-((Z_0-(V_348 & (Z_1 << (V_345 - Z_1)))) + Z_1),Z_0); 
+}
+
+function F_37(F_36,F_27,F_28,F_35) {
+
+	V_354 = V_347;
+	V_355 = F_33(F_27,F_28);
+	
+	if (F_29(F_27,F_28) && V_354 == V_305) {
+	
+		F_36 = F_42(F_36,V_355);
+	}
+	
+	F_36 = F_31(F_36,V_355);
+	
+	if (V_355 > V_345 - V_350) {
+		
+		V_352 = V_352 | (F_36 << V_350);
+		set_pvar(V_351,V_352);	
+		V_351++;
+		V_355 -= (V_345 - V_350);
+		F_36 = F_36 >> (V_345 - V_350);
+		V_350 = Z_0;
+		V_352 = Z_0;
+	}
+	
+	V_352 = V_352 | (F_36 << V_350);
+	V_350 += V_355;
+	
+	if (V_350 >= V_345) {
+	
+		V_350 -= V_345;
+		set_pvar(V_351,V_352);
+		V_351++;
+		
+		if (!V_350) {
+			
+			V_352 = Z_0;
+		}
+	}
+	
+	if (F_35) {
+	
+		set_pvar(V_351,V_352);
+	}	
+}
+
+function F_26(F_27,F_28,default) {
+
+	V_352 = F_32(V_351);
+	V_355 = F_33(F_27,F_28);
+	V_352 = F_31(V_352 >> V_350, V_355);
+	
+	if (V_355 > V_345 - V_350) {
+	
+		V_351++;
+		V_353 = F_32(V_351);
+		V_353 = F_31(V_353, V_355 - (V_345 - V_350));
+		V_353 = V_353 << (V_345 - V_350);
+		V_352 = F_31(V_352, V_345 - V_350);
+		V_352 = V_352 | V_353;
+		V_350 = V_350 - V_345;
+	}	
+	
+	V_350 += V_355;
+	
+	if (V_350 >= V_345) {
+	
+		V_350 -= V_345;
+		V_351++;
+	}	
+	
+	V_352 = F_31(V_352,V_355);
+	
+	if (F_29(F_27,F_28)) {
+		
+		V_352 = F_30(V_352,V_355);
+	}
+	
+	if (V_352 < F_27 || V_352 > F_28) {
+	
+		return default;
+	}
+	
+	return V_352;
+}
+/*
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██ ▄▄▄ ██ ▄▄▀██ ▄▄▀█▄ ▄██ ▄▄ █▄▄ ▄▄██████ ███ █ ▄▄▀██ ▄▄▀█▄ ▄██ ▄▄▀█ ▄▄▀██ █████ ▄▄▄██ ▄▄▄ ███ ▄▄▀██ ▀██ ██ ▄▄▀████ ▄▄▀██ ▄▄▄ ██ ▀██ ██ ▄▄▄█▄ ▄██ ▄▄ ██
+██▄▄▄▀▀██ █████ ▀▀▄██ ███ ▀▀ ███ █████████ █ ██ ▀▀ ██ ▀▀▄██ ███ ▄▄▀█ ▀▀ ██ █████ ▄▄▄██▄▄▄▀▀███ ▀▀ ██ █ █ ██ ██ ████ █████ ███ ██ █ █ ██ ▄▄███ ███ █▀▀██
+██ ▀▀▀ ██ ▀▀▄██ ██ █▀ ▀██ ██████ █████████▄▀▄██ ██ ██ ██ █▀ ▀██ ▀▀ █ ██ ██ ▀▀ ██ ▀▀▀██ ▀▀▀ ███ ██ ██ ██▄ ██ ▀▀ ████ ▀▀▄██ ▀▀▀ ██ ██▄ ██ ████▀ ▀██ ▀▀▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+*/
+define V_298  = Z_1;
+define V_299 = Z_110;
+define V_300 = Z_0;
+define V_301= Z_2;
+define V_302 = Z_0;
+define V_303 = Z_42;
+define V_304 = Z_1;
+define V_305 = Z_77;
+
+define V_306 = Z_0, V_307 = Z_1, V_308 = Z_7, V_309 = Z_11, V_310 = Z_17, V_311 = Z_0, V_312 = Z_1, V_313 = Z_2, V_314 = Z_10, V_315 = Z_18, V_316 = Z_26;
+define V_317 = -Z_1, V_318 = Z_11, V_319 = Z_23, V_320 = Z_35, V_321 = Z_47,V_322 = Z_0, V_323 = Z_1, V_324 = Z_6,V_325 = Z_26,V_326 = Z_47, V_327 = Z_7, V_328 = Z_26, V_329 = Z_52;
+define V_330 = Z_101,V_331 = Z_90,V_332 = Z_103,V_333 = -Z_100,V_334 = Z_8,V_335 = Z_104,V_336 = -Z_105,V_337 = Z_2,V_338 = -Z_106,V_339 = Z_107,V_340 = -Z_108,V_341 = Z_109;
+define V_342 = Z_0, V_343 = Z_102, V_344 = Z_101,V_345 = Z_32,V_346 = Z_32,V_347 = Z_77,V_348 = -Z_1,V_585 = Z_0,V_586 = Z_1,V_587 = Z_77;  
+
+int V_349,V_350,V_351,V_352,V_353,V_354,V_355,V_356,V_357,V_358,V_359,V_360,V_361,V_362,V_363,V_364,V_365;
+int V_366,V_367,V_368,V_369,V_370,V_371,V_372,V_373,V_374,V_375,V_376,V_377,V_378,V_379,V_380,V_381,V_382,V_383,V_384,V_385,V_386,V_387,V_388,V_389[Z_3];
+int V_390,V_391,V_392,V_393,V_394,V_395,V_396,V_397,V_398,V_399,V_400,V_401,V_402,V_403,V_404,V_405,V_406,V_407,V_408,V_409,V_410,V_411,V_412,V_413,V_414,V_415,V_416,V_417;
+int V_418,V_419,V_420,V_421,V_422,V_423,V_424,V_425,V_426,V_427,V_428,V_429,V_430,V_431,V_432,V_433,V_434,V_435,V_436,V_437,V_438;
+int V_439,V_440,V_441,V_442,V_443,V_444,V_445,V_446,V_447,V_448,V_449,V_450,V_451,V_452,V_453,V_454,V_455,V_456,V_457,V_458,V_459,V_460,V_461,V_462,V_463,V_464,V_465,V_466,V_467,V_468,V_469,V_470,V_471,V_472,V_473,V_474,V_475,V_476,V_477,V_478; 	
+int V_479,V_480,V_481,V_482,V_483,V_484,V_485,V_486,V_487,V_488,V_489,V_490,V_491,V_492,V_493,V_494,V_495,V_496,V_497,V_498,V_499,V_500,V_501,V_502,V_503,V_504,V_505,V_506,V_507,V_508,V_509,V_510,V_511,V_512,V_513,V_514,V_515,V_516,V_517,V_518,V_519,V_520,V_521,V_522,V_523,V_524,V_525,V_526,V_527,V_528,V_529,V_530,V_531,V_532,V_533,V_534,V_535,V_536,V_537,V_538,V_539,V_540,V_541,V_542,V_543,V_544,V_545,V_546,V_547,V_548,V_549,V_550,V_551,V_552,V_553,V_554,V_555,V_556,V_557,V_558,V_559,V_560,V_561,V_562,V_563,V_564,V_565,V_566,V_567,V_568,V_569,V_570,V_571,V_572,V_573,V_574,V_575,V_576,V_577,V_578,V_579,V_580,V_581,V_582,V_583,V_584;
+
+const int8 F_0[]= { 100,100,100,100,100,100,100,100,99,99,99,99,98,98,97,97,97,96,95,95,94,94,93,92,92,91,90,89,89,88,87,86,85,84,83,82,81,80,79,78,77,75,74,73,72,71,70,69,67,66,65,63,62,61,59,58,56,55,53,52,50,49,47,46,44,43,41,40,38,36,35,33,31,30,28,26,25,23,21,20,18,16,14,13,11,9,7,6,4,2,0,-1,-3,-5,-7,-8,-10,-12,-13,-15,-17,-19,-20,-22,-24,-25,-27,-29,-30,-32,-34,-35,-37,-39,-40,-42,-43,-45,-46,-48,-50,-51,-53,-54,-55,-57,-58,-60,-61,-62,-64,-65,-66,-68,-69,-70,-71,-73,-74,-75,-76,-77,-78,-79,-80,-81,-82,-83,-84,-85,-86,-87,-88,-89,-89,-90,-91,-92,-92,-93,-93,-94,-95,-95,-96,-96,-97,-97,-97,-98,-98,-99,-99,-99,-99,-100,-100,-100,-100,-100,-100,-100,-100,-100,-100,-100,-100,-100,-100,-99,-99,-99,-98,-98,-98,-97,-97,-96,-96,-95,-94,-94,-93,-93,-92,-91,-90,-90,-89,-88,-87,-86,-85,-84,-83,-82,-81,-80,-79,-78,-77,-76,-75,-74,-72,-71,-70,-69,-67,-66,-65,-63,-62,-61,-59,-58,-56,-55,-53,-52,-50,-49,-47,-46,-44,-43,-41,-40,-38,-36,-35,-33,-31,-30,-28,-26,-25,-23,-21,-20,-18,-16,-14,-13,-11,-9,-7,-6,-4,-2,0,2,4,6,7,9,11,13,14,16,18,20,21,23,25,26,28,30,31,33,35,36,38,40,41,43,44,46,47,49,51,52,54,55,56,58,59,61,62,63,65,66,67,69,70,70,72,73,74,75,77,78,79,80,81,82,83,84,85,86,87,88,89,89,90,91,92,92,93,94,94,95,95,96,97,97,97,98,98,99,99,99,99,100,100,100,100,100,100,100};
+const int16 F_1[] = { 23170,  23167,  23156,  23139,  23114,  23082,  23044,  22998,  22945,  22885,  22818,  22745,  22664,  22577,  22482,  22381,  22273,  22158,  22036,  21908,  21773,  21632,  21483,  21329,  21167,  21000,  20825,  20645,  20458,  20265,  20066,  19861,  19650,  19432,  19209,  18980,  18745,  18505,  18259,  18007,  17750,  17487,  17219,  16946,  16667,  16384,  16096,  15802,  15504,  15201,  14894,  14582,  14265,  13944,  13619,  13290,  12957,  12620,  12278,  11934,  11585,  11233,  10878,  10519,  10157,  9792,  9424,  9053,  8680,  8304,  7925,  7544,  7160,  6774,  6387,  5997,  5605,  5212,  4817,  4421,  4024,  3625,  3225,  2824,  2422,  2019,  1616,  1213,  809,  404,  00,  -404,  -809,  -1213,  -1616,  -2019,  -2422,  -2824,  -3225,  -3625,  -4024,  -4421,  -4817,  -5212,  -5605,  -5997,  -6387,  -6774,  -7160,  -7544,  -7925,  -8304,  -8680,  -9053,  -9424,  -9792,  -10157,  -10519,  -10878,  -11233,  -11585,  -11934,  -12278,  -12620,  -12957,  -13290,  -13619,  -13944,  -14265,  -14582,  -14894,  -15201,  -15504,  -15802,  -16096,  -16384,  -16667,  -16946,  -17219,  -17487,  -17750,  -18007,  -18259,  -18505,  -18745,  -18980,  -19209,  -19432,  -19650,  -19861,  -20066,  -20265,  -20458,  -20645,  -20825,  -21000,  -21167,  -21329,  -21483,  -21632,  -21773,  -21908,  -22036,  -22158,  -22273,  -22381,  -22482,  -22577,  -22664,  -22745,  -22818,  -22885,  -22945,  -22998,  -23044,  -23082,  -23114,  -23139,  -23156,  -23167,  -23170,  -23167,  -23156,  -23139,  -23114,  -23082,  -23044,  -22998,  -22945,  -22885,  -22818,  -22745,  -22664,  -22577,  -22482,  -22381,  -22273,  -22158,  -22036,  -21908,  -21773,  -21632,  -21483,  -21329,  -21167,  -21000,  -20825,  -20645,  -20458,  -20265,  -20066,  -19861,  -19650,  -19432,  -19209,  -18980,  -18745,  -18505,  -18259,  -18007,  -17750,  -17487,  -17219,  -16946,  -16667,  -16384,  -16096,  -15802,  -15504,  -15201,  -14894,  -14582,  -14265,  -13944,  -13619,  -13290,  -12957,  -12620,  -12278,  -11934,  -11585,  -11233,  -10878,  -10519,  -10157,  -9792,  -9424,  -9053,  -8680,  -8304,  -7925,  -7544,  -7160,  -6774,  -6387,  -5997,  -5605,  -5212,  -4817,  -4421,  -4024,  -3625,  -3225,  -2824,  -2422,  -2019,  -1616,  -1213,  -809,  -404,  00,  404,  809,  1213,  1616,  2019,  2422,  2824,  3225,  3625,  4024,  4421,  4817,  5212,  5605,  5997,  6387,  6774,  7160,  7544,  7925,  8304,  8680,  9053,  9424,  9792,  10157,  10519,  10878,  11233,  11585,  11934,  12278,  12620,  12957,  13290,  13619,  13944,  14265,  14582,  14894,  15201,  15504,  15802,  16096,  16384,  16667,  16946,  17219,  17487,  17750,  18007,  18259,  18505,  18745,  18980,  19209,  19432,  19650,  19861,  20066,  20265,  20458,  20645,  20825,  21000,  21167,  21329,  21483,  21632,  21773,  21908,  22036,  22158,  22273,  22381,  22482,  22577,  22664,  22745,  22818,  22885,  22945,  22998,  23044,  23082,  23114,  23139,  23156,  23167,  23170 };
+const int16 F_2[] = { -23170, -22913, -22655, -22398, -22140, -21883, -21625, -21368, -21110, -20853, -20596, -20338, -20081, -19823, -19566, -19308, -19051, -18793, -18536, -18279, -18021, -17764, -17506, -17249, -16991, -16734, -16476, -16219, -15962, -15704, -15447, -15189, -14932, -14674, -14417, -14159, -13902, -13645, -13387, -13130, -12872, -12615, -12357, -12100, -11842, -11585, -11328, -11070, -10813, -10555, -10298, -10040, -9783, -9525, -9268, -9011, -8753, -8496, -8238, -7981, -7723, -7466, -7208, -6951, -6694, -6436, -6179, -5921, -5664, -5406, -5149, -4891, -4634, -4377, -4119, -3862, -3604, -3347, -3089, -2832, -2574, -2317, -2060, -1802, -1545, -1287, -1030, -772, -515, 257, 257, 515, 772, 1030, 1287, 1545, 1802, 2060, 2317, 2574, 2832, 3089, 3347, 3604, 3862, 4119, 4377, 4634, 4891, 5149, 5406, 5664, 5921, 6179, 6436, 6694, 6951, 7208, 7466, 7723, 7981, 8238, 8496, 8753, 9011, 9268, 9525, 9783, 10040, 10298, 10555, 10813, 11070, 11328, 11585, 11842, 12100, 12357, 12615, 12872, 13130, 13387, 13645, 13902, 14159, 14417, 14674, 14932, 15189, 15447, 15704, 15962, 16219, 16476, 16734, 16991, 17249, 17506, 17764, 18021, 18279, 18536, 18793, 19051, 19308, 19566, 19823, 20081, 20338, 20596, 20853, 21110, 21368, 21625, 21883, 22140, 22398, 22655, 22913, 23170, 23170, 22913, 22655, 22398, 22140, 21883, 21625, 21368, 21110, 20853, 20596, 20338, 20081, 19823, 19566, 19308, 19051, 18793, 18536, 18279, 18021, 17764, 17506, 17249, 16991, 16734, 16476, 16219, 15962, 15704, 15447, 15189, 14932, 14674, 14417, 14159, 13902, 13645, 13387, 13130, 12872, 12615, 12357, 12100, 11842, 11585, 11328, 11070, 10813, 10555, 10298, 10040, 9783, 9525, 9268, 9011, 8753, 8496, 8238, 7981, 7723, 7466, 7208, 6951, 6694, 6436, 6179, 5921, 5664, 5406, 5149, 4891, 4634, 4377, 4119, 3862, 3604, 3347, 3089, 2832, 2574, 2317, 2060, 1802, 1545, 1287, 1030, 772, 515, 257, -257, -515, -772, -1030, -1287, -1545, -1802, -2060, -2317, -2574, -2832, -3089, -3347, -3604, -3862, -4119, -4377, -4634, -4891, -5149, -5406, -5664, -5921, -6179, -6436, -6694, -6951, -7208, -7466, -7723, -7981, -8238, -8496, -8753, -9011, -9268, -9525, -9783, -10040, -10298, -10555, -10813, -11070, -11328, -11585, -11842, -12100, -12357, -12615, -12872, -13130, -13387, -13645, -13902, -14159, -14417, -14674, -14932, -15189, -15447, -15704, -15962, -16219, -16476, -16734, -16991, -17249, -17506, -17764, -18021, -18279, -18536, -18793, -19051, -19308, -19566, -19823, -20081, -20338, -20596, -20853, -21110, -21368, -21625, -21883, -22140, -22398, -22655, -22913, -23170 };
+const uint16 F_3[] = { 10, 20, 55, 80, 30, 65, 265, 90, 285, 290, 105, 15, 155, 85, 20, 35, 40, 70, 350, 160, 190, 280, 45, 30, 5, 35, 80, 165, 360, 165, 175, 95, 65, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 39, 105,77};
+const image F_4 = { 128, 64, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x00, 0xFF, 0xF0, 0x0F, 0xFF, 0x00, 0x0F, 0xFF, 0x00, 0x0F, 0xFF };
+
+const int16 F_5 [][] = { 
+	{0   , 42   , 1   , V_140},
+	{1   , 50   , 1   , V_141},
+	{1   , 180  , 1   , V_142},
+	{1   , 50   , 1   , V_143},
+	{1   , 180  , 1   , V_144},
+	{0   , 1    , 1   , V_145},
+	{0   , 1    , 1   , V_146},
+	{0   , 1    , 1   , V_147},
+	{0   , 1    , 1   , V_149},
+	{0   , 1    , 1   , V_150},
+	{1   , 50   , 1   , V_151},
+	{1   , 180  , 1   , V_152},
+	{100 , 900  , 10  , V_153},
+	{1   , 20   , 1   , V_154},
+	{1   , 327  , 1   , V_155},
+    {6   , 35   , 1   , V_156},
+    {0   , 1    , 1   , V_157},
+    {1   , 50   , 1   , V_158},
+    {1   , 180  , 1   , V_159},
+    {1   , 50   , 1   , V_160},
+    {1   , 90   , 1   , V_161},
+	{1   , 50   , 1   , V_162},
+	{10  , 80   , 10  , V_163},									
+	{1   , 50   , 1   , V_165},
+	{1   , 50   , 1   , V_166},
+	{10  , 100  , 10  , V_167},
+	{0   , 1    , 1   , V_168},
+	{1   , 50   , 1   , V_170},
+	{10  , 100  , 10  , V_171},
+	{0   , 1    , 1   , V_172},
+	{1   , 50   , 1   , V_174},
+	{1   , 50   , 1   , V_175},
+	{10  , 100  , 10  , V_176},
+	{10  , 80   , 1   , V_177},
+	{0   , 1    , 1   , V_178},
+	{1   , 50   , 1   , V_180},
+	{1   , 10   , 1   , V_181},
+	{5   , 50   , 1   , V_182},
+	{0   , 1    , 1   , V_183},
+	{0   , 1    , 1   , V_184},
+	{1   , 30   , 1   , V_186},
+	{1   , 6    , 1   , V_187},
+	{1   , 200  , 1   , V_188},         
+	{10  , 1500 , 10  , V_189},
+	{0   , 1    , 1   , V_190},
+	{1   , 50   , 1   , V_192},
+	{1   , 50   , 1   , V_193},							                                                              
+	{0   , 1    , 1   , V_194},
+	{0   , 1    , 1   , V_196},
+	{-99 , 99   , 1   , V_197},
+	{-99 , 99   , 1   , V_198},
+	{-99 , 99   , 1   , V_199},           
+	{-99 , 99   , 1   , V_200},
+	{-99 , 99   , 1   , V_201},
+	{-99 , 99   , 1   , V_202},
+	{10  , 2000 , 10  , V_203},
+	{10  , 2000 , 10  , V_204},
+	{10  , 2000 , 10  , V_205},
+	{10  , 2000 , 10  , V_206},										                                                              
+	{10  , 2000 , 10  , V_207},
+	{10  , 2000 , 10  , V_208},
+	{0   , 1    , 1   , V_210},
+	{-99 , 99   , 1   , V_211},				                                                              
+	{-99 , 99   , 1   , V_212},
+	{0   , 50   , 1   , V_213},
+	{0   , 30   , 1   , V_214},
+	{0   , 1    , 1   , V_216},
+	{20  , 800  , 1   , V_217},
+	{10  , 60   , 1   , V_218},
+	{1   , 30   , 1   , V_220},
+	{1   , 70   , 1   , V_221},
+	{0   , 1    , 1   , V_222},
+	{30  , 200  , 10  , V_224},
+	{30  , 200  , 10  , V_225},
+	{0   , 2    , 1   , V_226},
+	{0   , 1    , 1   , V_227},
+	{30  , 500  , 10  , V_229},
+	{0   , 2    , 1   , V_230},
+	{0   , 1    , 1   , V_231},										
+	{30  , 900  , 10  , V_233},
+	{0   , 2    , 1   , V_234},
+	{0   , 1    , 1   , V_235},										
+	{500 , 4000 , 100 , V_237},
+	{0   , 2    , 1   , V_238},
+	{0   , 1    , 1   , V_239},
+	{100 , 650  , 10  , V_241},
+	{10  , 150  , 10  , V_243},		 	
+	{10  , 5000 , 10  , V_245},	
+	{30  , 1000 , 10  , V_247},					 	
+	{30  , 250  , 10  , V_250},				 												                                                              	
+	{30  , 250  , 10  , V_252},					 
+	{30  , 250  , 10  , V_254},				 
+	{10  , 750  , 10  , V_256},
+	{10  , 750  , 10  , V_257},                 
+	{10  , 750  , 10  , V_258},
+	{10  , 750  , 10  , V_259},
+	{10  , 150  , 10  , V_261},
+	{10  , 150  , 10  , V_263},
+	{20  , 4000 , 10  , V_265},
+	{1   , 327  , 1   , V_267},
+	{1   , 327  , 1   , V_268},
+	{1   , 327  , 1   , V_269},
+	{500 , 9900 , 100 , V_271},
+	{50  , 3000 , 10  , V_275},
+	{20  , 250  , 10  , V_276}
+};                                              
+
+const int16 F_6 [][] = {                                   
+	{0 , 1 , V_139},
+	{0 , 1 , V_148},
+	{0 , 1 , V_164},
+	{0 , 1 , V_169},
+	{0 , 1 , V_173},
+	{0 , 1 , V_179},
+	{0 , 1 , V_185},   
+	{0 , 1 , V_191},
+	{0 , 1 , V_195},
+	{0 , 1 , V_209},
+	{0 , 1 , V_215},  
+	{0 , 1 , V_219},
+	{0 , 1 , V_223}, 
+	{0 , 1 , V_228},  
+	{0 , 1 , V_232},  
+	{0 , 1 , V_236},
+	{0 , 1 , V_240},
+	{0 , 1 , V_242},   
+	{0 , 1 , V_244},     
+	{0 , 1 , V_246},  
+	{0 , 1 , V_248},
+	{0 , 1 , V_249},  
+	{0 , 1 , V_251},  
+	{0 , 1 , V_253}, 
+	{0 , 1 , V_255},
+	{0 , 1 , V_260},  
+	{0 , 1 , V_262},
+	{0 , 1 , V_264},							   
+	{0 , 1 , V_266},
+	{0 , 1 , V_270},
+	{0 , 1 , V_272},
+	{0 , 1 , V_273},
+	{0 , 1 , V_274}, 
+	{0 , 1 , V_277},
+	{0 , 1 , V_278},
+	{0 , 1 , V_279},
+	{0 , 1 , V_280},
+	{0 , 1 , V_281},
+	{0 , 1 , V_282}
+};        
+
+const int16 F_7 [][] = {                      	
+	{1 ,  1   , 8  },    	
+	{1 ,  9   , 23 }, 	
+	{1 ,  24  , 27 }, 	
+	{1 ,  28  , 30 }, 	
+	{1 ,  31  , 35 }, 	
+	{1 ,  36  , 40 }, 	
+	{1 ,  41  , 45 }, 	
+	{1 ,  46  , 48 }, 	
+	{1 ,  49  , 61 },
+	{1 ,  62  , 66 },
+	{1 ,  67  , 69 },
+	{1 ,  70  , 72 },
+	{1 ,  73  , 76 },
+	{1 ,  77  , 79 },
+	{1 ,  80  , 82 },
+	{1 ,  83  , 85 },
+	{1 ,  86  , 86 },
+	{1 ,  87  , 87 }, 	
+	{1 ,  88  , 88 }, 	
+	{1 ,  89  , 89 }, 																
+	{0 ,  0   , 0  },
+	{1 ,  90  , 90 },
+	{1 ,  91  , 91 },
+	{1 ,  92  , 92 },
+	{1 ,  93  , 96 },
+    {1 ,  97  , 97 },
+	{1 ,  98  , 98 },
+	{1 ,  99  , 99 },	
+	{1 ,  100 , 102},
+	{1 ,  103 , 103},
+	{0 ,  0   , 0  },
+	{0 ,  0   , 0  },
+	{1 ,  104 , 105},
+	{0 ,  0   , 0  },
+	{0 ,  0   , 0  },
+	{0 ,  0   , 0  },
+	{0 ,  0   , 0  },
+	{0 ,  0   , 0  },
+	{0 ,  0   , 0  }
+};
+
+const string F_8 [] = { 
+	"DISABLED",
+	"ENABLED",
+	"DoGzTheFiGhTeR's", 
+	"Polar Effects", 
+	"MOD TOGGLE", 
+	"SETTINGS", 
+	"SAVED", 
+	"TO THE ZEN",
+	"NO FURTHER",
+	"VALUES FOR",
+	"THIS MOD!",
+	"Version 3.00",
+	"FORTNITE",
+	"RECOIL ADUSTER",
+	"Overall Power +/-"
+};
+
+const string F_9 [] = {
+	"RAPID FIRE",
+	"DROP SHOT",
+	"JUMP SHOT",
+	"STRAFE SHOT",
+	"PERFECT ACCURACY",
+	"ANTI-RECOIL",
+	"AIM ABUSE",
+	"GLOBAL MODS",
+	"AR SMG MOD"
+};
+
+const string F_10 [] = { 
+    "Circle",
+    "Concentric",
+    "Concentric 2",
+    "Concentric 3",
+    "Portal",
+    "Bullet",
+    "Eye",
+    "Tight Eye",
+    "Trapped Eye",
+    "Baseball",
+    "RugbyBall",
+    "Concentric Oval",
+    "Beachball",
+    "Nested Ovals",
+    "React",
+    "TearDrop",
+    "Curved Diamond",
+    "Diamond",
+    "Star",
+    "Rainbow",
+    "Smiley",
+    "Wings",
+    "Pyramid",
+    "Twin Diamonds",
+    "Barrels",
+    "Fat Cross",
+    "Thin Cross",
+    "Orbiter",
+    "Rounded Fat Cross",
+    "Rounded Cross",
+    "Loop 2 Loop",
+    "Cross Section",
+    "Full Stack",
+    "Teasure",
+    "Galaxy",
+    "Coiled",
+    "Rocky Mountain",
+    "Killbox",
+    "Scanner",
+    "Rollercoaster",
+    "Spring",
+    "Ninja Star",
+    "Labyrinth"
+};
+
+const string F_11 [] = { 
+	"DoGz Effects V2",  
+	"DoGz Polar XIII",  
+	"DoGz The Reducer",  
+	"Batts Sticky",      
+	"DoGz Legacy",      
+	"DoGz The Decider", 
+	"DoGz The Echo",    
+	"Ceorin Rotational",
+	"SixthSense Recoil",
+	"Taylors Recoil V3",
+	"Aim Abuse",        
+	"Headshot Assist",  
+	"Rapid Fire",       
+	"Drop Shot",        
+	"Jump Shot",        
+	"Strafe Shot",      
+	"Perfect Accuaracy",
+	"Pump-SMG", 	    
+	"AR-SMG",           
+	"Bunny hop",        
+	"Instant Pickaxe", 	
+	"Pump Wall",        
+	"Pump Ramp",        
+	"Block Shot",       
+	"Pop Shot",         
+	"Wall Take",        
+	"Wall Take Build",  
+	"Auto Ping",        
+	"Sensitivity",	    
+	"Build Tracker",   	
+	"Ramp Floor Wall",  
+	"Floor n Pyramid",  
+	"Build Protector",  
+	"Quick Edit Assist",   
+	"Insta Fast Reset", 
+	"Hair Triggers",    
+	"PS On Xbox",       
+	"Block Rumble",    	
+	"LEDRainbowFlow" 
+};
+
+const string F_12 [] = {
+	"Polar Aim Assist",       
+	"Polar Aim Assist",   
+	"Aim Assist",   
+	"Aim Assist",                
+	"Aim Assist",               
+	"Aim Assist",         	
+	"Aim Assist",          	
+	"Aim Assist LX/LY", 
+	"Anti Recoil",     
+	"Anti Recoil",     
+	"Ads Spam",       
+	"Progression Pull",
+	"Turbo Fire",   	
+	"Tubro Crouch",    
+	"Jump On Fire",    
+	"Move Left/Right", 
+	"Controlled Fire", 
+	"Pump -> SMG",   	
+	"AR -> SMG",       
+	"Auto Jump",     	
+	"Auto Swap",    	
+	"Pump -> Wall",    
+	"Pump -> Ramp",	  
+	"Pump -> RFW",  	
+	"Hold -> Pump", 	
+	"Wall Steal",      
+	"Wall Steal Build",
+	"Ping On Fire",   
+	"Custom Control",  
+	"Disables Mods",   
+	"Building Mod",    
+	"Spams Pieces",     
+    "Hold User Off", 
+	"One Button Edit",
+	"One Button Reset", 
+	"Instant Triggers",    
+	"Touchpad Fix",       
+	"Game Rumble Off",    	
+	"ME Zen Led Cycle"
+};
+
+const string F_13 [] = {                
+	"Aim Assist Effect", 	
+	"Power",                
+	"Speed",                  
+	"Boost Power",          
+	"Boost Speed",          
+	"Power Boost",          
+	"Speed Boost",          
+	"Hip Fire AA",          
+	"Orientation",          
+	"Polar Coil",           
+	"Zen Polar Radius",   
+	"Zen Polar Angle",   
+	"Rotate Counter",    
+	"Increment Amount",  
+	"Zen Change Speed",    
+	"ZenPolar Release",    
+	"DoGz Release Mode",   
+	"Dam Ads Radius",   	  
+	"Dam Ads Angle",       
+	"Dam Fire Radius",  	  
+	"Dam Fire Angle",        
+	"Reducer Power",    	  
+	"Reducer Time",     	  
+	"Power Axis Y",	       	  
+	"Power Axis X",      	  
+	"Speed",          	  
+	"Hip Fire",        
+	"Power",          	  
+	"Time",            	  
+	"Hip fire",       	  
+	"Power Y Axis",     	  
+	"Power X Axis",   	  
+	"Time",              	  
+	"Release",       	  
+	"Hip Fire",          	  
+	"Strength",       	  
+	"Increments",           
+	"Deadzone",         
+	"Reducer",        	  
+	"Hip Fire",   	  
+	"Value", 	  
+	"Increase",       	  
+	"Delay",       	  
+	"Step Time",     	  
+	"Echo Time",       
+	"Speed",           
+	"Strength",        
+	"Hip Fire",        
+	"Recoil Mode",     
+	"Recoil Power One",
+	"Recoil Power Two",
+	"Recoil Power Three",
+	"Recoil Power Four",
+	"Recoil Power Five",
+    "Recoil Power Six",  
+	"Recoil Time One", 
+	"Recoil Time Two",   
+	"Recoil Time Three",
+	"Recoil Time Four",  
+	"Recoil Time Five",  
+	"Recoil Time Six",   
+	"Recoil Mode", 			
+	"Vertical Strength", 		   	
+	"Vertical Boost",  		
+	"X2 Strength Time",  	
+	"Deadzone",    		
+	"Abuse Mode",  			
+	"Hold Time",  			
+	"Release Time",    		  
+	"Step Value",  			
+	"Max Value",			
+	"Hip Fire",    			
+	"Hold Time",  			
+	"Release Time", 			  
+	"Activate Type", 		  
+	"De-Activate Type",  	      
+	"Wait Time",		
+	"Activate Type",  	 
+	"De-Activate Type",      
+	"Jump Time/Wait", 	
+	"Activate Type",   	 
+	"De-Activate Type",      
+	"Strafe Time",		
+	"Activate Type",      
+	"De-Activate Type",       
+	"Accuracy Time",     	  
+	"Button Time",             
+	"Fire Time",     	
+	"Jump Speed",     	
+	"Press Time",  		
+	"Press Time",      	  
+	"Press Time",             
+	"Build Time",     			 
+	"Delay Time",      				  
+	"Ads Time",      			     
+	"Shot Time",   			 
+	"Hold Time",       					
+	"Hold Time",         				
+	"Delay Time",       				
+	"General Sens",						
+	"Ads Sens",  						
+	"Fire Sens", 						
+	"Sync Time", 						
+	"Delay Time", 						
+	"Press Time"
+};
+
+const string F_14 [] = { 
+	"Aim Assist Shape",   	
+	"Radius On Ads",         
+	"Angle On Ads",           
+	"Radius On Fire",        
+	"Angle On Fire",         
+	"Boost On Fire",         
+	"Boost On Fire",         
+	"AA On Fire Btn",        
+	"Inverts Direction",     
+	"Coil/Spiral Mode",      
+	"Zen Polar Power",     
+	"Zen Polar Speed",    
+	"Rotate Timer",       
+	"Step Amount",        
+	"Speed Adjuster",       
+	"Release Value",        
+	"2nd Assist 2 Run",     
+	"On Ads Power",    	  	 
+	"On Ads Speed",    	    
+	"On Fire Power",      	 
+	"On Fire Speed",          
+	"AA Strength",        	 
+	"AA Speed",     	  	 
+	"RY Axis Strength",       	 
+	"RX Axis Strength",   	 
+	"AA Speed",             
+	"Run On Ads/Fire",    
+	"Strength",             
+	"Speed",                
+	"Run On Ads/Fire",      
+	"RY Axis Strength",   	 
+	"RX Axis Strength",     
+	"AA Speed",           	 
+	"AA Limit",           
+	"Run On Ads/Fire",    	 
+	"Power Value",          
+	"Step Amount",           
+	"In Game Deadzone",   
+	"Shrink on Input",      
+	"Run On Ads/Fire",    
+	"Base Value",         
+	"Step Amount",          
+	"Speed of Combo",     
+	"Time Of Step",	      
+	"Run On Ads/Fire",       
+	"Time For Input",       
+	"Power to Apply",             
+	"Run On Ads/Fire",    
+	"Recoil Set Method",  
+	"Power Set Value 1",  
+	"Power Set Value 2",  
+	"Power Set Value 3",  
+	"Power Set Value 4",  
+	"Power Set Value 5",  
+	"Power Set Value 6",  
+	"Set Time Value 1",   
+	"Set Time Value 2",   
+	"Set Time Value 3",   
+	"Set Time Value 4",   
+	"Set Time Value 5",   
+	"Set Time Value 6",   
+	"Method",             	
+	"Base Power",         	
+	"Boost On Active",	
+	"Time Of Boost",      	
+	"Game Deadzone",  
+	"Method",          	
+	"Abuse Held Time",    	
+	"Abuse Wait Time",    		 
+	"Increment Value",  	
+	"Highest Value",      
+	"Run On Ads/Fire",    	
+	"RF Press Time",      	
+	"RF Release Time",    
+	"Activates On..",      
+	"DeActivates On..",   	 
+	"Drop Shot Speed",    
+	"Activates On..",      
+	"DeActivates On..",       
+	"Jump Shot Time",     
+	"Activates On..",      
+	"DeActivates On..",       
+	"Strafe Shot Time",   
+	"Activates On..",      
+	"DeActivates On..",       
+	"Control Fire Tap",   	 
+	"Combo Tap Speed",        
+	"Weapon Fire Time",   
+	"Delay Between",      
+	"Combo Time",         
+	"Combo Time",           
+	"Combo Time",             
+	"Build Tap Time",     	
+	"Delay > Shot",		  	
+	"Hold Ads Time",	  
+	"Fire Time *I*",	  	 
+	"Tap Time",			  	
+	"Tap Time",			  	
+	"Hold Fire For..",	  	
+	"No Triggers Held",	  	
+	"Ads Held",			  
+	"Fire Held",		  
+	"Time Builds NA",	  
+	"Piece Hold Time",	  	
+	"Piece Spam Speed"  
+};
+
+const string F_15 [] = { 
+	"FIRE ONLY",
+ 	"ADS + FIRE", 
+ 	"ANY FIRE"
+};
+
+const string F_16 [] = { 
+	"Ads Blocks Mod", 
+	"Reqs Ads + Fire",
+	"Runs On Fire"
+};
+
+const string F_17[] = {
+	"Dam Polar", 
+	"The Reducer" 
+};
+
+const string F_18[] = {
+	"Toggle", 
+	"Release" 
+};
+
+const string F_19 [] = { 
+	"Manual Toggle Off", 
+	"Release Fire Off"
+};
+
+const string F_20[] = {
+	"Recoil Set", 
+	"Progression" 
+};
+
+const string F_21[] = {
+	"Legacy", 
+	"Rumble" 
+};
+
+const string F_22[] = {
+	"Adaptive", 
+	"Legacy" 
+};
+
+const string F_23 [] = { 
+	"Repeats The Loop",
+	"Stays On Last Val"
+};
+
+const string F_24 [] = { 
+	"TAP FIRE",
+ 	"HOLD FIRE", 
+ 	"DELAYED"
+};
+
+const string F_25 [] = { 
+	"On Tap of Fire", 
+	"Repeat On Fire",
+	"Delay B4 Jump"
+}; ����������������
