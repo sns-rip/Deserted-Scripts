@@ -1,4 +1,4 @@
-# PS5 Bypass Instructions
+# PS5 Setup Instructions
 >💡 Tip: You Must Have Bluetooth Disabled On Your PS5 For The Cronus Zen To Work Properly. You Also Cannot Have Any Scripts Loaded Whilst Performing The Bypass. If You Have Any Scripts Loaded, You Must Return To The Zen Logo Screen.
 
 ## 🔐 | Requirements:
