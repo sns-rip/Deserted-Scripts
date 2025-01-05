@@ -1,0 +1,319 @@
+
+// ________    _______       _______       ________    ________       ________      ___      _____ ______      
+//|\   __  \  |\  ___ \     |\  ___ \     |\   __  \  |\   ____\     |\   __  \    |\  \    |\   _ \  _   \    
+//\ \  \|\  \ \ \   __/|    \ \   __/|    \ \  \|\  \ \ \  \___|_    \ \  \|\  \   \ \  \   \ \  \\\__\ \  \   
+// \ \   ____\ \ \  \_|/__   \ \  \_|/__   \ \   ____\ \ \_____  \    \ \   __  \   \ \  \   \ \  \\|__| \  \  
+//  \ \  \___|  \ \  \_|\ \   \ \  \_|\ \   \ \  \___|  \|____|\  \    \ \  \ \  \   \ \  \   \ \  \    \ \  \ 
+//   \ \__\      \ \_______\   \ \_______\   \ \__\       ____\_\  \    \ \__\ \__\   \ \__\   \ \__\    \ \__\
+//    \|__|       \|_______|    \|_______|    \|__|      |\_________\    \|__|\|__|    \|__|    \|__|     \|__|
+//                                                       \|_________|                                          
+                                                                                                             
+                                                                                                             
+
+       //revamped by valley and edited by xurco this is the ultimate fryer in comp                                                                        
+
+
+
+
+
+
+
+
+define Fire   = XB1_RT;  
+define Pickaxe = XB1_X;     
+define N_Weapon = XB1_RB;  
+define Ads    = XB1_LT;   
+define Reload  = XB1_X;      
+define P_Weapon = XB1_LB;
+define Jump   = XB1_B;    
+define Edit    = XB1_LS;  
+define Select   = XB1_RB;
+define Crouch = XB1_RS;   
+define Ping    = XB1_XBOX;   
+define Confirm  = XB1_LB;
+define Reset  = XB1_RT;    
+define Wall    = XB1_RT;     
+define Ramp     = XB1_LT;  
+define Build  = XB1_B;    
+define Floor   = XB1_LB;     
+define Roof     = XB1_RB;
+
+define Up     = PS4_UP;   define Left    = PS4_LEFT;   define RX       = PS4_RX;
+define Down   = PS4_DOWN; define Right   = PS4_RIGHT;  define RY       = PS4_RY;
+
+define aimY   = PS4_RY;   define LX      = PS4_LX;     define On       = TRUE;
+define aimX   = PS4_RX;   define LY      = PS4_LY;     define Off      = FALSE;
+
+int deadZone   = 11;       
+
+int Strength  = 16;
+int Increment = 2; 
+int AimAssist_Strength = 7; 
+
+// 	Peep Extra Aimbot
+int PEEP_Aimbot_mode = 1;
+int PEEP_Aimbot_Strength = 7;
+
+int LegacyARecoil =  TRUE;
+int ArLegacyRY    = 14;
+
+int BuildTracker  =  TRUE;
+int BuildSyncTime = 1000;
+        
+int PSonXBOX           = On; 
+
+define LegacyRumble = Off;
+define LegacyInvert = Off;
+define LegacyARHip  = Off;
+
+int Edit1,Edit2,EditT,Shunt,BuildTrack,BuildCount;
+int power,Ypower,Xpower,Power,CountPower,AxisXY;
+int display_title = TRUE;
+int display_black;      
+int count_black;  
+
+main {
+
+    if (PSonXBOX && get_console() == PIO_XB360 && get_controller() == PIO_PS4) {    
+        
+        swap(PS4_TOUCH,PS4_SHARE);
+}
+
+   
+
+
+    if (BuildTracker) {
+        
+        if (event_press(Build)) {
+            BuildTrack = !BuildTrack;
+        }
+    
+        if (BuildTrack) {
+            BuildCount += get_rtime();
+            
+            if (event_press(Pickaxe) || BuildCount == BuildSyncTime) {
+                BuildTrack = Off;
+                BuildCount = Off;
+            }
+            
+                if (get_ival(Roof) || get_ival(Floor) || get_ival(Ramp) || get_ival(Wall)) 
+                    BuildCount = Off;
+      }
+}
+
+    if (!BuildTrack)        
+        
+        
+         
+            
+               combo_run(AimExpo);
+           
+        
+               if (abs(get_val(9)) > 19 || abs(get_val(10)) > 19) 
+                   combo_stop(AimExpo);
+     
+
+        
+     
+	 
+	    if (event_press(Ads))  
+	    	
+	    	Power = On;
+ 
+	    
+	    else if (!get_ival(Ads) && event_press(Fire))  
+	    	
+	    	Power = On;
+ 
+	    
+	    if (get_ival(Ads) || get_ival(Fire)) 
+	    	
+	    	AxisXY = isqrt(abs(get_ival(aimX)) * abs(get_ival(aimX)) + abs(get_ival(aimY)) * abs(get_ival(aimY)));
+	    	
+	    	if (AssistProfile == 1)
+	    		
+	    		AimAssist(Strength,Increment);
+	    		
+          else {
+	    	
+	    	CountPower = 0;
+	    	power = Off;
+       
+
+ 
+    if (!BuildTrack)   
+       
+      
+            
+            
+            
+    
+
+            if (LegacyARecoil)        
+                    AR_Value = ArLegacyRY;  
+
+                if ((((!LegacyRumble) && (LegacyARHip)) && (get_ival(Ads) || get_ival(Fire))) || 
+                     ((!LegacyRumble) && (!LegacyARHip) && get_ival(Ads) && get_ival(Fire))) 
+
+                    LegacyAR();
+                
+                    else if ((((LegacyRumble) && (LegacyARHip)) && (get_ival(Ads) || get_ival(Fire)) && get_rumble(RUMBLE_A)) || 
+                              ((LegacyRumble) && (!LegacyARHip) && get_ival(Ads) && get_ival(Fire) && get_rumble(RUMBLE_A))) 
+
+                            LegacyAR();
+                    
+            
+       
+       
+     if (Shunt) 
+        
+        if (event_release(Shunt)) 
+            Shunt = Off;
+        
+            else {
+            set_val (Shunt,Off);
+         
+         
+         if(PEEP_Aimbot_mode)
+         combo_run(PeepAimbot)
+         if(abs(get_val(PS4_RX)) >= 15 || abs(get_val(PS4_RX)) >= 15 || abs(get_val(PS4_LY)) <= 15 || abs(get_val(PS4_LX)) <= 15)combo_stop(PeepAimbot)
+          
+         combo_run(PeepExpo2)if(abs(get_val(PS4_RX)) > 16 || abs(get_val(PS4_RY)) > 16 || abs(get_val(PS4_LX)) > 16 || abs(get_val(PS4_LY)) > 16)
+         combo_stop(PeepExpo2)
+         
+      combo_run(PeepExpo3)if(abs(get_val(PS4_RX)) > 17 || abs(get_val(PS4_RY)) > 17 || abs(get_val(PS4_LX)) > 16 || abs(get_val(PS4_LY)) > 16)
+         combo_stop(PeepExpo3)    
+         
+         }}}
+     
+  
+     
+       
+     
+   
+
+
+
+combo Confirm {
+      
+      set_val(Confirm,100);
+      wait(20);
+      set_val(Confirm,0);
+      wait(100);
+}
+
+
+
+combo AimExpo{          
+     
+     set_val(10, (AimAssist_Strength)); wait(1)
+     set_val(9, (AimAssist_Strength)); 
+     set_val(10, -AimAssist_Strength ); wait(1)
+     set_val(9, -AimAssist_Strength);
+}
+
+combo PeepAimbot {
+set_val(PS4_RX,PEEP_Aimbot_Strength)// do no change
+set_val(PS4_RY,PEEP_Aimbot_Strength)wait(1)// do no change
+set_val(PS4_RX,-PEEP_Aimbot_Strength)// do no change
+set_val(PS4_RY,-PEEP_Aimbot_Strength)wait(1)// do no change
+}
+int Peep1 = 8;
+combo PeepExpo2 {
+set_val(PS4_RX,Peep1)wait(1)
+set_val(PS4_RY,Peep1)wait(1) 
+set_val(PS4_LY,Peep1) 
+set_val(PS4_LX,Peep1)}
+combo PeepExpo3 {
+set_val(PS4_RX,Peep1)wait(1)
+set_val(PS4_RY,Peep1)wait(1) 
+set_val(PS4_LY,Peep1)wait(1)  
+set_val(PS4_LX,Peep1)}
+int AR_Value;
+function LegacyAR () {
+    
+    if(LegacyInvert) {
+        set_Val(RY,AR_Value * -1);
+    }
+        else {    
+            set_Val(RY,AR_Value);
+        }
+}
+
+
+
+int AssistProfile = 1; 
+function AimAssist (Strength,Step) {
+
+	if (Power) {
+		
+		Ypower = Strength;
+		Xpower = Strength;
+		Increment = Step;
+		Power = Off;
+	}
+	
+	if (!power) {
+	
+		Xpower += Increment;
+		Ypower -= Increment;
+	
+	} else {
+		
+		Xpower -= Increment;
+		Ypower += Increment;
+	}
+	
+	CountPower ++;
+	
+	if (CountPower >= (Strength / Increment)) {
+		
+		power = !power;
+		CountPower = 0;
+	}	
+	
+	
+		}
+	
+
+
+function Press (Button) {
+
+    if (get_ival(Button))
+        return;
+            set_val(Button, 100);
+}
+
+function set_Val(Input,Output) {
+
+	set_val(Input,clamp(Output * (100 - abs(get_ival(Input))) / 100 + get_ival(Input),-100,100));
+    return; 
+}
+
+
+define ADs      = PS4_ACCZ;
+define Strafe   = PS4_LX;
+define Walk     = PS4_LY;
+int StrafeShot = TRUE;
+int StrafeWait = 1;
+main {
+	if (StrafeShot) {
+		if (get_ival(ADs) && abs(get_ival(Strafe)) <= 35 && abs(get_ival(Walk)) <= 35) {
+			combo_run(StrafeShot);
+					}
+		else {
+			combo_stop(StrafeShot);
+					}
+			}
+	}
+combo StrafeShot {
+	set_val(Strafe,-100);
+	wait(StrafeWait);
+	set_val(Strafe,100);
+	wait(StrafeWait);
+	}
+
+              
+           
+        
+ ÃºÂ¸â€¹Â¾â€ Â·â€žÂµâ€šÂ·Æ’Ã€Ã¶Ã€Ã¶Ã‡ ú¸Œ½½Ž¿ˆ¿¼Š²„Æ
