@@ -1,0 +1,52 @@
+// GPC Online Library
+// gta_v_online_idle_kick_disabler.gpc
+
+/*********************************************************************************************
+*      ____          __   __            __         _____  __              __ _               *
+*     / __ \ ____   / /_ / /_   ____   / /___     / ___/ / /_ __  __ ____/ /(_)____   _____  *
+*    / /_/ // __ \ / __// __ \ / __ \ / // _ \    \__ \ / __// / / // __  // // __ \ / ___/  *
+*   / ____// /_/ // /_ / / / // /_/ // //  __/   ___/ // /_ / /_/ // /_/ // // /_/ /(__  )   *
+*  /_/     \____/ \__//_/ /_/ \____//_/ \___/   /____/ \__/ \__,_/ \__,_//_/ \____//____/    *
+*  Pothole Studios Gaming Network - www.PotholeStudios.com - https://plus.google.com/+PSGN   *
+*                                                                                            *
+**********************************************************************************************
+*                                                                                            *
+*  GTA Online Idle Kick Disabler.                                                            *
+*  This script sends a quick click of R3 (Right Thumb) every few minutes so you don't get    *
+*  kicked from GTA Online when you go AFK to make a coffee, or take a dump.                  *
+*                                                                                            *
+*  This script is activated automatically when the Thumbsticks & L2 & R2 have not moved      *
+*  for over 90 Seconds. (lots of 4 second wait lines, cos a value of 60000 was Out Of Range) *
+*                                                                                            *
+*********************************************************************************************/
+
+define DZ = 30;    // DeadZone Adjustment. Increase this if your sticks don't reset to centre.
+define DZT = 20;   // Trigger Deadzone Adjustment. Increase if your triggers don't 0.
+
+int Wait_Time;
+init{
+    Wait_Time = 30000;  // 30 Second Timer. Don't adjust.
+    }
+
+main {
+
+if(get_val(PS3_LX) <= DZ && get_val(PS3_LX) >= -DZ && // Left Stick X
+   get_val(PS3_LY) <= DZ && get_val(PS3_LY) >= -DZ && // Left Stick Y
+   get_val(PS3_RX) <= DZ && get_val(PS3_RX) >= -DZ && // Right Stick X
+   get_val(PS3_RY) <= DZ && get_val(PS3_RY) >= -DZ && // Right Stick Y
+   get_val(PS3_L2) <= DZT && get_val(PS3_R2) <= DZT) { // Triggers
+    combo_run(Anti_AFK);}
+else {combo_stop(Anti_AFK);}
+}
+
+combo Anti_AFK {
+        wait(Wait_Time); //30 second timer
+        wait(Wait_Time); //30 second timer
+        wait(Wait_Time); //30 second timer
+        wait(Wait_Time); //30 second timer
+        wait(Wait_Time); //30 second timer
+        wait(Wait_Time); //30 second timer
+    set_val(PS3_R3, 100); 
+        wait(50);   //Time is in Msec      
+    set_val(PS3_R3, 0); //Reset to 0
+}

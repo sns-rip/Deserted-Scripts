@@ -1,0 +1,273 @@
+/*
+
+    ░██████╗░████████╗░█████╗░       ███████╗       ░█████╗░██╗░░░██╗░█████╗░██╗░░░██╗███████╗███████╗░█████╗░
+    ██╔════╝░╚══██╔══╝██╔══██╗       ██╔════╝       ██╔══██╗██║░░░██║██╔══██╗██║░░░██║╚════██║╚════██║██╔══██╗
+    ██║░░██╗░░░░██║░░░███████║       ██████╗░       ██║░░╚═╝██║░░░██║██║░░╚═╝██║░░░██║░░███╔═╝░░███╔═╝███████║
+    ██║░░╚██╗░░░██║░░░██╔══██║       ╚════██╗       ██║░░██╗██║░░░██║██║░░██╗██║░░░██║██╔══╝░░██╔══╝░░██╔══██║
+    ╚██████╔╝░░░██║░░░██║░░██║       ██████╔╝       ╚█████╔╝╚██████╔╝╚█████╔╝╚██████╔╝███████╗███████╗██║░░██║
+    ░╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝       ╚═════╝░       ░╚════╝░░╚═════╝░░╚════╝░░╚═════╝░╚══════╝╚══════╝╚═╝░░╚═╝
+
+    ██╗░░██╗██████╗░░█████╗░██╗░░██╗                    |||
+    ╚██╗██╔╝██╔══██╗██╔══██╗╚██╗██╔╝                    |||
+    ░╚███╔╝░██████╦╝██║░░██║░╚███╔╝░                    |||
+    ░██╔██╗░██╔══██╗██║░░██║░██╔██╗░                    |||
+    ██╔╝╚██╗██████╦╝╚█████╔╝██╔╝╚██╗                    |||
+    ╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝        < FEATURES  VVV >
+
+                            //  FAST BULLSHARK TESTOSTERNONE = B + RIGHT
+                           //  FAST ARMOR                    = B + DOWN
+                          //  FAST Quick Buzzard             = A + DOWN
+                         //  FAST Quick Oppressor MK2        = A + RIGHT
+                        //  FAST Quick Sparrow               = A + LEFT
+                       //
+                      //  ROCKET SPAM ENABLE / DISABLE       = LT + LEFT  |  press RT + LT when enabled to start shooting
+
+*/
+
+define Input_Interval = 40;  // For 60fps (or performance mode) use '20'ms (x2 faster)  |  For 30fps use '40'ms
+
+int rpg_jitter = 0;  // 0 = Start Disabled  |  1 = Start Enabled
+int INTERACTION_MENU = XB1_VIEW;
+
+init {
+
+    // Swap button correctly for Playstation crossover on load
+	// Note: This could not work correctly if a second controller is connected after the script is loaded and the script
+	// does not reload in this case, otherwise if it does break when this happens just place this below in the main
+    if(((get_console() == PIO_PS5 || get_console() == PIO_PS4) && get_controller() != PIO_PS5 && get_controller() != PIO_PS4) ||
+    (get_console() != PIO_PS5 && get_console() != PIO_PS4 && get_controller() == PIO_PS5 && get_controller() == PIO_PS4))
+        INTERACTION_MENU = PS4_TOUCH;
+
+}
+
+main  {
+
+    if(get_val(XB1_B)) {
+        if(event_press(XB1_DOWN))
+            combo_run(Quick_CEO_1);
+        if(event_press(XB1_RIGHT))
+            combo_run(Quick_CEO_2);
+    }
+
+    if(get_val(XB1_LT) && event_press(XB1_LEFT))
+        rpg_jitter = !rpg_jitter;
+    if(get_val(XB1_RT) && rpg_jitter)
+        combo_run(RPG_Jitter);
+
+    if(get_val(XB1_A)) {
+        if(event_press(XB1_DOWN))
+            combo_run(Quick_Buzzard);
+        if(event_press(XB1_RIGHT))
+            combo_run(Quick_Oppressor_MK2);
+        if(event_press(XB1_LEFT))
+            combo_run(Quick_Sparrow);
+    }
+
+}
+
+combo RPG_Jitter {
+    // Wait for shot
+    wait(210);
+    // Switch to grenade
+    set_val(XB1_LB, 100);
+    wait(180);
+    set_val(XB1_LB, 100);
+    set_polar2(POLAR_RS, 135, 10000);
+    wait(Input_Interval);
+    set_val(XB1_LB, 0);
+    set_polar2(POLAR_RS, 0, 0);
+    wait(Input_Interval);
+    // Switch back to RPG_Jitter
+    set_val(XB1_LB, 100);
+    wait(180);
+    set_val(XB1_LB, 100);
+    set_polar2(POLAR_RS, 180, 10000);
+    wait(Input_Interval);
+    set_val(XB1_LB, 0);
+    wait(100);
+}
+
+combo Quick_CEO_1 {
+    set_val(INTERACTION_MENU, 100);
+    wait(1000 + Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+}
+
+combo Quick_CEO_2 {
+    set_val(INTERACTION_MENU, 100);
+    wait(1000 + Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+}
+
+combo Quick_Buzzard {
+    set_val(INTERACTION_MENU, 100);
+    wait(1000 + Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+}
+
+combo Quick_Oppressor_MK2 {
+    set_val(INTERACTION_MENU, 100);
+    wait(1000 + Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_B, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_B, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_B, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+}
+
+combo Quick_Sparrow {
+    set_val(INTERACTION_MENU, 100);
+    wait(1000 + Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_UP, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_DOWN, 100);
+    wait(Input_Interval);
+    wait(Input_Interval);
+    set_val(XB1_A, 100);
+    wait(Input_Interval);
+}

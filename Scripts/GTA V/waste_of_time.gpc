@@ -1,0 +1,22 @@
+//simple arm wrestling script
+//on/off lt+r3 (off by default)
+//press r3 to run
+//made by sploof
+define LYA = PS4_LY;
+
+
+int arm = FALSE
+
+main {
+	if(get_val(PS4_L2) && event_press(PS4_R3))
+        arm = !arm
+    if(get_val(PS4_R3)>=1 && arm)
+        combo_run(arm)
+}
+combo arm
+{
+set_val(PS4_RX, 100)
+wait(10)
+set_val(PS4_RX, -100)
+wait(10)
+}
