@@ -1,2 +1,4 @@
 bot.py
 .env
+channels.json
+processed_files.json
