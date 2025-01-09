@@ -1,0 +1,1650 @@
+data(0x41,0x6E,0x74,0x69,0x20,0x52,0x65,0x63,0x6F,0x69,0x6C,0x00,0x42,0x75,0x69,0x6C,0x64,0x20,0x4D,0x6F,0x64,0x00,0x4F,0x46,0x46,0x00,0x4F,0x4E,0x00,0x4B,0x69,0x6C,0x6C,0x20,0x4D,0x6F,0x64,0x65,0x00,0x4E,0x6F,0x74,0x68,0x69,0x6E,0x67,0x20,0x54,0x6F,0x00,0x43,0x68,0x61,0x6E,0x67,0x65,0x20,0x48,0x65,0x72,0x65,0x00,0x43,0x68,0x69,0x6C,0x6C,0x20,0x4F,0x75,0x74,0x00,0x00,0x52,0x61,0x70,0x69,0x64,0x20,0x46,0x69,0x72,0x65,0x00,0x00,0x00,0x45,0x6E,0x61,0x62,0x6C,0x65,0x64,0x00,0x44,0x69,0x73,0x61,0x62,0x6C,0x65,0x64,0x00,0x53,0x65,0x72,0x75,0x6D,0x00,0x47,0x6F,0x61,0x74,0x20,0x53,0x63,0x72,0x69,0x70,0x74,0x00,0x4E,0x53,0x58,0x00,0x56,0x41,0x4C,0x55,0x45,0x53,0x00,0x53,0x41,0x56,0x45,0x44,0x00,0x44,0x69,0x73,0x61,0x62,0x6C,0x65,0x00,0x50,0x6F,0x6C,0x61,0x72,0x20,0x54,0x79,0x70,0x65,0x00,0x4C,0x69,0x6E,0x65,0x61,0x72,0x20,0x54,0x79,0x70,0x65,0x00,0x44,0x65,0x66,0x61,0x75,0x6C,0x74,0x00,0x30,0x78,0x38,0x20,0x6D,0x73,0x00,0x30,0x78,0x36,0x20,0x6D,0x73,0x00,0x30,0x78,0x34,0x20,0x6D,0x73,0x00,0x30,0x78,
+0x32,0x20,0x6D,0x73,0x00,0x30,0x78,0x31,0x20,0x6D,0x73,0x00,0x20,0x4E,0x6F,0x20,0x45,0x64,0x69,0x74,0x20,0x56,0x61,0x72,0x69,0x61,0x62,0x6C,0x65,0x00,0x20,0x41,0x2F,0x43,0x52,0x4F,0x53,0x53,0x20,0x74,0x6F,0x20,0x45,0x64,0x69,0x74,0x20,0x00,0x4D,0x4F,0x44,0x3A,0x00,0x4D,0x53,0x4C,0x3A,0x00,0x48,0x6F,0x6C,0x64,0x20,0x4C,0x54,0x2F,0x4C,0x32,0x20,0x2B,0x00);
+function V_0169(arg) {
+    switch (arg) {
+        case 0: {
+           return 0;
+        }
+    }
+    return -1;
+}
+function V_0178(arg) {
+    switch (arg) {
+        case 0: {
+           return 12;
+        }
+    }
+    return -1;
+}
+function V_0438(arg) {
+    switch (arg) {
+        case 0: {
+           return 22;
+        }
+    }
+    return -1;
+}
+function V_0436(arg) {
+    switch (arg) {
+        case 0: {
+           return 26;
+        }
+    }
+    return -1;
+}
+function V_0163(arg) {
+    switch (arg) {
+        case 0: {
+           return 29;
+        }
+    }
+    return -1;
+}
+function V_0166(arg) {
+    switch (arg) {
+        case 0: {
+           return 39;
+        }
+    }
+    return -1;
+}
+function V_0167(arg) {
+    switch (arg) {
+        case 0: {
+           return 50;
+        }
+    }
+    return -1;
+}
+function V_0168(arg) {
+    switch (arg) {
+        case 0: {
+           return 62;
+        }
+    }
+    return -1;
+}
+function V_0231(arg) {
+    switch (arg) {
+        case 0: {
+           return 72;
+        }
+        case 1: {
+           return 73;
+        }
+        case 2: {
+           return 84;
+        }
+        case 3: {
+           return 85;
+        }
+    }
+    return -1;
+}
+function V_0463(arg) {
+    switch (arg) {
+        case 0: {
+           return 86;
+        }
+        case 1: {
+           return 94;
+        }
+    }
+    return -1;
+}
+function V_0243(arg) {
+    switch (arg) {
+        case 0: {
+           return 103;
+        }
+        case 1: {
+           return 109;
+        }
+        case 2: {
+           return 121;
+        }
+    }
+    return -1;
+}
+function V_0354(arg) {
+    switch (arg) {
+        case 0: {
+           return 125;
+        }
+    }
+    return -1;
+}
+function V_0355(arg) {
+    switch (arg) {
+        case 0: {
+           return 132;
+        }
+    }
+    return -1;
+}
+function V_0440(arg) {
+    switch (arg) {
+        case 0: {
+           return 138;
+        }
+    }
+    return -1;
+}
+function V_0442(arg) {
+    switch (arg) {
+        case 0: {
+           return 146;
+        }
+    }
+    return -1;
+}
+function V_0443(arg) {
+    switch (arg) {
+        case 0: {
+           return 157;
+        }
+    }
+    return -1;
+}
+function V_0444(arg) {
+    switch (arg) {
+        case 0: {
+           return 169;
+        }
+    }
+    return -1;
+}
+function V_0445(arg) {
+    switch (arg) {
+        case 0: {
+           return 177;
+        }
+    }
+    return -1;
+}
+function V_0446(arg) {
+    switch (arg) {
+        case 0: {
+           return 184;
+        }
+    }
+    return -1;
+}
+function V_0447(arg) {
+    switch (arg) {
+        case 0: {
+           return 191;
+        }
+    }
+    return -1;
+}
+function V_0448(arg) {
+    switch (arg) {
+        case 0: {
+           return 198;
+        }
+    }
+    return -1;
+}
+function V_0449(arg) {
+    switch (arg) {
+        case 0: {
+           return 205;
+        }
+    }
+    return -1;
+}
+function V_0433(arg) {
+    switch (arg) {
+        case 0: {
+           return 212;
+        }
+    }
+    return -1;
+}
+function V_0434(arg) {
+    switch (arg) {
+        case 0: {
+           return 230;
+        }
+    }
+    return -1;
+}
+function V_0421(arg) {
+    switch (arg) {
+        case 0: {
+           return 248;
+        }
+    }
+    return -1;
+}
+function V_0423(arg) {
+    switch (arg) {
+        case 0: {
+           return 253;
+        }
+    }
+    return -1;
+}
+
+function V_0379(arg) {
+    return 258;
+}
+define V_080 = PS4_R2;
+define V_081 = PS4_L2;
+define V_082 = XB1_RX;
+define V_083 = XB1_RY;
+define V_084 = XB1_LX;
+define V_085 = XB1_LY;
+
+define V_086 = PS4_TRIANGLE; // Pickaxe In Game
+define V_087 = PS4_R1; // Next Weapon In Game
+define V_088 = PS4_L1; // Previous Weapon In Game
+define V_089 = PS4_RIGHT; // Ping In Game
+define V_090 = PS4_CIRCLE; 
+define V_091 = PS4_L1;
+define V_092 = PS4_R1;
+define V_093 = PS4_L2;
+define V_094 = PS4_R2;
+define V_095 = PS4_SQUARE;
+///Insta Reset
+define V_096 = PS4_CIRCLE; //Edit In Game No Hold Time
+define V_097 = PS4_R2; // Edit Select In Game
+define V_098 = PS4_CIRCLE; // Edit Confirm In Game 
+define V_099 = PS4_R3; // Edit Reset In Game
+define V_0100 = PS4_LEFT;
+define V_0101 = PS4_L3;
+//===============================================================
+//    ADJUSTABLE VARIABLES                                       
+//===============================================================
+// Index to find Value Name string - switchable in game with left/right in ModEdit
+int V_0102; 
+int V_0103;//0
+int V_0104; // 1
+int V_0105; // 2
+int V_0106;//3
+
+int V_0107;//4
+int V_0108;//5
+
+int V_0109; //6
+int V_0110;//7
+
+int V_0111;//8
+int V_0112;//9
+
+int V_0113;//10
+int V_0114;//11
+
+int V_0115;//12
+int V_0116;//13
+
+int V_0117; //14
+int V_0118;//15
+
+//---Adjustable Variables Count                          
+define V_0119 = 0xF; 
+//===============================================================
+//    MODS TOGGLE VARIABLES                                      
+//===============================================================
+// Number of MODS -----------------------------------------------
+define V_0120 = 0x9; 
+// Index to find Mod Toggle Variable 
+int V_0121; 
+//  MODS Toggles ------------------------------------------------
+int V_0122;
+int V_0123; // 1 = Polar Type, 2 = Linear Type
+int V_0124;
+int V_0125;
+int V_0126;
+int V_0127;
+int V_0128;
+int V_0129;
+int V_0130;
+int V_0131;
+//===============================================================
+//    MODS TEXT TO DISPLAY                                       
+//===============================================================
+// Mod Name      -   Text to Display
+  const string V_0169[]      = {"Anti Recoil"};
+  const string V_0172[]      = {"AA Type"} ;
+  const string V_0175[]      = {"Sticky Aim"} ;
+  const string V_0178[]      = {"Build Mod" };
+  const string V_0181[]      = {"Insta Reset"} ;
+  const string V_0184[]      = {"Insta Pick Axe"} ;
+  const string V_0187[]      = {"Pick Up Mod"} ;
+  const string V_0190[]      = {"Head Shot"} ;
+   const string V_0193[]      = {"Rapid Fire"} ;
+  const string V_0196[]      = {"VM Speed"} ;
+
+//===============================================================
+//    TITLE STRING                                               
+//===============================================================
+const string V_0438[]      = { "OFF"};    
+const string V_0436[]      = { "ON"};   
+const string V_0163[]      = { "Kill Mode"};
+
+// Constant bytes - Convert numbers array - ASCII_NUM[column number] 
+const int8 V_0364[] =                          
+//      0  1  2  3  4  5  6  7  8  9  (column numbers)
+      {0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39};
+
+const string V_0166[]      = {"Nothing To"};
+const string V_0167[]      = {"Change Here"};
+const string V_0168[]      = {"Chill Out"};
+const uint8 V_0171 [] = {
+  0x1 , //  # 1
+  0x1F, //  # 2
+  0x1,
+  0x1 , //  # 3
+  0x1 , //  # 4
+  0x1 ,
+  0x1 ,
+  0x1 ,
+  0x1 ,
+  0x32
+};
+const uint8 V_0486 [] = {
+  0x1 ,
+  0x1	,
+  0x1,
+  0x0 ,
+  0x0 ,
+  0x0 ,
+  0x0 , 
+  0x1 ,
+  0x1 ,
+  0x0
+};
+const uint8 V_0487 [][] = {
+  { 0x8 , 0x9 },  // 
+  { 0x0 , 0x7 }, // 
+  { 0xA , 0xB }, // 
+  { 0x0 , 0x0 },  // 
+  { 0x0 , 0x0 }, //  
+  { 0x0 , 0x0 }, //
+  { 0x0 , 0x0 }, //
+  { 0xC , 0xD }, //
+  { 0xE , 0xF }, //
+  { 0x0 , 0x0 }
+};
+const uint8 V_0488 [][]={ 
+  { 0x0 , 0x1 }, //  # 1
+  { 0x0 , 0x2 },  //  # 2
+  { 0x0 , 0x1 }, //  # 3
+  { 0x0 , 0x1 }, //  # 4
+  { 0x0 , 0x1 }, //  # 5
+  { 0x0 , 0x1 },  //  # 6
+  { 0x0 , 0x1 },  //  # 7
+  { 0x0 , 0x1 },
+  { 0x0 , 0x1 },
+  { 0x0 , 0x5 }
+};
+
+const string V_0356 []={ 
+"AA Power", // 0
+"AA Speed",  // 1
+"AA Jitter",//  # # 2 
+"Dead Zone",//  # # 3 
+"Hip Size",//  # # 4 
+"Hip Speed",//  # # 5
+"Bloom Reducer",//6
+"Reducer Speed",//7
+"Vertical",//  # # 8 
+"Horizontal",//  # 9 
+"Size",//  # # 10 
+"Speed",//  # 11 
+"Strength",
+"Time",
+"Hold Time",
+"Release"
+}
+
+/////////////////////////////////////////////////////////////////////////////  
+///   INITIALIZATION BLOCK                                                      
+/////////////////////////////////////////////////////////////////////////////   
+init {  
+V_0122 			= get_pvar(SPVAR_1, 0x1,0x1,0x0); 
+V_0123		= get_pvar(SPVAR_2, 0x1,0x2,0x0);
+V_0125 		= get_pvar(SPVAR_3, 0x1,0x2,0x0);
+V_0126 		= get_pvar(SPVAR_4, 0x1,0x1,0x0);
+V_0127		= get_pvar(SPVAR_5, 0x1,0x1,0x0);
+V_0131			= get_pvar(SPVAR_6, 0x1,0x5,0x0);
+V_0129 = get_pvar(SPVAR_21, 0x1,0x1,0x0);
+V_0130 	= get_pvar(SPVAR_24, 0x1,0x1,0x0);
+
+V_0103				= get_pvar(SPVAR_7, 0x1,0x64,0xF);
+V_0104				= get_pvar(SPVAR_8, 0x1,0x64,0x5F);
+V_0105           = get_pvar(SPVAR_9, 0x1,0xA,0x2);
+V_0106			= get_pvar(SPVAR_10, 0x1,0x32,0x3);
+V_0107     	  	= get_pvar(SPVAR_11, 0x1,0x64, 0x5);
+V_0108      		= get_pvar(SPVAR_12, 0x1,0x64, 0x5B);
+V_0111 		= get_pvar(SPVAR_13, 0x1,0x64, 0xE);
+V_0112 		= get_pvar(SPVAR_14, 0x1,0x64, 0x0);
+
+V_0128 				= get_pvar(SPVAR_15, 0x1,0x1, 0x0);
+
+V_0109			= get_pvar(SPVAR_16, 0x1,0x64,0x28);
+V_0110			= get_pvar(SPVAR_17, 0x1,0x64,0x5A);
+
+V_0124 			= get_pvar(SPVAR_18, 0x1,0x1,0x0);
+V_0113			= get_pvar(SPVAR_19, 0x1,0x64,0xF);
+V_0114			= get_pvar(SPVAR_20, 0x1,0x64,0x5F);
+
+V_0115   = get_pvar(SPVAR_22, 0x1,0x64,0x6);
+V_0116   = get_pvar(SPVAR_23, 0x1,0x3E8,0x226);
+V_0117 		   = get_pvar(SPVAR_25, 0x1,0x64,0xA);
+V_0118   	   = get_pvar(SPVAR_26, 0x1,0x64,0x14);
+
+V_0416 = get_slot();
+}// end of init block
+
+//Misc*
+int V_0133 = 0x0, V_0134 = 0x0, V_0135, V_0136, V_0137, V_0138, V_0139,V_0140;
+int V_0141, V_0142; 
+int V_0143, V_0144 = 0xFA0, V_0145, V_0146;
+int V_0147, V_0148, V_0149, V_0150;
+define V_0151 = 0x7530;
+int V_0152,V_0153;
+int V_0154, V_0155, V_0156;
+
+ const int8 V_0490[] = { OLED_FONT_SMALL_WIDTH, OLED_FONT_MEDIUM_WIDTH, OLED_FONT_LARGE_WIDTH }
+      // (Display) Font height
+const int8 V_0491[] = { OLED_FONT_SMALL_HEIGHT, OLED_FONT_MEDIUM_HEIGHT, OLED_FONT_LARGE_HEIGHT }
+const string V_0231[] = { "", "Rapid Fire", "", "" };
+const string V_0463 [] = {"Enabled", "Disabled" }; 
+enum {
+	V_0157 = -2, V_0158, V_0159 = 0x5,
+	V_0160 = -1, V_0161 = 0x5
+}
+const string V_0243[] = { "Serum", "Goat Script", "NSX" };
+	init{
+	combo_run(V_01); // Run greeting
+	}
+
+///////////////////////////////////////////////////////////////////////////// 
+///   MAIN BLOCK                                                             
+/////////////////////////////////////////////////////////////////////////////
+main {//---------------------------------
+
+        combo_run(V_04);
+		block_rumble();
+
+		if(get_ival(V_081) > 0x1)set_val(V_081, 0x64); // hair trigger
+		if(get_ival(V_080) > 0x1)set_val(V_080, 0x64); // hair trigger
+
+	if(get_console() == PIO_PS4 || get_console() == PIO_PS5)
+    {
+        if(get_controller() == PIO_XB360 || get_controller() == PIO_XB1) // If XB360/XB1 controller:
+        {
+            if(get_ival(PS4_SHARE)) // View
+            {
+                if(get_ival(PS4_R3)) // RS + View =  ScreenShot
+                {
+                    set_val(PS4_SHARE,0x64);
+                    set_val(PS4_TOUCH,0x0);
+                    set_val(PS4_R3,0x0);
+                }
+                else // View only = PS4_TOUCH
+                {
+                    set_val(PS4_TOUCH, 0x64);
+                    set_val(PS4_SHARE, 0x0);
+                }
+            }
+        }
+    }
+    else if(get_console() == PIO_XB360 || get_console() == PIO_XB1)
+    {
+        if(get_controller() == PIO_PS4 || get_controller() == PIO_PS5) // If PS4/PS5 controller:
+            swap(PS4_TOUCH, PS4_SHARE);
+    }
+
+   /////////////////////////////////////////
+ if(get_ival(V_081)){
+     if(event_press(PS4_SHARE)){
+         V_0162    = !V_0162;
+         cls_oled(0x0);
+         V_065();
+         //display_mod(f_idx, f_string, mod_name, f_toggle, f_option)
+         V_066( V_062(V_079[0x0], OLED_FONT_SMALL_WIDTH) ,V_0163(0x0),V_0162 ,0x1);
+         V_0165 = 0x7D0;
+ 		 //--- Set Virtual Machine Speed to Default if script is OFF    
+ 		 if(!V_0162) V_018(V_0232); 
+     }
+ }
+
+ if(V_0165){
+     V_0165 -= get_rtime();
+     if(V_0165 <= 0x0) {
+         cls_oled(0x0);    
+     }
+ }
+
+//============================================================
+// KILL SWITCH FOR ENTIRE SCRIPT
+//============================================================
+ if(V_0162){
+  //--- Set Virtual Machine Speed to Default for MENU                     
+	if(V_0202 || V_0206) V_018(V_0232);
+	combo_run(V_04)
+    if(V_0237){                
+    	  // Clear OLED screen         
+        cls_oled(0x0);                        
+       // display_edit(f_idx, f_string, f_print, f_val) 
+		if(V_0486[ V_0121 ] == 0x0 ){  
+			  //--- print label                
+		    line_oled(0x1,0x2D,0x7F,0x2D,0x1,0x0);    
+		    print( V_062( 0xA, OLED_FONT_SMALL_WIDTH ), 0xF, OLED_FONT_SMALL, 0x1, V_0166(0x0) ); 
+		    print( V_062( 0xB, OLED_FONT_SMALL_WIDTH ), 0x1E, OLED_FONT_SMALL, 0x1, V_0167(0x0) );
+		    print( V_062( 0x9, OLED_FONT_SMALL_WIDTH ), 0x2D, OLED_FONT_SMALL, 0x1, V_0168(0x0) ); 
+		}                                                                                            
+		else {//----  ELSE BEGIN --------------  
+          V_041( V_0102 [V_0102 + 0x1]);
+          V_0102 [V_0102 + 0x1] = V_056(V_0102 [V_0102 + 0x1] );
+		}//--- ELSE END   ----------- 
+   }//  end of display edit  
+    if(V_0234)
+    { 
+        // Clear OLED screen 
+        cls_oled(0x0);
+
+        // Draw Rectangle 
+        V_065(); 
+        // Display Mod Name and togle status  : ON/OFF 
+        if(V_0121 == 0x0)V_066( V_062(V_079[0x1]- 0x1, OLED_FONT_SMALL_WIDTH ) ,V_0169(0x0),V_0122,V_0171[ V_0121 ]);
+        if(V_0121 == 0x1)V_066( V_062(V_079[0x2]- 0x1, OLED_FONT_SMALL_WIDTH ) ,V_0172[0x0],V_0123,V_0171[ V_0121 ]);
+        if(V_0121 == 0x2)V_066( V_062(V_079[0xF]- 0x1, OLED_FONT_SMALL_WIDTH ) ,V_0175[0x0],V_0124,V_0171[ V_0121 ]);
+        if(V_0121 == 0x3)V_066( V_062(V_079[0x3]- 0x1, OLED_FONT_SMALL_WIDTH ) ,V_0178(0x0),V_0125,V_0171[ V_0121 ]);        
+        if(V_0121 == 0x4)V_066( V_062(V_079[0x4]- 0x1, OLED_FONT_SMALL_WIDTH ) ,V_0181[0x0],V_0126,V_0171[ V_0121 ]);
+        if(V_0121 == 0x5)V_066( V_062(V_079[0x5]- 0x1, OLED_FONT_SMALL_WIDTH ) ,V_0184[0x0],V_0127,V_0171[ V_0121 ]);
+        if(V_0121 == 0x6)V_066( V_062(V_079[0xE]- 0x1, OLED_FONT_SMALL_WIDTH ) ,V_0187[0x0],V_0128,V_0171[ V_0121 ]);
+        if(V_0121 == 0x7)V_066( V_062(V_079[0x10]- 0x1, OLED_FONT_SMALL_WIDTH) ,V_0190[0x0],V_0129,V_0171[ V_0121 ]);
+        if(V_0121 == 0x8)V_066( V_062(V_079[0x11]- 0x1, OLED_FONT_SMALL_WIDTH) ,V_0193[0x0],V_0130,V_0171[ V_0121 ]);
+        if(V_0121 == 0x9)V_066( V_062(V_079[0x6]- 0x1, OLED_FONT_SMALL_WIDTH) ,V_0196[0x0],V_0131,V_0171[ V_0121 ]);
+         V_0234 = FALSE; 
+    } 
+     if(V_0240){           
+          // clear OLED screen    
+    	    cls_oled(0x0);            
+           // screen saver          
+	         V_0206 = FALSE;   
+           	V_0240 = FALSE;  
+          	V_0152 = TRUE;                                   
+    }
+    if(V_0152)         
+    {                            
+        V_0153 += get_rtime();
+        if(V_0153 >= V_0151)   
+        {                        
+            cls_oled(0x0);         
+            V_0153 = 0x0;      
+            V_0152 = FALSE; 
+        }                         
+    }
+
+    //-----------------------------
+
+   /////////////////////////////////////////////////////////
+   // MENU EDIT VALUES             
+   if(V_0202){ 
+        block_all_inputs(); 
+        if(V_0451){
+            V_071();
+        } 
+       //--- Exit from EDIT MENU  
+       if(event_release(PS4_CIRCLE)){
+             V_0202      = FALSE;           
+             V_0237 = FALSE;           
+             V_0206      = TRUE;            
+             V_0234 = TRUE;   // display MODS 
+       }                    
+        ////////////////////////////////////////////////////////////////////////////////  
+        //  GO FORWARD                                                                      
+        if(!get_ival(V_081) && event_press(PS4_DOWN)){
+
+        	   V_0102 ++;                 
+        	   if(V_0102 > V_0487[ V_0121 ][ 0x1 ])  V_0102 = V_0487[ V_0121 ][ 0x1 ]; 
+             V_0234 = FALSE;      
+             V_0237 = TRUE;        
+        }          
+        ///////////////////////////////////////////////////////////////////////////////  
+        //  GO BACK                                                                      
+        if(!get_ival(V_081) && event_press(PS4_UP)){
+
+        	   V_0102 --;                                      
+        	   if(V_0102 < V_0487[ V_0121 ][ 0x0 ]) V_0102 = V_0487[ V_0121 ][ 0x0 ];
+             V_0234 = FALSE;      
+             V_0237 = TRUE;        
+        }                                                           
+            /////////////////////////////////////////////////////// 
+        if(V_0451){
+            V_071();
+        }
+   }// end of EDIT MENU    
+   /////////////////////////////////////////////////////////
+   // EDIT MENU ON/OFF            
+   if(get_ival(V_081) && event_press(PS4_OPTIONS)){  
+        V_0206 = TRUE;  
+        // toggle EditMenu ON/OFF                      
+                 V_0121  = 0x0;                   
+                 V_0234 = TRUE;   // display Title    
+                 V_0237 = FALSE;        
+                 V_0451  = V_0452;
+   }      
+   /////////////////////////////////////////////////////////
+   // MENU SYSTEM              
+   if(V_0206){  
+        block_all_inputs(); 
+      //--- Exit from MENU  
+      if(event_press(PS4_CIRCLE)){
+          V_0206 = FALSE;                     
+          V_0202 = FALSE;              
+          combo_run(V_017);             
+      }                    
+      //--- Enter in EDIT MENU 
+      if(event_press(PS4_CROSS)){
+          V_0206             = FALSE;   
+          V_0102 = V_0487[ V_0121 ][ 0x0 ]; 
+          V_0202             = TRUE;   
+          V_0237        = TRUE; 
+      }
+
+        //Display MOD NAME and togle status 
+        // Switch MODs                     
+        if( !get_ival(V_081) && event_press(PS4_DOWN)){
+
+        	   V_0121 ++;                 
+        	   if(V_0121 > V_0120) V_0121 = 0x0; 
+             //////////////////////////////////////
+
+             //////////////////////////////////////
+        }                          
+        if(!get_ival(V_081) && event_press(PS4_UP)){
+
+        	  V_0121 --;                                      
+        	  if(V_0121 < 0x0) V_0121 = V_0120;
+             //////////////////////////////////////
+
+             //////////////////////////////////////
+          }                        
+        	//////////////////////////
+
+        //////////////////////////////  
+        // display mod name and Toggle ON/OFF | Scroll Options 
+        if(!get_ival(V_081) ){    
+             if(event_press(PS4_RIGHT)){ //   go back
+                 V_0121[V_0121 + 0x1] = V_045( V_0121[V_0121 + 0x1] ); 
+             }// go back 
+             if(event_press(PS4_LEFT)){//   go forward
+                 V_0121[V_0121 + 0x1] = V_043( V_0121[V_0121 + 0x1] );
+             }// go forward 
+       } 
+        V_0234 = TRUE;   
+        set_val(PS4_RIGHT,0x0); 
+        set_val(PS4_LEFT,0x0); 
+        set_val(PS4_UP,0x0); 
+        set_val(PS4_DOWN,0x0); 
+        if(V_0451){
+            V_071();
+        }
+    } 
+    /////////////////////////////////////////////////////////////
+    ///    END OF MENU  /////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
+//========================================================================================================== 
+   if(!V_0202 && !V_0206){
+
+           	 V_018 (V_0131);
+
+//###################################################//
+
+		if (V_0125) {
+		 		if (event_press(V_090)) {
+		 			V_0146 = !V_0146;
+				}
+			    if (V_0146) {         
+			  		V_0143 += get_rtime();
+
+					if (event_press(V_086) || V_0143 >= V_0144) {
+						V_0146 = FALSE;
+						V_0143 = FALSE;
+				    }
+			        if (get_ival(V_091) || get_ival(V_092) || get_ival(V_093) || get_ival(V_094)){ 
+			  	      V_0143 = FALSE;
+			  	    }
+				}
+			}
+			if(V_0126){
+		    	if (event_press(V_0100)) {
+		            combo_run(V_05);
+				}
+			}
+			if (!V_0146) {
+				if (V_0122){
+					if (get_val(V_081) && get_val(V_080)) {
+
+						V_0141 = get_val(V_083) + V_0111;
+						V_0142 = get_val(V_082) + V_0112;
+
+						set_val(V_083, V_0141);
+						set_val(V_082, V_0142);
+					}
+				}
+
+			    if (get_val(V_081) || get_val(V_080)) {
+
+			    	V_0137 = 0x9D / 0x32;
+
+			    	V_0135 = random(inv(V_0105), V_0105);
+			    	V_0136 = random(inv(V_0105), V_0105);
+
+			    	if (V_0123 == 0x1){
+				        V_022();
+			        }
+			        if (V_0123 == 0x2){
+				        V_026();
+			        }
+			    }
+
+			    if (V_0123){
+
+			    	V_0155  = isqrt(pow(get_ival(V_084),0x2) + pow(get_ival(V_085),0x2));
+
+				    if(!get_val(V_081) && !get_val(V_080)){
+				    	if(!get_val(V_095)){
+
+					    	V_0147 = get_ival(V_082);
+							V_0148 = get_ival(V_083);
+
+							combo_run(V_08);
+
+							if(V_0155 <= V_0106){
+								combo_run(V_09);
+							}
+						}
+					}
+					if (get_val(V_081) || get_val(V_080)) {
+						if(V_0155 < 0x19){
+							combo_run(V_012);
+					    	V_0154 = get_ival(V_084);
+						}
+					}
+				}
+
+				if(V_0124){
+
+					V_0149 = get_ival(V_082);
+					V_0150 = get_ival(V_083);
+
+					if (get_val(V_081) || get_val(V_080)) {
+					combo_run(V_010);
+					}else{
+					combo_stop(V_010);
+					}
+				}
+
+				if (V_0127){
+					if (event_press(V_086)) 
+						V_0145 = TRUE;
+
+					if (V_0145){
+						if (event_press(V_090) || event_press(V_081) || event_press(V_087) || event_press(V_088)) 
+							V_0145 = FALSE;
+
+						if (event_release(V_080))
+							combo_run(V_07);
+					}
+				}
+				if (V_0128 && get_val(V_095)){
+					combo_run(V_011)
+				}
+			//===========================================
+		    //  head
+		    //===========================================
+				if(V_0129 ) {
+					if(get_ival(V_081) && get_ptime(V_080) < V_0116) {
+
+			        		V_0156 = V_0115;
+			        		combo_run(V_013);
+					}
+				}
+
+			//===========================================
+		    //  Rapid
+		    //===========================================     	 
+		            if(get_ival(V_081) && event_press(PS4_RIGHT)){
+
+		                 V_0130 = !V_0130;          
+		                 V_072(V_0130,V_0231(0x1));
+		                 combo_run(V_016);
+		                 set_val(V_080,0x0);
+		            }               
+		        if(V_0130) {
+
+		        combo_run(V_014);
+
+		            if ((V_0130 && get_ival(V_081) && get_ival(V_080)) || (V_0130 && get_ival(V_080))) {
+		                combo_run(V_015);
+		            }                                       
+		        }
+		    }
+        } //  end of MODS CODE 
+    } //  ENTIRE SCRIPT KILL SWITCH 
+} //  end of main block 
+///////////////////////////////////////////////////////////////////////////// 
+///   COMBO BLOCK                                                             
+/////////////////////////////////////////////////////////////////////////////
+const int16 V_0495 [][] ={
+{ 0x1,0x64 }, // STEADY_AIM
+{ 0x1,0x64 },  // DeadZoneSize
+{ 0x1,0xA },
+{ 0x1,0x32 },
+{ 0x1,0x64 },
+{ 0x1,0x64 },
+{ 0x1,0x64 },
+{ 0x1,0x64 },
+{ 0x1,0x64 },//arV
+{ 0x0,0x64 },//arH
+{ 0x1,0x64 },
+{ 0x1,0x64 },
+{ 0x1,0x64 },
+{ 0x1,0x3E8},
+{ 0x1,0x64 },
+{ 0x1,0x64 }
+};
+
+//-- VM Speed
+define V_0232 = 0x0;
+function V_018 (V_019){
+    if     (V_019 == 0x0) vm_tctrl(inv(0x0));//10 ms Default
+    else if(V_019 == 0x1) vm_tctrl(inv(0x2));// 8 ms
+    else if(V_019 == 0x2) vm_tctrl(inv(0x4));// 6 ms
+    else if(V_019 == 0x3) vm_tctrl(inv(0x6));// 4 ms
+    else if(V_019 == 0x4) vm_tctrl(inv(0x8));// 2 ms
+    else if(V_019 == 0x5) vm_tctrl(inv(0x9));// 1 ms
+}
+
+int V_0233 = 0x5DC;
+combo V_00 {     
+	wait(V_0233);     
+	cls_oled(0x0);    
+	V_0206 = FALSE;  
+	V_0202 = FALSE;    
+	V_0237  = FALSE;  
+}
+
+//--------------------------------------------------------------
+
+// Refresh OLED                    
+ int V_0234; 
+ int V_0206; 
+ int V_0202; 
+ int V_0237; 
+ int V_0162 = TRUE;// Kill Swith For Entire Script 
+ int V_0165; 
+////////////////////////////////////// 
+///////////////////////////////////////
+
+int V_0240 = TRUE;
+
+combo V_01 {
+	call(V_03);
+	V_027();
+	wait(0xBB8);
+	call(V_02);
+}
+combo V_02 {
+	V_0242(V_0157, 0x5, V_0243(0x0), OLED_FONT_MEDIUM, OLED_WHITE);
+	V_0242(V_0157, 0x1E, V_0243(0x1), OLED_FONT_SMALL, OLED_WHITE);
+	V_0242(V_0157, 0x2D, V_0243(0x2), OLED_FONT_SMALL, OLED_WHITE);
+	set_rumble(RUMBLE_A, 0x32);
+	wait(0x2D0);
+	set_rumble(RUMBLE_A, 0x32);
+	set_rumble(RUMBLE_B, 0x64);
+	wait(0x2D0);
+	reset_rumble();
+	wait(0x5A0);
+
+}
+combo V_03 {
+	cls_oled(OLED_BLACK);
+}
+int V_0246,V_0247 = 0x6,V_0248,V_0249;
+combo V_04 {
+    V_0246 += get_rtime();
+	if(!(V_0246++ % V_0247)){ // Change stepInterval to determine how many loops you want to use to increase/decrease the colour change,lower means faster - higher means slower 
+		if(!V_0248){ 
+			V_0249     -= 0x1; // 360 / 100 = 3.6 ( due to no floating points I round up to 4 ) 
+			if(V_0249 < 0x0) // When the colourChange has reached max 359 , decrease back to 0 
+				V_0248 = TRUE;
+		}
+		else { 
+			V_0249     += 0x1;// 360 / 100 = 3.6 ( due to no floating points I round up to 4 )
+			if(V_0249 > 0x167) // when the colourChange has reached 0 , increase back up to 359
+				V_0248 = FALSE;
+		}
+		V_0246 = 0x0; // reset cycleRunTime 
+	} 
+	set_hsb(V_0249,0x46,0x46);
+}
+
+/*______________________________________*/
+/*				COMBOS					*/
+/*--------------------------------------*/
+
+combo V_05 {
+    set_val(V_096,0x64);
+    wait(0x14)
+    set_val(V_099,0x64);        
+    wait(0x14);
+    combo_run(V_06);
+}
+combo V_06 {
+    set_val(V_098,0x64);
+    wait(0x14);
+    set_val(V_098,0x0);
+    wait(0x14);
+}
+combo V_07 {
+    set_val(V_086, 0x64);
+    wait(0x14);
+    V_0145 = FALSE;
+}
+combo V_08{
+	set_val(V_082, V_0147 + V_0107);
+	wait(0x65 - V_0108);
+	set_val(V_082, V_0147 + V_0107  - (V_0107 / 0x3));
+	set_val(V_083, V_0148 + V_0107  - (V_0107 / 0x3));
+	wait(0x65 - V_0108);
+	set_val(V_083, V_0148 + V_0107);
+	wait(0x65 - V_0108);
+	set_val(V_082, V_0147 - V_0107  + (V_0107 / 0x3));
+	set_val(V_083, V_0148 + V_0107  - (V_0107 / 0x3));
+	wait(0x65 - V_0108);
+	set_val(V_082, V_0147 - V_0107);
+	wait(0x65 - V_0108);
+	set_val(V_082, V_0147 - V_0107  + (V_0107 / 0x3));
+	set_val(V_083, V_0148 - V_0107  + (V_0107 / 0x3));
+	wait(0x65 - V_0108);
+	set_val(V_083, V_0148 - V_0107);
+	wait(0x65 - V_0108);
+	set_val(V_082, V_0147 + V_0107  - (V_0107 / 0x3));
+	set_val(V_083, V_0148 - V_0107  + (V_0107 / 0x3));
+	wait(0x65 - V_0108);
+	set_val(V_082, V_0147 + V_0107);
+}
+combo V_09{
+	set_val(V_084, V_0154 + (V_0107 * 0x5));
+	wait(0xA);
+	set_val(V_084, V_0154 + inv(V_0107 * 0x5));
+	wait(0xA);
+}
+combo V_010{
+	set_val(V_082, V_0149 + V_0113);
+	wait(0x65 - V_0114);
+	set_val(V_083, V_0150 + V_0113);
+	wait(0x65 - V_0114);
+	set_val(V_082, V_0149 - V_0113);
+	wait(0x65 - V_0114);
+	set_val(V_083, V_0150 - V_0113);
+	wait(0x65 - V_0114);
+}
+combo V_011 {
+	set_val(V_095, 0x64);
+	wait(0x5);
+	set_val(V_095, 0x0);
+}
+combo V_012{
+	set_val(V_084, V_0154 + V_0109);
+	wait(0x65 - V_0110);
+	set_val(V_084, V_0154 - V_0109);
+	wait(0x65 - V_0110);
+}
+combo V_013{
+
+	set_val(V_083,inv(V_0156) + get_val(V_083));
+}
+combo V_014 {                                 
+	set_rgb(0xFF,0xFF,0x0);                           
+	wait(0xC8);                                      
+	set_rgb(0x0,0x0,0x0);                           
+	wait(0x12C);                                      
+	set_rgb(0xFF,0xFF,0xFF);                           
+	wait(0xC8);                                      
+	set_rgb(0x0,0x0,0x0);                              
+	wait(0x12C);                                      
+}
+combo V_015 { 
+    set_val(V_080, 0x64);
+    wait(V_0117);
+    set_val(V_080, 0x0);
+    wait(V_0118); 
+}
+combo V_016{
+wait(0x5DC);
+cls_oled(0x0);
+}
+
+/*______________________________________*/
+/*				FUNCTIONS				*/
+/*--------------------------------------*/
+
+function V_020(V_021) {
+
+    if (V_021 == 0x0) {
+        set_val(V_083, get_val(V_083) + inv(V_0103) + V_0136);
+
+    } else if (V_021 == 0x1) {
+        set_val(V_082, get_val(V_082) + inv(V_0103 - V_0103 / V_0137) + V_0135);
+        set_val(V_083, get_val(V_083) + inv(V_0103 - V_0103 / V_0137) + V_0136);
+
+    } else if (V_021 == 0x2) {
+        set_val(V_082, get_val(V_082) + inv(V_0103) + V_0135);
+
+    } else if (V_021 == 0x3) {
+        set_val(V_082, get_val(V_082) + inv(V_0103 - V_0103 / V_0137) + V_0135);
+        set_val(V_083, get_val(V_083) + (V_0103 - V_0103 / V_0137) + V_0136);
+
+    } else if (V_021 == 0x4) {
+        set_val(V_083, get_val(V_083) + V_0103 + V_0136);
+
+    } else if (V_021 == 0x5) {
+        set_val(V_083, get_val(V_083) + V_0103 - V_0103 / V_0137 + V_0136);
+        set_val(V_082, get_val(V_082) + V_0103 - V_0103 / V_0137 + V_0135);
+
+    } else if (V_021 == 0x6) {
+        set_val(V_082, get_val(V_082) + V_0103 + V_0135);
+
+    } else if (V_021 == 0x7) {
+        set_val(V_082, get_val(V_082) + V_0103 - V_0103 / V_0137 + V_0135);
+        set_val(V_083, get_val(V_083) + inv(V_0103 - V_0103 / V_0137) + V_0136);
+    }
+}
+
+function V_022() {
+    V_0133 += get_rtime();
+
+    V_020(V_0134);
+
+    if (V_0133 > 0x65 - V_0104) {
+        V_0134 = (V_0134 + 0x1) % 0x8;
+        V_0133 = 0x0;
+    }
+}
+
+function V_023(V_024, V_025) {
+
+    if (V_025 == 0x0) {
+        set_val(V_024, get_val(V_024) + inv(V_0103) + V_0135);
+
+    } else if (V_025 == 0x1) {
+        set_val(V_024, get_val(V_024) + V_0103 + V_0135);
+    }
+}
+
+function V_026() {
+
+    V_0133 += get_rtime();
+
+    V_0139 = get_ival(V_082);
+    V_0140 = get_ival(V_083);
+
+    if (abs(V_0139) > abs(V_0140)) {
+
+        if (abs(V_0139) > V_0106) {
+            V_023(V_082, V_0138);
+        }
+    } else {
+
+        if (abs(V_0140) > V_0106) {
+            V_023(V_083, V_0138);
+        }
+        if (abs(V_0140) == abs(V_0139)) {
+            V_023(V_083, V_0138  + V_0136); 
+            V_023(V_082, V_0138 + V_0135);
+        }
+    }
+
+    if (V_0133 > 0x65 - V_0104) {
+        V_0138 = (V_0138 + 0x1) % 0x2;
+        V_0133 = 0x0;
+    }
+}
+
+int V_031 = 0x0, V_032 = 0x0, V_0288 = 0x0, V_0289 = 0x0, V_0290 = 0x0;
+int V_0291 = 0x0;
+int V_0292 = 0x32;
+
+function V_027() {
+
+    V_0290 -= get_rtime();
+
+    // Proceed to the next stage of drawing after a certain time interval
+    if (V_0290 <= 0x0) {
+        V_0290 = V_0292; // Reset the timer
+
+        // Incremental drawing based on the stage
+        if (V_0291 == 0x0) {
+            // First line: Top left to bottom right
+            pixel_oled(0x48 - V_031, 0x16 - (0x2 * V_032) - 0x1, 0x1);
+            pixel_oled(0x32 + V_0288, 0x16 - (0x2 * V_0289) - 0x1, 0x1);
+            V_031++;
+            V_032++;
+            V_0288++;
+            V_0289++;
+            if (V_032 >= 0xA) {
+                V_0291 = (V_0291 + 0x1) % 0x5;
+                V_031 = 0x0; V_032 = 0x0; V_0288 = 0x0; V_0289 = 0x0; // Reset coordinates for the next stage
+            }
+        } else if (V_0291 == 0x1) {
+            // Second line: Top right to bottom left
+            pixel_oled(0x32 - 0x2 * V_031, 0x14, 0x1);
+            pixel_oled(0x48 + 0x2 * V_0288, 0x14, 0x1);
+            V_031++;
+            V_0288++;
+            if (V_031 >= 0xA) {
+                V_0291 = (V_0291 + 0x1) % 0x5;
+                V_031 = 0x0; V_032 = 0x0; V_0288 = 0x0; V_0289 = 0x0; // Reset coordinates for the next stage
+            }
+        } else if (V_0291 == 0x2) {
+            // Third line: Middle left to middle right
+            pixel_oled(0x5F - 0x2 * V_031, 0x14 + (0x4 * V_032 / 0x3), 0x1);
+            pixel_oled(0x19 + 0x2 * V_0288, 0x14 + (0x4 * V_0289 / 0x3), 0x1);
+            V_031++;
+            V_032++;
+            V_0288++;
+            V_0289++;
+            if (V_032 >= 0xA) {
+                V_0291 = (V_0291 + 0x1) % 0x5;
+                V_031 = 0x0; V_032 = 0x0; V_0288 = 0x0; V_0289 = 0x0; // Reset coordinates for the next stage
+            }
+        } else if (V_0291 == 0x3) {
+            // Fourth line: Bottom left to bottom right
+            pixel_oled(0x32 - 0x2 * V_031, 0x21 + (0x2 * V_032), 0x1);
+            pixel_oled(0x48 + 0x2 * V_0288, 0x21 + (0x2 * V_0289), 0x1);
+            V_031++;
+            V_032++;
+            V_0288++;
+            V_0289++;
+            if (V_032 >= 0xA) {
+                V_0291 = (V_0291 + 0x1) % 0x5;
+                V_031 = 0x0; V_032 = 0x0; V_0288 = 0x0; V_0289 = 0x0; // Reset coordinates for the next stage
+            }
+        } else if (V_0291 == 0x4) {
+            // Fifth line: Diagonal top right to bottom left
+            pixel_oled(0x3A + 0x2 * V_031 + 0x3 * V_031 / 0x2, 0x2D + V_032, 0x1);
+            pixel_oled(0x3F - 0x2 * V_0288 - 0x3 * V_0288 / 0x2, 0x2D + V_0289, 0x1);
+            V_031++;
+            V_032++;
+            V_0288++;
+            V_0289++;
+            if (V_032 >= 0xA) {
+                V_0291 = (V_0291 + 0x1) % 0x5;
+            }
+        }
+    }
+}
+
+// Prints text to the screen
+ function V_0242(V_031, V_032, V_0301, V_033, V_034) {
+	V_028(V_0301);
+	V_030(V_031, V_032, V_033, V_034);
+}
+function V_028(V_029) {
+	// Loop through each character of the string
+    do {
+    	V_035(dint8(V_029)); // Insert character into display buffer
+    	V_029++; // Move to next character of the string
+    } while(dint8(V_029)) // Check if a next character exists
+}
+int V_0309;
+function V_030(V_031, V_032, V_033, V_034) {
+	// Decrement display buffer value for proper arithmetic
+	V_0309--;
+
+	// Check horizontal alignment
+	switch(V_031) { 
+		case V_0158 {
+			V_031 = OLED_WIDTH - (V_0309 * V_0490[V_033]) - 0x4; // Additional 4 for padding from border
+			break;	
+		} case V_0157 {
+			V_031 = (OLED_WIDTH >> 0x1) - ((V_0309 * V_0490[V_033]) >> 0x1);
+			break;
+		}
+		// No alignLeft case is needed because alignLeft is set to the proper left alignment already
+	}
+
+	// Check vertical alignment
+	switch(V_032) { 
+		case V_0157 {
+			V_032 = (OLED_HEIGHT >> 0x1) - (V_0491[V_033] >> 0x1);
+			break;
+		} case V_0160 {
+			V_032 = OLED_HEIGHT - V_0491[V_033] - 0x4; // Additional 4 for padding from border
+			break;	
+		}
+		// No alignTop case is needed because alignTop is set to the proper top alignment already
+	}
+
+	puts_oled(V_031, V_032, V_033, V_0309, V_034); // Output display buffer
+	V_0309 = 0x1; // Reset display buffer
+}
+function V_035(int V_025) {
+	putc_oled(V_0309, V_025);
+	V_0309++;
+}
+
+//===============================================================
+//   MODS COMBO SECTION
+//===============================================================
+
+define V_0323 = 0x0; 
+define V_0324 = 0x1; 
+define V_0325 = 0x2;
+
+//////////////////////////////////////////////////////////////// 
+function V_037(V_038, V_039) { 
+    return (0x80 - V_038 * V_0498[V_039][V_0323]) / 0x2;
+}
+
+const string V_0354[]      = {"VALUES"};  // "SETTINGS"
+const string V_0355[]      = {"SAVED"}; //"SAVED"
+
+////////////////////////////////////////////////////////////////////////////// 
+///  SAVE  
+function V_040 () {                    
+     set_pvar(SPVAR_1,V_0122); 
+     set_pvar(SPVAR_2,V_0123);
+     set_pvar(SPVAR_3,V_0125);
+     set_pvar(SPVAR_4,V_0126);
+	 set_pvar(SPVAR_5,V_0127);
+	 set_pvar(SPVAR_6,V_0131);
+	 set_pvar(SPVAR_7,V_0103);
+	 set_pvar(SPVAR_8,V_0104);
+	 set_pvar(SPVAR_9,V_0131);
+	 set_pvar(SPVAR_25,V_0105);
+     set_pvar(SPVAR_10,V_0106); 
+     set_pvar(SPVAR_11,V_0107);
+     set_pvar(SPVAR_12,V_0108);
+  	 set_pvar(SPVAR_13,V_0111);
+	 set_pvar(SPVAR_14,V_0112);
+	 set_pvar(SPVAR_15,V_0128);
+	 set_pvar(SPVAR_16,V_0109);
+	 set_pvar(SPVAR_17,V_0110);
+	 set_pvar(SPVAR_18,V_0124);
+	 set_pvar(SPVAR_19,V_0113);
+	 set_pvar(SPVAR_20,V_0114);
+	 set_pvar(SPVAR_21,V_0129);
+	 set_pvar(SPVAR_22,V_0115);
+	 set_pvar(SPVAR_23,V_0116);
+	 set_pvar(SPVAR_24,V_0130);
+	 set_pvar(SPVAR_25,V_0117);
+	 set_pvar(SPVAR_26,V_0118);
+
+    combo_run(V_00);    
+}// end of save
+
+combo V_017 {       
+    wait(0x14);         
+    V_040 ();  
+    cls_oled(0x0);      
+    print(V_037(V_079[0x9] - 0x1, OLED_FONT_MEDIUM ), 0x2, OLED_FONT_MEDIUM, 0x1, V_0354(0x0)); 
+    print(V_037(V_079[0xA] - 0x1, OLED_FONT_MEDIUM ), 0x17, OLED_FONT_MEDIUM, 0x1, V_0355(0x0));
+    V_0233 = 0x1F4;     
+}
+
+const uint8 V_0498[][] = {  
+    {  0x7, 0xA, 0x12 }, // Small    
+    { 0xB, 0x12, 0xB }, // Medium   
+    { 0x10, 0x1A,  0x7 }  // Large    
+};
+
+function V_041(  V_042) {
+    print(0x2, 0x2, OLED_FONT_SMALL, OLED_WHITE, V_0356[V_0102]); 
+    V_047(V_042, V_060(V_042));     
+}
+
+function V_043 (V_044) {
+    V_044       +=0x1;   
+    if(V_044  > V_0488[V_0121][0x1] )V_044  = V_0488[V_0121][0x0]; // max option
+
+    return V_044;
+}
+
+function V_045 (V_044) {
+    V_044       -=0x1;   
+    if(V_044  < V_0488[V_0121][0x0] )V_044  = V_0488[V_0121][0x1];
+
+    return V_044;
+}
+// Variables for function number_to_string()  
+int V_0360; 
+int V_0361,V_0362; 
+function V_047(V_042,V_049) {                  
+//=======================================================
+//  number_to_string(value to convert, # of digits in value) 
+//                                                           
+//  Display Up to Max 16-bit Signed Integer (-32,768 to 32,767) 
+//                                                      
+//      Convert digits to ASCII                         
+//      Add ASCII character to print buffer            
+//      Print string centered X & Y on OLED             
+//                                                       
+//======================================================
+    V_0360 = 0x1;  V_0362 = 0x2710;
+
+    if(V_042 < 0x0) //--neg numbers                     
+    {                                                 
+         putc_oled(V_0360,0x2D);    //--add leading "-"      
+         V_0360 += 0x1;                                      
+         V_042 = abs(V_042);                          
+    }
+
+    for(V_0361 = 0x5; V_0361 >= 0x1; V_0361--)                           
+    {                                                 
+        if(V_049 >= V_0361)                             
+        {                                             
+            putc_oled(V_0360,V_0364[V_042 / V_0362]);    
+            V_042 = V_042 % V_0362;                    
+            V_0360 +=  0x1;                                  
+            if(V_0361 == 0x4)                               
+            {                                         
+                putc_oled(V_0360,0x2C);   //--add ","        
+                V_0360 += 0x1;                               
+            }                                        
+        }                                             
+        V_0362 /= 0xA;                                  
+    }                                                
+    puts_oled(V_062(V_0360 - 0x1,OLED_FONT_MEDIUM_WIDTH),0x1B,OLED_FONT_MEDIUM,V_0360 - 0x1,OLED_WHITE); // adjustable value centered in X 
+}                                                     
+int V_0366;
+
+function V_050(V_042,V_049 ,V_053 , V_054 , V_055) {
+
+    V_0366 = 0x1;  V_0362 = 0x2710;
+
+    if(V_042 < 0x0) //--neg numbers                     
+    {                                                 
+         putc_oled(V_0366,0x2D);    //--add leading "-" 
+         V_0366 += 0x1;                                 
+         V_042 = abs(V_042);
+
+    }
+
+    for(V_0361 = 0x5; V_0361 >= 0x1; V_0361--)                           
+    {                                                 
+        if(V_049 >= V_0361)                             
+        {                                              
+            putc_oled(V_0366,V_0364[V_042 / V_0362]);
+            V_042 = V_042 % V_0362;                    
+            V_0366 +=  0x1;
+
+        }                                             
+        V_0362 /= 0xA;                                  
+    }                                                 
+    puts_oled(V_053,V_054,V_055,V_0366 - 0x1,OLED_WHITE); // adjustable value centered in X
+}                                       
+int V_0376, V_0377;
+define V_0378 = 0x24;
+
+function V_056( V_042) {  // antirecoil = edit_val( 0 , antirecoil, 99  , 99  ) 
+    line_oled(0x1,0xE,0x7F,0xE,0x1,0x1);                                        
+    // print the range values
+    line_oled(0x1,0x30,0x7F,0x30,0x1,0x1); 
+    // print text 
+    print( 0x2, 0x34, OLED_FONT_SMALL, 0x1, V_0379(0x0) ); 
+    // print Left/ Right arrow
+    rect_oled(0x5A, 0x32, 0x7F, 0x3C, OLED_WHITE , V_0380); // rectangle left (line 1)
+    //rect_oled(100, 48, OLED_FONT_SMALL_WIDTH + 2, OLED_FONT_SMALL_HEIGHT + 2, OLED_WHITE, col_rec_right); // rectangle right (line 1)
+    putc_oled(0x1,V_0381); 
+    puts_oled(0x5B, 0x33, OLED_FONT_SMALL, 0x1, V_0382);     
+    putc_oled(0x1,V_0383); 
+    puts_oled(0x65, 0x33, OLED_FONT_SMALL, 0x1, V_0384);
+
+    putc_oled(0x1,V_0385); 
+    puts_oled(0x6F, 0x33, OLED_FONT_SMALL, 0x1, V_0382);     
+    putc_oled(0x1,V_0387); 
+    puts_oled(0x79, 0x33, OLED_FONT_SMALL, 0x1, V_0384);
+
+    V_0376 = V_0495[V_0102][0x0];                          
+    V_0377 = V_0495[V_0102][0x1];
+
+    // on the left: min value                                          
+    V_050(V_0376 ,V_060(V_0376) ,0x4 , 0x14 , OLED_FONT_SMALL); 
+    // on the right: max value                                         
+    V_050(V_0377 ,V_060(V_0377) ,0x61 , 0x14 , OLED_FONT_SMALL);
+
+    if(get_ival(V_081)){                  
+        if(V_058(PS4_RIGHT)){            
+            V_042 ++;                           
+            if(V_042 > V_0377 ) V_042 = V_0377;   
+            V_0237 = TRUE;
+
+        }
+
+        if(V_058(PS4_LEFT)){             
+            V_042 --;                           
+            if(V_042 < V_0376 ) V_042 = V_0376;   
+            V_0237 = TRUE;
+
+        }                                     
+        if(V_058(PS4_UP)){               
+            V_042 +=0xA;                         
+            if(V_042 > V_0377 ) V_042 = V_0377;   
+            V_0237 = TRUE;
+
+        }
+
+        if(V_058(PS4_DOWN)){             
+            V_042 -=0xA;                         
+            if(V_042 < V_0376 ) V_042 = V_0376;   
+            V_0237 = TRUE;
+
+        }                                     
+    }                                      
+    return V_042;                        
+}
+
+function V_058(V_059) {       
+//  return TRUE - event_press()    
+//- every 250ms when button is held 
+	  return event_press(V_059) || get_ival(V_059) && get_ptime(V_059) > 0xFA 
+	       && get_ptime(V_059) % (get_rtime() * 0x8) == 0x0;
+}
+
+function V_060(V_061) {                         
+//  find_digits(value)                                
+//        return Number of Digits in Value Passed
+
+    V_061 = abs(V_061);                               
+    if(V_061 / 0x2710 > 0x0) return 0x5;                   
+    if(V_061 /  0x3E8 > 0x0) return 0x4;                   
+    if(V_061 /   0x64 > 0x0) return 0x3;                   
+    if(V_061 /    0xA > 0x0) return 0x2;                   
+                          return 0x1;                  
+}                                                     
+///////////////////////////////////////////////
+//  FUNCTIONS
+
+function V_062(V_063,V_055) {           
+//  center_x(number of chars,font size);     
+//        return X for Centering String Horizontally
+
+    return (OLED_WIDTH / 0x2) - ((V_063 * V_055) / 0x2); 
+}
+
+function V_065()        
+{
+    rect_oled(0x0, 0x0,OLED_WIDTH,0x40,FALSE,0x1); 
+    line_oled(0x1,0xE,0x7F,0xE,0x1,0x1); 
+    line_oled(0x1,0x30,0x7F,0x30,0x1,0x1); 
+}
+define V_0396 = 0x1F;
+define V_0397 = 0x9;
+define V_0398 = 0x44;
+define V_0399 = 0x45;
+define V_0400 = 0x46;
+const string V_0440[]      = {"Disable"}; 
+const string V_0442[]      = {"Polar Type"}; 
+const string V_0443[]      = {"Linear Type"}; 
+const string V_0444[]      = {"Default"}; 
+const string V_0445[]      = {"0x8 ms"}; 
+const string V_0446[]      = {"0x6 ms"}; 
+const string V_0447[]      = {"0x4 ms"}; 
+const string V_0448[]      = {"0x2 ms"}; 
+const string V_0449[]      = {"0x1 ms"};
+
+const uint8 V_079[] = { 0x9, 0xB, 0x7, 0x9, 0xB, 0xE, 0x8, 0x3, 0x2, 0x5, 0x5,  0x7,  0xA,  0xB, 0xB, 0xA, 0x9, 0xA};
+					//		1   2  3  4   5   6  7  8  9  10 11  12  13   14  14  15  16,17
+
+define V_0382 = 0x0;
+define V_0384 = 0x0;
+
+define V_0385 = 0x83; define V_0387 = 0x84; define V_0381 = 0x85; define V_0383 = 0x86; define V_0407 = 0x82; define V_0408 = 0x59; define V_0409 = 0x7F; define V_0410 = 0x41;
+int V_0380 = 0x1;
+int V_0412 = 0x1;
+define V_0413 = 0x15;
+define V_0414 = 0x15;
+define V_0415 = 0x21;
+const string V_0433[]      = {" No Edit Variable"};
+const string V_0434[]      = {" A/CROSS to Edit "};
+const string V_0421[]      = {"MOD:"};
+const string V_0423[]      = {"MSL:"};
+int V_0416 ;
+function V_066( V_067, V_068, V_069, V_070) {   
+        // Display MOD_NAME                                    
+        print(V_067, 0x2, OLED_FONT_SMALL, OLED_WHITE, V_068); 
+        // display MOD : label with MOD number
+        print( 0x2,0x26,OLED_FONT_SMALL, OLED_WHITE, V_0421(0x0)); 
+        V_050(V_0121 + 0x1 ,V_060(V_0121 + 0x1) ,0x1C , 0x26 , OLED_FONT_SMALL);
+
+        // display Slot ; label and slot number
+        print( 0x54,0x26,OLED_FONT_SMALL, OLED_WHITE, V_0423(0x0)); 
+        V_050(V_0416 ,V_060(V_0416) ,0x70 , 0x26 , OLED_FONT_SMALL);
+
+        // display Up / Down for scroll MODs
+        // Clears/fill rectangle
+        rect_oled(0x37, V_0378, OLED_FONT_SMALL_WIDTH + 0x2, OLED_FONT_SMALL_HEIGHT + 0x2, OLED_WHITE , V_0380); // rectangle left (line 2)
+        rect_oled(0x3F, V_0378, OLED_FONT_SMALL_WIDTH + 0x2, OLED_FONT_SMALL_HEIGHT + 0x2, OLED_WHITE, V_0412); //  rectangle right (line 2)
+
+        putc_oled(0x1,V_0387); 
+    	puts_oled(0x38, 0x25, OLED_FONT_SMALL, 0x1, V_0382); 
+        putc_oled(0x1,V_0385); 
+		puts_oled(0x40, 0x25, OLED_FONT_SMALL, 0x1, V_0384);
+
+        // display text                                                         
+		if(V_0486[ V_0121 ] == 0x0 ){ 
+			print( 0x2, 0x34, OLED_FONT_SMALL, 0x1, V_0433(0x0) ); 
+		}else{
+			print( 0x2, 0x34, OLED_FONT_SMALL, 0x1, V_0434(0x0) ); 
+        }
+        if(V_070 == 0x1)                              
+        {                                                     
+        // Display Disable / Enable                                 
+            if(V_069 == 0x1)                                                             
+                print(V_062(V_079[0x9] - 0x3, OLED_FONT_SMALL_WIDTH),V_0413,OLED_FONT_SMALL,OLED_WHITE, V_0436(0x0));// Enable 
+            else                                                                                               
+                print(V_062(V_079[0x8] + 0x1, OLED_FONT_SMALL_WIDTH),V_0413,OLED_FONT_SMALL,OLED_WHITE,V_0438(0x0));// Disable 
+        }            
+        if(V_070 == V_0396)// 31    
+        {                                                     
+            if(V_069 == 0x0)                                                             
+                print(V_062(V_079[0xC]  - 0x3, OLED_FONT_SMALL_WIDTH),V_0413,OLED_FONT_SMALL,OLED_WHITE, V_0440(0x0));// Disable
+
+            if(V_069 == 0x1)                                                             
+                print(V_062(V_079[0xD] - 0x2, OLED_FONT_SMALL_WIDTH),V_0413,OLED_FONT_SMALL,OLED_WHITE, V_0442(0x0));// ADS & FireBut
+
+            if(V_069 == 0x2)                                                             
+                print(V_062(0xB - 0x1, OLED_FONT_SMALL_WIDTH),0x15,OLED_FONT_SMALL,OLED_WHITE, V_0443(0x0));// ADS or FireBut
+
+        }
+
+        if(V_070 == 0x32)   
+        {                                                     
+            if(V_069 == 0x0)                                                             
+                print(V_062(0x7  - 0x1, OLED_FONT_SMALL_WIDTH),0x15,OLED_FONT_SMALL,OLED_WHITE, V_0444(0x0));// Default
+
+            if(V_069 == 0x1)                                                             
+                print(V_062(0x4  - 0x1, OLED_FONT_SMALL_WIDTH),0x15,OLED_FONT_SMALL,OLED_WHITE, V_0445(0x0));// 8 ms
+
+            if(V_069 == 0x2)                                                             
+                print(V_062(0x4  - 0x1, OLED_FONT_SMALL_WIDTH),0x15,OLED_FONT_SMALL,OLED_WHITE, V_0446(0x0));// 6 ms
+
+            if(V_069 == 0x3)                                                             
+                print(V_062(0x4  - 0x1, OLED_FONT_SMALL_WIDTH),0x15,OLED_FONT_SMALL,OLED_WHITE, V_0447(0x0));// 4 ms
+
+            if(V_069 == 0x4)                                                             
+                print(V_062(0x4  - 0x1, OLED_FONT_SMALL_WIDTH),0x15,OLED_FONT_SMALL,OLED_WHITE, V_0448(0x0));// 2 ms
+
+            if(V_069 == 0x5)                                                             
+                print(V_062(0x4  - 0x1, OLED_FONT_SMALL_WIDTH),0x15,OLED_FONT_SMALL,OLED_WHITE, V_0449(0x0));// 1 ms
+
+        }
+
+}//display mod end           
+const uint8 V_0514 [] = {  
+  PS4_RIGHT , //0. Up
+  PS4_LEFT , //1. Down
+  PS4_UP , //2. go back
+  PS4_DOWN , //3. go forward
+  PS4_CROSS , //4. enter in Edit Menu
+  PS4_CIRCLE , //5. exit  Menu
+  PS4_OPTIONS , //5. enter in  Menu
+  PS4_L2     //6. hold ADS
+};//--- End Menu Buttons
+
+int V_0450;
+int V_0451;
+define V_0452 = 0x7530;
+function V_071 (){  
+    for(V_0450 = 0x0; V_0450 < 0x7; V_0450++){
+         if(event_press(V_0514[V_0450]) ){
+             V_0451 = V_0452;
+         }
+         if(V_0451){              
+            V_0451 -=0x1;
+            if(V_0451 <= 0x0 ){    
+                V_0206 = FALSE;      
+                V_0202 = FALSE;      
+                V_0237  = FALSE;  
+            }
+        }
+    }
+}
+int V_0456, V_078;
+function V_072(V_042,V_074){
+	V_0456 = 0xA;
+
+    if(!V_0206){                                           
+        // Clear OLED Screen                          
+        cls_oled(0x0); // will clear oled   
+        print(0x23, V_0456, OLED_FONT_SMALL ,OLED_WHITE, V_074);   
+        if( V_042 ){
+            //print(center_x(sizeof(ON)  - 1, OLED_FONT_SMALL_WIDTH),35,OLED_FONT_SMALL,OLED_WHITE, ON[0]);//MOD is ON
+            print(V_075(V_078(V_0463(0x0)),OLED_FONT_SMALL_WIDTH),0x23,OLED_FONT_SMALL,OLED_WHITE,V_0463(0x0));
+        }
+        else{
+        	print(V_075(V_078(V_0463(0x1)),OLED_FONT_SMALL_WIDTH),0x23,OLED_FONT_SMALL,OLED_WHITE,V_0463(0x1));
+            //print(center_x(sizeof(OFF)  - 1, OLED_FONT_SMALL_WIDTH),35,OLED_FONT_SMALL,OLED_WHITE, OFF[0]);// MOD is OFF
+        }
+    }
+}
+function V_075(V_076,V_077) {
+
+    return (0x80 / 0x2) - ((V_076 * V_077) / 0x2);
+}
+function V_078(V_079) {
+
+    V_078 = 0x0;
+
+    do {
+
+        V_079++;
+        V_078++;
+    }
+
+    while (duint8(V_079));
+
+    return V_078;
+ } 
+                  ú¾¾ˆ¸€²‚±‚µ‚²ƒ°

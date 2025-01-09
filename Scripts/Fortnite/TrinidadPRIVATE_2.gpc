@@ -1,0 +1,80 @@
+//new
+int AimBot = TRUE;
+int DZ_AimBot = TRUE;//Change to TRUE or FALSE
+int Aimbot_Strength1 = 9;//Change values.
+int Aimbot_Strength2 = -11;//Change values.
+int SLA_Recoil    = 20;
+define Fire = PS4_R2;//Fire in game.       
+define Ads  = PS4_L2;//Ads in game.
+
+
+int HairTrigger = TRUE; 
+
+int BuildTracker = FALSE; 
+
+int AutoAimStrength = 100000; 
+
+int AntiRecoilStrength = 23; 
+
+int SECRET_AimBotToogle 	 = 1000000//main toogle (turns on tons of AA) 
+
+int softaim_Expo    	 = 1000000;//Aim Assist Exponential Toggle  
+
+int SECRET_LongRangeAA    = 10000000;//turn on for longRange AA 
+
+ int LongRangeAA_wait    = 1000000; 
+
+int LongRangeAA_Release = 1000000; 
+
+int Strength_Expo       = 150000;//AIM ASSIST STRENGTH EXPONENTIAL 
+
+int SECRET_enemy_tracker   = 100000;//enemy tracking v1 
+
+int SECRET_enemy_tracker2  = 100000;//enemy tracking v2 
+
+int SECRET_enemy_tracker3  = 100000;//enemy tracking v3 
+
+int SECRET_enmey_tracker4  = 100000;//enemy tracking v4 
+
+int TrackerStrength = 900; 
+
+int TrackerSpeed = 900; 
+
+
+
+//new code done bye coin
+int AA1 = 10,AA2 = 10,AA3 = 10, AA4 = 10,AA5 = 10;int DDD = 1;int DEADZONE = 11;int EA1 = 10;int EA2 = 10;int EA3 = 10;int EA4 = 10;int MOVEMENT_TRACK;int LEGACYZAA_DZ = +9,DELAY = +1;int DZ_LEGACYZ_MOVEMENT = 9;int SLAAntiRecoil;
+main { SLA_Recoil()if (get_ival(XB1_LT) > 1)set_val(XB1_LT, 100);if(get_ival(XB1_RT) > 1)set_val(XB1_RT, 100);vm_tctrl(-8);
+combo_run(AA1)if(abs(get_val(PS4_RX)) > 18 || abs(get_val(PS4_RY)) > 18)combo_stop(AA1)
+combo_run(AA2)if(abs(get_val(PS4_RX)) > 19 || abs(get_val(PS4_RY)) > 19)combo_stop(AA2)
+combo_run(AA3)if(abs(get_val(PS4_RX)) > 20 || abs(get_val(PS4_RY)) > 20)combo_stop(AA3)
+combo_run(AA4)if(abs(get_val(PS4_RX)) > 21 || abs(get_val(PS4_RY)) > 21)combo_stop(AA4)
+combo_run(AA5)if(abs(get_val(PS4_RX)) > 23 || abs(get_val(PS4_RY)) > 23)combo_stop(AA5)
+if(AimBot){combo_run(AA6)if(abs(get_val(PS4_RX)) > 22 || abs(get_val(PS4_RY)) > 22 || abs(get_val(PS4_LY)) > 16 || abs(get_val(PS4_LX)) > 16)combo_stop(AA6)}
+combo_run(AA7) if(abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) > DEADZONE || abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) < -DEADZONE)combo_stop(AA7)
+combo_run(AA8) if(abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) > DEADZONE + 1 || abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) < -DEADZONE + 1)combo_stop(AA8)
+combo_run(AA9) if(abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) > DEADZONE + 2 || abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) < -DEADZONE + 2)combo_stop(AA9)
+combo_run(AA10)if(abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) > DEADZONE + 3 || abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) < -DEADZONE + 3)combo_stop(AA10)
+if(DZ_AimBot){combo_run(DZAA)if(abs(get_val(PS4_RX)) > 15 || abs(get_val(PS4_RY)) > 15)combo_stop(DZAA)
+combo_run(DZAA2)if(abs(get_val(PS4_RX)) > 16 || abs(get_val(PS4_RY)) > 16)combo_stop(DZAA2)
+combo_run(DZAA3)if(abs(get_val(PS4_RX)) > 17 || abs(get_val(PS4_RY)) > 17)combo_stop(DZAA3)}
+}
+combo AA1 {set_val(PS4_RX,AA1)wait(DDD)set_val(PS4_RY,AA1) set_val(PS4_RX,-AA1)wait(DDD)set_val(PS4_RY,-AA1)}
+combo AA2 {set_val(PS4_RX,AA2) set_val(PS4_RY,AA2) set_val(PS4_RX,-AA2)wait(DDD)set_val(PS4_RY,-AA2)}
+combo AA3 {set_val(PS4_RX,AA3)wait(DDD)set_val(PS4_RY,AA3) set_val(PS4_RX,-AA3) set_val(PS4_RY,-AA3)}
+combo AA4 {set_val(PS4_RX,AA4)wait(DDD)set_val(PS4_RY,AA4) set_val(PS4_RX,-AA4)wait(DDD)set_val(PS4_RY,-AA4)}
+combo AA5 {set_val(PS4_RX,AA5)wait(DDD)set_val(PS4_RY,AA5) wait(DDD)set_val(PS4_RX,-AA5)wait(DDD)set_val(PS4_RY,-AA5)}
+combo AA6 {set_val(PS4_RX,Aimbot_Strength1)wait(DDD)set_val(PS4_RY,Aimbot_Strength1) set_val(PS4_LX,-Aimbot_Strength2)wait(DDD)set_val(PS4_LY,-Aimbot_Strength2)wait(DDD)}
+combo AA7 {set_val(PS4_RX,EA1)wait(DDD)set_val(PS4_RY,EA1)wait(DDD)set_val(PS4_RX,-EA1)wait(DDD)set_val(PS4_RY,-EA1)wait(DDD)set_val(PS4_RY,-EA1)wait(DDD)}
+combo AA8 {set_val(PS4_RX,EA2)wait(DDD)set_val(PS4_RY,EA2)wait(DDD)set_val(PS4_RX,-EA2)wait(DDD)set_val(PS4_RY,-EA2)wait(DDD)}
+combo AA9 {set_val(PS4_RX,EA3)wait(DDD)set_val(PS4_RY,EA3)wait(DDD)set_val(PS4_RX,-EA3)wait(DDD)set_val(PS4_RY,-EA3)wait(DDD)}
+combo AA10 {set_val(PS4_RX,EA4)wait(DDD)set_val(PS4_RY,EA4)wait(DDD)set_val(PS4_RX,-EA4)wait(DDD)set_val(PS4_RY,-EA4)wait(DDD)}
+combo DZAA {set_val(PS4_RX,LEGACYZAA_DZ)wait(DELAY)set_val(PS4_RY,LEGACYZAA_DZ) set_val(PS4_RX,-LEGACYZAA_DZ)wait(DELAY)set_val(PS4_RY,-LEGACYZAA_DZ) Dz()}
+combo DZAA2 {set_val(PS4_RX,LEGACYZAA_DZ) set_val(PS4_RY,LEGACYZAA_DZ) set_val(PS4_RX,-LEGACYZAA_DZ)wait(DELAY)set_val(PS4_RY,-LEGACYZAA_DZ) Dz()}
+combo DZAA3 {set_val(PS4_RX,LEGACYZAA_DZ)wait(DELAY)set_val(PS4_RY,LEGACYZAA_DZ) set_val(PS4_RX,-LEGACYZAA_DZ) set_val(PS4_RY,-LEGACYZAA_DZ) Dz()}
+combo SLA_Recoil{SLAAntiRecoil=get_ival(PS4_RY)+SLA_Recoil;if(SLAAntiRecoil >  100 + 100 - 100 )SLA_Recoil = 100 - 100 + 100;set_val(PS4_RY,SLA_Recoil)}
+function SLA_Recoil(){if(get_val(Fire) && get_val(Ads))combo_run(SLA_Recoil)if(abs(get_val(PS4_RX)) + abs(get_val(PS4_RY)) > SLA_Recoil - 100 + 100)combo_stop(SLA_Recoil)return;}
+function Dz (){if(PS4_RX + PS4_RY - PS4_LY + PS4_LX > 0)DZ_LEGACYZ_MOVEMENT = -8if(PS4_RX + PS4_RY - PS4_LY + PS4_LX > -0)DZ_LEGACYZ_MOVEMENT = +8 return;}
+
+ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ú¸‹ºŽ¶¿ˆ»Ž¸Ž¹¼      
+ 
